@@ -1,5 +1,7 @@
 import { assign, createMachine, interpret } from 'xstate';
 
+import { CypherFactory } from './types';
+
 const createArrayRunnerMachine = (length: number) =>
   createMachine({
     predictableActionArguments: true,
@@ -52,8 +54,8 @@ type RailFenceCypherOptions = {
   depth: 1 | 2 | 3 | 4 | 5;
 };
 
-export const railFenceCypher =
-  ({ depth }: RailFenceCypherOptions) =>
+export const railFenceCypher: CypherFactory<RailFenceCypherOptions> =
+  ({ depth }) =>
   (input: string): string => {
     const caretIterator = createCaretIterator(depth);
     const rails = new Array(depth).fill('');
