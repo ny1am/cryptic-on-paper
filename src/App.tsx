@@ -1,5 +1,7 @@
+import { EncryptPage } from './pages/encrypt';
+
 function App() {
-  return <div>todo</div>;
+  return <EncryptPage />;
 }
 
 export default App;

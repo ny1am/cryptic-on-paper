@@ -5,6 +5,6 @@ const pipe =
   (v: T): T =>
     arr.reduce((r, fn) => fn(r), v);
 
-export const execute = (cyphers: Cypher[], input: string): string => {
+export const encrypt = (cyphers: Cypher[], input: string): string => {
   return pipe<string>(cyphers)(input);
 };

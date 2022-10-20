@@ -50,7 +50,7 @@ const createCaretIterator = (length: number) => {
   };
 };
 
-type RailFenceCypherOptions = {
+export type RailFenceCypherOptions = {
   depth: 1 | 2 | 3 | 4 | 5;
 };
 
