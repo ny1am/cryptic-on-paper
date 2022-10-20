@@ -1,10 +1,10 @@
-import { CypherFactory } from './types';
+import { CypherFactory } from '../types';
 
 type ToggleCaseCypherOptions = {
   include?: string;
 };
 
-export const toggleCaseCypher: CypherFactory<ToggleCaseCypherOptions> =
+export const toggleCaseCypherFactory: CypherFactory<ToggleCaseCypherOptions> =
   ({ include = '' }) =>
   (input: string): string =>
     Array.from(input)

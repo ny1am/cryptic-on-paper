@@ -1,4 +1,4 @@
-import { Cypher } from '@/features/cypher/types';
+import { Cypher } from '../types';
 
 const pipe =
   <T>(arr: ((input: T) => T)[]) =>

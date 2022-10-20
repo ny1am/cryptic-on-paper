@@ -1,3 +1,2 @@
-export * from './mirror';
-export * from './railFence';
-export * from './toggleCase';
+export * from './executor';
+export * from './factory';

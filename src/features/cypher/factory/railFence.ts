@@ -1,6 +1,6 @@
 import { assign, createMachine, interpret } from 'xstate';
 
-import { CypherFactory } from './types';
+import { CypherFactory } from '../types';
 
 const createArrayRunnerMachine = (length: number) =>
   createMachine({
@@ -54,7 +54,7 @@ type RailFenceCypherOptions = {
   depth: 1 | 2 | 3 | 4 | 5;
 };
 
-export const railFenceCypher: CypherFactory<RailFenceCypherOptions> =
+export const railFenceCypherFactory: CypherFactory<RailFenceCypherOptions> =
   ({ depth }) =>
   (input: string): string => {
     const caretIterator = createCaretIterator(depth);
