@@ -10,17 +10,10 @@ export function EncryptPage() {
   const addCypher = (c: CypherMeta) => setSelectedCyphers((sc) => [...sc, c]);
 
   return (
-    <CiphersContext.Provider
-      value={{
-        selectedCyphers,
-        addCypher,
-      }}
-    >
-      <div>
-        <CyphersPipe />
-        <hr />
-        <ExecutorForm />
-      </div>
+    <CiphersContext.Provider value={{ selectedCyphers, addCypher }}>
+      <CyphersPipe />
+      <hr />
+      <ExecutorForm />
     </CiphersContext.Provider>
   );
 }

@@ -51,7 +51,7 @@ const createCaretIterator = (length: number) => {
 };
 
 export type RailFenceCypherOptions = {
-  depth: 1 | 2 | 3 | 4 | 5;
+  depth: number;
 };
 
 export const railFenceCypherFactory: CypherFactory<RailFenceCypherOptions> =
