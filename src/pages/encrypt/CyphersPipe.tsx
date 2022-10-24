@@ -32,6 +32,8 @@ const pipeCfg: PipeCfg = {
   },
 };
 
+const cypherRegister = ['mirror', 'railFence'] as const;
+
 export function CyphersPipe() {
   const { selectedCyphers, addCypher } = useContext(CiphersContext);
   const [form, setForm] = useState<keyof PipeCfg>();
@@ -66,10 +68,11 @@ export function CyphersPipe() {
   return (
     <div>
       <div>
-        <button onClick={() => handleAddCypher('railFence')}>
-          add rail fence cypher
-        </button>
-        <button onClick={() => handleAddCypher('mirror')}>add mirror cypher</button>
+        {cypherRegister.map((name) => (
+          <button key={name} type="button" onClick={() => handleAddCypher(name)}>
+            {name}
+          </button>
+        ))}
         {formSchema && form && (
           <div>
             <DynamicForm

@@ -25,28 +25,18 @@ export function ExecutorForm() {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
 
-  const [result, setResult] = useState<string>();
-  const executeHandler = () => {
-    const list = selectedCyphers.map((meta) => {
-      if ('opts' in meta) {
-        return factoryCfg[meta.name](meta.opts);
-      }
-      return factoryCfg[meta.name]();
-    });
-    const result = encrypt(list, input || '');
-    setResult(result);
-  };
+  const pipe = selectedCyphers.map((meta) => {
+    if ('opts' in meta) {
+      return factoryCfg[meta.name](meta.opts);
+    }
+    return factoryCfg[meta.name]();
+  });
+  const result = encrypt(pipe, input || '');
 
   return (
     <div>
-      <div>
-        <input value={input || ''} onChange={inputChangeHandler} />
-        <button onClick={executeHandler} disabled={!input || !selectedCyphers.length}>
-          run
-        </button>
-      </div>
-
-      <div>result: {result || ''}</div>
+      <input value={input || ''} onChange={inputChangeHandler} />
+      <div>result: {result}</div>
     </div>
   );
 }
