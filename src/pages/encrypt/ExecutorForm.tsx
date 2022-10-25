@@ -7,9 +7,7 @@ import { CiphersContext } from './CiphersContext';
 import { CypherOptionsDef } from './types';
 
 type FactoryConfig = {
-  [T in keyof CypherOptionsDef]: (
-    o: CypherOptionsDef[T] extends void ? void : CypherOptionsDef[T]
-  ) => Cypher;
+  [T in keyof CypherOptionsDef]: (o: CypherOptionsDef[T]) => Cypher;
 };
 
 const factoryCfg: FactoryConfig = {
@@ -25,12 +23,7 @@ export function ExecutorForm() {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
 
-  const pipe = selectedCyphers.map((meta) => {
-    if ('opts' in meta) {
-      return factoryCfg[meta.name](meta.opts);
-    }
-    return factoryCfg[meta.name]();
-  });
+  const pipe = selectedCyphers.map((meta) => factoryCfg[meta.name](meta.opts as any));
   const result = encrypt(pipe, input || '');
 
   return (

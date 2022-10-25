@@ -3,10 +3,9 @@ import zod from 'zod';
 
 import { DynamicForm } from '@/components/DynamicForm';
 import { RailFenceCypherOptions } from '@/features/cypher';
-import { FilterOutVoid } from '@/utils/types';
 
 import { CiphersContext } from './CiphersContext';
-import { CypherMeta, CypherOptionsDef } from './types';
+import { CypherOptionsDef } from './types';
 
 type PipeCfg = {
   [T in keyof CypherOptionsDef]: {
@@ -39,7 +38,7 @@ export function CyphersPipe() {
   const [form, setForm] = useState<keyof PipeCfg>();
   const formSchema = form ? pipeCfg[form].optionsSchema : undefined;
 
-  const handleAddCypher = (name: CypherMeta['name']) => {
+  const handleAddCypher = (name: keyof PipeCfg) => {
     const cfg = pipeCfg[name];
     if (typeof cfg.optionsSchema === 'undefined') {
       return addCypher({ name } as any);
@@ -49,21 +48,18 @@ export function CyphersPipe() {
 
   const handleFormSubmit = <
     T extends keyof CypherOptionsDef,
-    K extends FilterOutVoid<CypherOptionsDef[T]>
+    K extends Exclude<CypherOptionsDef[T], void>
   >(
     name: T,
-    value: K
+    opts: K
   ): void => {
-    addCypher({ name, opts: value });
+    addCypher({ name, opts } as any);
     setForm(undefined);
   };
 
-  const serializedCyphers = selectedCyphers.map((meta) => {
-    if ('opts' in meta) {
-      return pipeCfg[meta.name].serialize(meta.opts);
-    }
-    return pipeCfg[meta.name].serialize();
-  });
+  const serializedCyphers = selectedCyphers.map((meta) =>
+    pipeCfg[meta.name].serialize(meta.opts as any)
+  );
 
   return (
     <div>
@@ -74,12 +70,7 @@ export function CyphersPipe() {
           </button>
         ))}
         {formSchema && form && (
-          <div>
-            <DynamicForm
-              schema={formSchema}
-              onSubmit={(d) => handleFormSubmit(form, d)}
-            />
-          </div>
+          <DynamicForm schema={formSchema} onSubmit={(d) => handleFormSubmit(form, d)} />
         )}
       </div>
       <div>

@@ -5,7 +5,9 @@ export type CypherOptionsDef = {
   railFence: RailFenceCypherOptions;
 };
 
-//TODO: derive from CypherOptionsDef
-export type CypherMeta =
-  | { name: 'mirror' }
-  | { name: 'railFence'; opts: RailFenceCypherOptions };
+export type CypherMeta = {
+  [Prop in keyof CypherOptionsDef]: {
+    name: Prop;
+    opts: CypherOptionsDef[Prop] extends void ? undefined : CypherOptionsDef[Prop];
+  };
+}[keyof CypherOptionsDef];
