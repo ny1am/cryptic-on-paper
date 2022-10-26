@@ -1,19 +1,11 @@
 import { useContext, useState } from 'react';
 
-import { encrypt, mirrorCypherFactory, railFenceCypherFactory } from '@/features/cypher';
-import { Cypher } from '@/features/cypher/types';
+import { Cypher, encrypt } from '@/features/cypher';
 
 import { CiphersContext } from './CiphersContext';
-import { CypherOptionsDef } from './types';
+import { CypherMeta, cyphersRegister } from './config';
 
-type FactoryConfig = {
-  [T in keyof CypherOptionsDef]: (o: CypherOptionsDef[T]) => Cypher;
-};
-
-const factoryCfg: FactoryConfig = {
-  mirror: mirrorCypherFactory,
-  railFence: railFenceCypherFactory,
-};
+type FactoryType = CypherMeta['options'] extends infer R ? (opts: R) => Cypher : never;
 
 export function ExecutorForm() {
   const { selectedCyphers } = useContext(CiphersContext);
@@ -23,7 +15,10 @@ export function ExecutorForm() {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
 
-  const pipe = selectedCyphers.map((meta) => factoryCfg[meta.name](meta.opts as any));
+  const pipe = selectedCyphers.map((meta) => {
+    const factory = cyphersRegister[meta.key] as FactoryType;
+    return factory(meta.options);
+  });
   const result = encrypt(pipe, input || '');
 
   return (

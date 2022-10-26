@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { CiphersContext } from './CiphersContext';
+import { CypherMeta } from './config';
 import { CyphersPipe } from './CyphersPipe';
 import { ExecutorForm } from './ExecutorForm';
-import { CypherMeta } from './types';
 
 export function EncryptPage() {
   const [selectedCyphers, setSelectedCyphers] = useState<CypherMeta[]>([]);

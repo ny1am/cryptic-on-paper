@@ -1,6 +1,6 @@
 import { CypherFactory } from '../types';
 
-type ToggleCaseCypherOptions = {
+export type ToggleCaseCypherOptions = {
   include?: string;
 };
 
