@@ -18,7 +18,7 @@ export type CyphersOptionsRegister = {
     : undefined;
 };
 
-export type CypherKeysWithRequiredOptions = {
+export type CypherKeyWhenRequiredOptions = {
   [K in keyof CyphersOptionsRegister]: CyphersOptionsRegister[K] extends undefined
     ? never
     : K;

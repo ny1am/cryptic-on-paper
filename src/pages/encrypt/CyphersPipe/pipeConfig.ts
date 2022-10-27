@@ -2,20 +2,18 @@ import zod from 'zod';
 
 import { RailFenceCypherOptions, ToggleCaseCypherOptions } from '@/features/cypher';
 
-import { CypherKeysWithRequiredOptions, CyphersOptionsRegister } from '../config';
+import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
 
-export type FormSchemaType<T extends CypherKeysWithRequiredOptions> = zod.ZodSchema<
+export type FormSchemaType<T extends CypherKeyWhenRequiredOptions> = zod.ZodSchema<
   CyphersOptionsRegister[T]
 >;
 
 type PipeCfg = {
   [T in keyof CyphersOptionsRegister]: {
     serialize: (
-      o: T extends CypherKeysWithRequiredOptions ? CyphersOptionsRegister[T] : undefined
+      o: T extends CypherKeyWhenRequiredOptions ? CyphersOptionsRegister[T] : undefined
     ) => string;
-    optionsSchema: T extends CypherKeysWithRequiredOptions
-      ? FormSchemaType<T>
-      : undefined;
+    optionsSchema: T extends CypherKeyWhenRequiredOptions ? FormSchemaType<T> : undefined;
   };
 };
 
@@ -41,6 +39,6 @@ export const pipeCfg: PipeCfg = {
 
 export function areCypherOptionsRequired(
   key: keyof CyphersOptionsRegister
-): key is CypherKeysWithRequiredOptions {
+): key is CypherKeyWhenRequiredOptions {
   return typeof pipeCfg[key].optionsSchema !== 'undefined';
 }

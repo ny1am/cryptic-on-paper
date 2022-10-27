@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import { CiphersContext } from '../CiphersContext';
 import {
-  CypherKeysWithRequiredOptions,
+  CypherKeyWhenRequiredOptions,
   CypherMeta,
   CyphersOptionsRegister,
   cyphersRegister,
@@ -10,16 +10,17 @@ import {
 import { CypherOptionsForm } from './CypherOptionsForm';
 import { areCypherOptionsRequired, pipeCfg } from './pipeConfig';
 
+type CypherKey = keyof CyphersOptionsRegister;
 type SerializeType = CypherMeta['options'] extends infer R ? (opts: R) => string : never;
 
-const cypherKeys = Object.keys(cyphersRegister) as Array<keyof typeof cyphersRegister>;
+const cypherKeys = Object.keys(cyphersRegister) as CypherKey[];
 
 export function CyphersPipe() {
   const { selectedCyphers, addCypher } = useContext(CiphersContext);
-  const [optionsForm, setOptionsForm] = useState<CypherKeysWithRequiredOptions>();
+  const [optionsForm, setOptionsForm] = useState<CypherKeyWhenRequiredOptions>();
   const closeOptionsForm = () => setOptionsForm(undefined);
 
-  const handleAddCypher = (key: keyof CyphersOptionsRegister) => {
+  const handleAddCypher = (key: CypherKey) => {
     if (!areCypherOptionsRequired(key)) {
       return addCypher({ key, options: undefined });
     }
@@ -27,7 +28,7 @@ export function CyphersPipe() {
   };
 
   const handleOptionsSubmit = <
-    K extends CypherKeysWithRequiredOptions,
+    K extends CypherKeyWhenRequiredOptions,
     O extends CyphersOptionsRegister[K]
   >(
     key: K,
@@ -45,11 +46,19 @@ export function CyphersPipe() {
   return (
     <div>
       <div>
-        {cypherKeys.map((name) => (
-          <button key={name} type="button" onClick={() => handleAddCypher(name)}>
-            {name}
-          </button>
-        ))}
+        <select
+          value=""
+          onChange={({ target: { value } }) =>
+            value && handleAddCypher(value as CypherKey)
+          }
+        >
+          <option value="">please select...</option>
+          {cypherKeys.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
         {optionsForm && (
           <CypherOptionsForm
             cypherKey={optionsForm}

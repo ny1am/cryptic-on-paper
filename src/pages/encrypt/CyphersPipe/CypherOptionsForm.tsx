@@ -1,15 +1,15 @@
 import { DynamicForm } from '@/components/DynamicForm';
 
-import { CypherKeysWithRequiredOptions, CyphersOptionsRegister } from '../config';
+import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
 import { FormSchemaType, pipeCfg } from './pipeConfig';
 
-type CypherOptionsFormProps<T extends CypherKeysWithRequiredOptions> = {
+type CypherOptionsFormProps<T extends CypherKeyWhenRequiredOptions> = {
   cypherKey: T;
   handleSubmit: (cypherKey: T, value: CyphersOptionsRegister[T]) => void;
   handleCancel: () => void;
 };
 
-export function CypherOptionsForm<T extends CypherKeysWithRequiredOptions>({
+export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
   cypherKey: cypherKey,
   handleSubmit,
   handleCancel,
