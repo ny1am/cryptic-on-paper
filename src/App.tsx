@@ -1,3 +1,5 @@
+import './index.css';
+
 import { EncryptPage } from './pages/encrypt';
 
 function App() {
