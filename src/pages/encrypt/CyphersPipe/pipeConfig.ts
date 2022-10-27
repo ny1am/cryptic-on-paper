@@ -1,6 +1,6 @@
 import zod from 'zod';
 
-import { RailFenceCypherOptions } from '@/features/cypher';
+import { RailFenceCypherOptions, ToggleCaseCypherOptions } from '@/features/cypher';
 
 import { CypherKeysWithRequiredOptions, CyphersOptionsRegister } from '../config';
 
@@ -25,13 +25,14 @@ export const pipeCfg: PipeCfg = {
     optionsSchema: undefined,
   },
   railFence: {
-    serialize: (opts: RailFenceCypherOptions) => `railFence (depth: ${opts.depth})`,
+    serialize: (o: RailFenceCypherOptions) => `railFence (depth: ${o.depth})`,
     optionsSchema: zod.object({
       depth: zod.number().min(1).max(5),
     }),
   },
   toggleCase: {
-    serialize: () => `todo`,
+    serialize: (o: ToggleCaseCypherOptions) =>
+      [`toggleCase`, o.include && `(include: ${o.include})`].filter(Boolean).join(` `),
     optionsSchema: zod.object({
       include: zod.string().optional(),
     }),
