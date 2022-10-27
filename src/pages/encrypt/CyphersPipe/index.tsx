@@ -17,6 +17,7 @@ const cypherKeys = Object.keys(cyphersRegister) as Array<keyof typeof cyphersReg
 export function CyphersPipe() {
   const { selectedCyphers, addCypher } = useContext(CiphersContext);
   const [optionsForm, setOptionsForm] = useState<CypherKeysWithRequiredOptions>();
+  const closeOptionsForm = () => setOptionsForm(undefined);
 
   const handleAddCypher = (key: keyof CyphersOptionsRegister) => {
     if (!areCypherOptionsRequired(key)) {
@@ -33,7 +34,7 @@ export function CyphersPipe() {
     options: O
   ): void => {
     addCypher({ key, options } as CypherMeta);
-    setOptionsForm(undefined);
+    closeOptionsForm();
   };
 
   const serializedCyphers = selectedCyphers.map((meta) => {
@@ -50,7 +51,11 @@ export function CyphersPipe() {
           </button>
         ))}
         {optionsForm && (
-          <CypherOptionsForm cypherKey={optionsForm} handleSubmit={handleOptionsSubmit} />
+          <CypherOptionsForm
+            cypherKey={optionsForm}
+            handleSubmit={handleOptionsSubmit}
+            handleCancel={closeOptionsForm}
+          />
         )}
       </div>
       <div>

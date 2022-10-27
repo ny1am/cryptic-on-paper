@@ -34,7 +34,7 @@ export const pipeCfg: PipeCfg = {
     serialize: (o: ToggleCaseCypherOptions) =>
       [`toggleCase`, o.include && `(include: ${o.include})`].filter(Boolean).join(` `),
     optionsSchema: zod.object({
-      include: zod.string().optional(),
+      include: zod.string().max(20).optional(),
     }),
   },
 };
