@@ -12,7 +12,6 @@ export function EncryptPage() {
   return (
     <CiphersContext.Provider value={{ selectedCyphers, addCypher }}>
       <CyphersPipe />
-      <hr />
       <ExecutorForm />
     </CiphersContext.Provider>
   );

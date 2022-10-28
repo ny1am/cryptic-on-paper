@@ -1,42 +1,15 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import { CiphersContext } from '../CiphersContext';
-import {
-  CypherKeyWhenRequiredOptions,
-  CypherMeta,
-  CyphersOptionsRegister,
-  cyphersRegister,
-} from '../config';
-import { CypherOptionsForm } from './CypherOptionsForm';
-import { areCypherOptionsRequired, pipeCfg } from './pipeConfig';
+import { CypherMeta } from '../config';
+import { AddButton } from './AddButton';
+import { EmptyPipe } from './EmptyPipe';
+import { pipeCfg } from './pipeConfig';
 
-type CypherKey = keyof CyphersOptionsRegister;
 type SerializeType = CypherMeta['options'] extends infer R ? (opts: R) => string : never;
 
-const cypherKeys = Object.keys(cyphersRegister) as CypherKey[];
-
 export function CyphersPipe() {
-  const { selectedCyphers, addCypher } = useContext(CiphersContext);
-  const [optionsForm, setOptionsForm] = useState<CypherKeyWhenRequiredOptions>();
-  const closeOptionsForm = () => setOptionsForm(undefined);
-
-  const handleAddCypher = (key: CypherKey) => {
-    if (!areCypherOptionsRequired(key)) {
-      return addCypher({ key, options: undefined });
-    }
-    return setOptionsForm(key);
-  };
-
-  const handleOptionsSubmit = <
-    K extends CypherKeyWhenRequiredOptions,
-    O extends CyphersOptionsRegister[K]
-  >(
-    key: K,
-    options: O
-  ): void => {
-    addCypher({ key, options } as CypherMeta);
-    closeOptionsForm();
-  };
+  const { selectedCyphers } = useContext(CiphersContext);
 
   const serializedCyphers = selectedCyphers.map((meta) => {
     const serialize = pipeCfg[meta.key].serialize as SerializeType;
@@ -44,31 +17,16 @@ export function CyphersPipe() {
   });
 
   return (
-    <div>
-      <div>
-        <select
-          value=""
-          onChange={({ target: { value } }) =>
-            value && handleAddCypher(value as CypherKey)
-          }
-        >
-          <option value="">please select...</option>
-          {cypherKeys.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-        {optionsForm && (
-          <CypherOptionsForm
-            cypherKey={optionsForm}
-            handleSubmit={handleOptionsSubmit}
-            handleCancel={closeOptionsForm}
-          />
-        )}
+    <div className="rounded-md bg-white">
+      <div className="border-b border-gray-200 px-4 pl-6 py-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-medium leading-10 text-gray-900">Pipe</h2>
+          <div className="ml-4 shrink-0">
+            <AddButton />
+          </div>
+        </div>
       </div>
-      <div>
-        <h2>Pipe:</h2>
+      <div className="min-h-[16rem] p-6 flex flex-col">
         {selectedCyphers.length > 0 ? (
           <ul>
             {serializedCyphers.map((text, i) => (
@@ -76,7 +34,9 @@ export function CyphersPipe() {
             ))}
           </ul>
         ) : (
-          <div>empty</div>
+          <div className="grow flex justify-center items-center mb-10">
+            <EmptyPipe />
+          </div>
         )}
       </div>
     </div>

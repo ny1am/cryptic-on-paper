@@ -1,4 +1,6 @@
+import { ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import { zodResolver } from '@hookform/resolvers/zod';
+import cn from 'clsx';
 import React from 'react';
 import { FieldValues, Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
@@ -29,22 +31,59 @@ export function DynamicForm<T extends FieldValues>({
 
   const fieldNames = Object.keys(schema.shape) as Path<T>[];
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       {fieldNames.map((name) => (
-        <label key={name}>
-          <span>{name}: </span>
-          <input
-            {...register(name, {
-              valueAsNumber: schema.shape[name]._def.typeName === 'ZodNumber',
-            })}
-          />
-          {errors[name] && <div>{errors[name]?.message as string}</div>}
-        </label>
+        <div key={name}>
+          <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+            {name}
+          </label>
+          <div className="relative mt-1 rounded-md shadow-sm">
+            <input
+              id={name}
+              type="text"
+              className={cn(
+                'block w-full rounded-md text-sm focus:outline-none',
+                errors[name]
+                  ? `pr-10 border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
+                  : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
+              )}
+              {...register(name, {
+                valueAsNumber: schema.shape[name]._def.typeName === 'ZodNumber',
+              })}
+              {...(errors[name] && {
+                'aria-invalid': 'true',
+                'aria-describedby': `${name}-error`,
+              })}
+            />
+            {errors[name] && (
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                <ExclamationCircleIcon
+                  className="h-5 w-5 text-red-500"
+                  aria-hidden="true"
+                />
+              </div>
+            )}
+          </div>
+          {errors[name] && (
+            <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
+              {errors[name]?.message as string}
+            </p>
+          )}
+        </div>
       ))}
-      <div>
-        <button type="submit">submit</button>
-        <button type="button" onClick={onCancel}>
-          cancel
+      <div className="mt-8 flex justify-end gap-x-4">
+        <button
+          type="submit"
+          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          onClick={onCancel}
+        >
+          Cancel
         </button>
       </div>
     </form>
