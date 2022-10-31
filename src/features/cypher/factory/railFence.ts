@@ -46,7 +46,13 @@ const createCaretIterator = (length: number) => {
   const machine = createArrayRunnerMachine(length);
   const runner = interpret(machine).start();
   return {
-    next: () => runner.send('NEXT').context.caret,
+    next() {
+      const { context } = runner.send('NEXT');
+      return { value: context.caret, done: false };
+    },
+    [Symbol.iterator]() {
+      return this;
+    },
   };
 };
 
@@ -59,9 +65,8 @@ export const railFenceCypherFactory: CypherFactory<RailFenceCypherOptions> =
   (input: string): string => {
     const caretIterator = createCaretIterator(depth);
     const rails = new Array(depth).fill('');
-    for (let i = 0; i < input.length; i++) {
-      const railIndex = caretIterator.next();
-      rails[railIndex] += input[i];
+    for (const char of input) {
+      rails[caretIterator.next().value] += char;
     }
     return rails.join('');
   };
