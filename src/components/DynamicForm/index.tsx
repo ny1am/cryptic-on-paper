@@ -32,45 +32,60 @@ export function DynamicForm<T extends FieldValues>({
   const fieldNames = Object.keys(schema.shape) as Path<T>[];
   return (
     <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      {fieldNames.map((name) => (
-        <div key={name}>
-          <label htmlFor={name} className="block text-sm font-medium text-gray-700">
-            {name}
-          </label>
-          <div className="relative mt-1 rounded-md shadow-sm">
-            <input
-              id={name}
-              type="text"
-              className={cn(
-                'block w-full rounded-md text-sm focus:outline-none',
-                errors[name]
-                  ? `pr-10 border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
-                  : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
+      {fieldNames
+        .map((name) => ({ name, shape: schema.shape[name] }))
+        .map(({ name, shape }) => (
+          <div key={name}>
+            <div className="flex justify-between items-end">
+              <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+                {name}
+              </label>
+              {shape.isOptional() && (
+                <span
+                  id={`${name}-optional`}
+                  className="font-light text-xs ml-1 text-gray-400"
+                >
+                  optional
+                </span>
               )}
-              {...register(name, {
-                valueAsNumber: schema.shape[name]._def.typeName === 'ZodNumber',
-              })}
-              {...(errors[name] && {
-                'aria-invalid': 'true',
-                'aria-describedby': `${name}-error`,
-              })}
-            />
+            </div>
+            <div className="relative mt-1 rounded-md shadow-sm">
+              <input
+                id={name}
+                type="text"
+                className={cn(
+                  'block w-full rounded-md text-sm focus:outline-none',
+                  errors[name]
+                    ? `pr-10 border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
+                    : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
+                )}
+                {...register(name, {
+                  valueAsNumber: shape._def.typeName === 'ZodNumber',
+                })}
+                {...(shape.isOptional() && {
+                  'aria-describedby': `${name}-optional`,
+                })}
+                {...(errors[name] && {
+                  'aria-invalid': 'true',
+                  'aria-describedby': `${name}-error`,
+                })}
+              />
+              {errors[name] && (
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <ExclamationCircleIcon
+                    className="h-5 w-5 text-red-500"
+                    aria-hidden="true"
+                  />
+                </div>
+              )}
+            </div>
             {errors[name] && (
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                <ExclamationCircleIcon
-                  className="h-5 w-5 text-red-500"
-                  aria-hidden="true"
-                />
-              </div>
+              <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
+                {errors[name]?.message as string}
+              </p>
             )}
           </div>
-          {errors[name] && (
-            <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
-              {errors[name]?.message as string}
-            </p>
-          )}
-        </div>
-      ))}
+        ))}
       <div className="mt-8 flex justify-end gap-x-4">
         <button
           type="submit"
