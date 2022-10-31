@@ -28,38 +28,34 @@ export function ExecutorForm() {
   };
 
   return (
-    <div className="mt-10">
-      <div>
-        <label htmlFor="plaintext" className="block text-md font-medium text-gray-700">
+    <div className="mt-5 w-full flex items-end flex-wrap gap-y-5">
+      <div className="mt-5 basis-1/2 grow">
+        <label
+          htmlFor="plaintext"
+          className="block mb-1 text-sm font-medium text-gray-700"
+        >
           Plaintext
         </label>
         <input
           type="text"
           id="plaintext"
-          className="mt-1 block w-full rounded-md shadow-sm text-lg focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md shadow-sm text-sm focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           value={input || ''}
           onChange={inputChangeHandler}
         />
       </div>
-      <div className="mt-4">
-        <div className="flex w-full items-end">
-          <span className="grow text-xl">
-            {`Cypher text: `}
-            <strong>{result || ''}</strong>
-          </span>
-          <div className="shrink-0 ml-4 ">
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
-              disabled={!result}
-              onClick={copyToClipboard}
-            >
-              <ClipboardIcon className="h-5 w-5 mr-2" aria-hidden="true" />
-              Copy to Clipboard
-            </button>
-          </div>
+      {result && (
+        <div className="basis-1/2 flex items-center justify-end gap-4">
+          <div className="grow text-xl text-right">{result}</div>
+          <button
+            type="button"
+            className="flex items-center rounded-md border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
+            onClick={copyToClipboard}
+          >
+            <ClipboardIcon className="h-5 w-5" aria-label="Copy to Clipboard" />
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
