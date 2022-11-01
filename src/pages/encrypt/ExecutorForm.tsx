@@ -46,8 +46,8 @@ export function ExecutorForm() {
         />
       </div>
       {result && (
-        <div className="basis-1/2 flex items-center justify-end gap-4">
-          <div className="grow text-xl text-right">{result}</div>
+        <div className="basis-1/2 grow flex items-center justify-end gap-4">
+          <div className="grow text-xl text-right whitespace-nowrap">{result}</div>
           <button
             type="button"
             className="flex items-center rounded-md border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
