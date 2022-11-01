@@ -1,6 +1,7 @@
 import { ClipboardIcon } from '@heroicons/react/24/outline';
 import copyToClipboard from 'copy-to-clipboard';
 import { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { Cypher, encrypt } from '@/features/cypher';
 
@@ -25,6 +26,7 @@ export function ExecutorForm() {
 
   const copy = () => {
     copyToClipboard(result);
+    toast.success('Copied to clipboard!', { id: 'clipboard' });
     setInput('');
   };
 
@@ -53,7 +55,8 @@ export function ExecutorForm() {
             className="flex items-center rounded-md border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
             onClick={copy}
           >
-            <ClipboardIcon className="h-5 w-5" aria-label="Copy to Clipboard" />
+            <span className="sr-only">Copy to Clipboard</span>
+            <ClipboardIcon className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       )}
