@@ -1,30 +1,34 @@
 import { useContext } from 'react';
 
 import { CiphersContext } from '../CiphersContext';
-import { CypherMeta } from '../config';
 import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
-import { pipeCfg } from './pipeConfig';
-
-type SerializeType = CypherMeta['options'] extends infer R ? (opts: R) => string : never;
 
 export function CyphersPipe() {
   const { selectedCyphers } = useContext(CiphersContext);
-
-  const serializedCyphers = selectedCyphers.map((meta) => {
-    const serialize = pipeCfg[meta.key].serialize as SerializeType;
-    return serialize(meta.options);
-  });
 
   return (
     <div className="rounded-md bg-white shadow">
       <div className="min-h-[16rem] p-6 flex flex-col">
         {selectedCyphers.length > 0 ? (
-          <ul>
-            {serializedCyphers.map((text, i) => (
-              <li key={i}>{text}</li>
+          <ol className="divide-y divide-gray-200 list-decimal list-inside">
+            {selectedCyphers.map((meta, i) => (
+              <li key={i} className="px-6 py-4">
+                {meta.key}
+                {meta.options &&
+                  Object.entries(meta.options)
+                    .filter((entry) => entry[1])
+                    .map(([key, value]) => (
+                      <span
+                        key={key}
+                        className="ml-1 inline-flex items-center rounded bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800 whitespace-pre-wrap"
+                      >
+                        {key}: <strong>{value}</strong>
+                      </span>
+                    ))}
+              </li>
             ))}
-          </ul>
+          </ol>
         ) : (
           <div className="grow flex justify-center items-center mb-10">
             <EmptyPipe />

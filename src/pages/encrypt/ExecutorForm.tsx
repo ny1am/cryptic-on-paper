@@ -33,16 +33,10 @@ export function ExecutorForm() {
   return (
     <div className="mt-5 w-full flex items-end flex-wrap gap-y-5">
       <div className="mt-5 basis-1/2 grow">
-        <label
-          htmlFor="plaintext"
-          className="block mb-1 text-sm font-medium text-gray-700"
-        >
-          Plaintext
-        </label>
         <input
           type="text"
-          id="plaintext"
           className="block w-full rounded-md shadow-sm text-sm focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="message to encrypt..."
           value={input || ''}
           onChange={inputChangeHandler}
         />

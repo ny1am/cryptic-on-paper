@@ -5,9 +5,9 @@ import {
 } from '@/features/cypher';
 
 export const cyphersRegister = Object.freeze({
-  mirror: mirrorCypherFactory,
-  railFence: railFenceCypherFactory,
-  toggleCase: toggleCaseCypherFactory,
+  'Mirror': mirrorCypherFactory,
+  'Rail fence': railFenceCypherFactory,
+  'Toggle case': toggleCaseCypherFactory,
 });
 
 export type CyphersOptionsRegister = {

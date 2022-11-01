@@ -1,7 +1,5 @@
 import zod from 'zod';
 
-import { RailFenceCypherOptions, ToggleCaseCypherOptions } from '@/features/cypher';
-
 import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
 
 export type FormSchemaType<T extends CypherKeyWhenRequiredOptions> = zod.ZodSchema<
@@ -10,27 +8,20 @@ export type FormSchemaType<T extends CypherKeyWhenRequiredOptions> = zod.ZodSche
 
 type PipeCfg = {
   [T in keyof CyphersOptionsRegister]: {
-    serialize: (
-      o: T extends CypherKeyWhenRequiredOptions ? CyphersOptionsRegister[T] : undefined
-    ) => string;
     optionsSchema: T extends CypherKeyWhenRequiredOptions ? FormSchemaType<T> : undefined;
   };
 };
 
 export const pipeCfg: PipeCfg = {
-  mirror: {
-    serialize: () => 'mirror',
+  'Mirror': {
     optionsSchema: undefined,
   },
-  railFence: {
-    serialize: (o: RailFenceCypherOptions) => `railFence (depth: ${o.depth})`,
+  'Rail fence': {
     optionsSchema: zod.object({
       depth: zod.number().min(1).max(5),
     }),
   },
-  toggleCase: {
-    serialize: (o: ToggleCaseCypherOptions) =>
-      [`toggleCase`, o.include && `(include: ${o.include})`].filter(Boolean).join(` `),
+  'Toggle case': {
     optionsSchema: zod.object({
       include: zod.string().max(20).optional(),
     }),
