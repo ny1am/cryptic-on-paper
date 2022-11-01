@@ -1,4 +1,5 @@
 import { ClipboardIcon } from '@heroicons/react/24/outline';
+import copyToClipboard from 'copy-to-clipboard';
 import { useContext, useState } from 'react';
 
 import { Cypher, encrypt } from '@/features/cypher';
@@ -11,7 +12,7 @@ type FactoryType = CypherMeta['options'] extends infer R ? (opts: R) => Cypher :
 export function ExecutorForm() {
   const { selectedCyphers } = useContext(CiphersContext);
 
-  const [input, setInput] = useState<string>();
+  const [input, setInput] = useState<string>('');
   const inputChangeHandler = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
@@ -20,10 +21,10 @@ export function ExecutorForm() {
     const factory = cyphersRegister[meta.key] as FactoryType;
     return factory(meta.options);
   });
-  const result = encrypt(pipe, input || '');
+  const result = input && encrypt(pipe, input);
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(result);
+  const copy = () => {
+    copyToClipboard(result);
     setInput('');
   };
 
@@ -50,7 +51,7 @@ export function ExecutorForm() {
           <button
             type="button"
             className="flex items-center rounded-md border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
-            onClick={copyToClipboard}
+            onClick={copy}
           >
             <ClipboardIcon className="h-5 w-5" aria-label="Copy to Clipboard" />
           </button>
