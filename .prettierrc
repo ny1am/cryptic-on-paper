@@ -4,5 +4,6 @@
   "useTabs": false,
   "trailingComma": "es5",
   "singleQuote": true,
-  "semi": true
+  "semi": true,
+  "quoteProps": "preserve"
 }

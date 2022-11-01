@@ -8,21 +8,21 @@ const createArrayRunnerMachine = (length: number) =>
     context: { caret: 0, length },
     initial: 'wait',
     states: {
-      wait: { on: { NEXT: 'move' } },
-      move: {
+      'wait': { on: { 'NEXT': 'move' } },
+      'move': {
         initial: 'forward',
         states: {
-          forward: {
+          'forward': {
             on: {
-              NEXT: [
+              'NEXT': [
                 { cond: 'canMoveForward', target: 'forward', actions: ['moveForward'] },
                 { cond: 'canMoveBack', target: 'back', actions: ['moveBack'] },
               ],
             },
           },
-          back: {
+          'back': {
             on: {
-              NEXT: [
+              'NEXT': [
                 { cond: 'canMoveBack', target: 'back', actions: ['moveBack'] },
                 { cond: 'canMoveForward', target: 'forward', actions: ['moveForward'] },
               ],
