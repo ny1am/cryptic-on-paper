@@ -1,19 +1,33 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'clsx';
 import React from 'react';
-import { FieldValues, Path, useForm } from 'react-hook-form';
+import { Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
 
-import { TextInput } from '../TextInput';
+import { RangeInput } from '@/components/RangeInput';
+import { TextInput } from '@/components/TextInput';
 
-type DynamicFormProps<T extends FieldValues> = {
+type Shape = { [x: string]: unknown };
+
+//TODO: add type safety to props
+export type DynamicFormUIConfig<T extends Shape> = {
+  [P in keyof T]: {
+    component: typeof RangeInput | typeof TextInput;
+    valueAsNumber?: boolean;
+    props: object;
+  };
+};
+
+type DynamicFormProps<T extends Shape> = {
   schema: ZodSchema<T>;
+  uiConfig: DynamicFormUIConfig<T>;
   onSubmit: (r: T) => void;
   onCancel: () => void;
 };
 
-export function DynamicForm<T extends FieldValues>({
+export function DynamicForm<T extends Shape>({
   schema,
+  uiConfig,
   onSubmit,
   onCancel,
 }: React.PropsWithoutRef<DynamicFormProps<T>>) {
@@ -32,18 +46,19 @@ export function DynamicForm<T extends FieldValues>({
 
   const fieldNames = Object.keys(schema.shape) as Path<T>[];
   const fields = fieldNames.map((name) => {
-    const shape = schema.shape[name];
+    const fieldCfg = uiConfig[name];
     return {
       name,
-      isOptional: shape.isOptional(),
-      valueAsNumber: shape._def.typeName === 'ZodNumber',
+      Component: fieldCfg?.component || TextInput,
+      props: fieldCfg?.props,
+      valueAsNumber: fieldCfg?.valueAsNumber,
+      isOptional: schema.shape[name].isOptional(),
       errorMsg: errors[name]?.message as string | undefined,
-      Component: TextInput,
     };
   });
   return (
     <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      {fields.map(({ name, isOptional, errorMsg, valueAsNumber, Component }) => (
+      {fields.map(({ name, isOptional, errorMsg, valueAsNumber, Component, props }) => (
         <div key={name}>
           <div className="flex justify-between items-end">
             <label htmlFor={name} className="block text-sm font-medium text-gray-700">
@@ -61,7 +76,9 @@ export function DynamicForm<T extends FieldValues>({
           <div className="relative mt-1">
             <Component
               id={name}
+              {...props}
               className={cn(
+                'w-full',
                 errorMsg
                   ? `pr-10 border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
                   : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`

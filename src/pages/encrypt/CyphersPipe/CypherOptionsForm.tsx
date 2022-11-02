@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dialog } from '@/components/Dialog';
-import { DynamicForm } from '@/components/DynamicForm';
+import { DynamicForm, DynamicFormUIConfig } from '@/components/DynamicForm';
 
 import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
 import { FormSchemaType, pipeCfg } from './pipeConfig';
@@ -18,10 +18,14 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
   handleCancel,
 }: React.PropsWithoutRef<CypherOptionsFormProps<T>>) {
   const schema = pipeCfg[cypherKey].optionsSchema as FormSchemaType<T>;
+  const uiConfig = pipeCfg[cypherKey].uiConfig as DynamicFormUIConfig<
+    CyphersOptionsRegister[T]
+  >;
   return (
     <Dialog title={`${cypherKey} options`} onClose={handleCancel}>
       <DynamicForm
         schema={schema}
+        uiConfig={uiConfig}
         onSubmit={(d) => handleSubmit(cypherKey, d)}
         onCancel={handleCancel}
       />
