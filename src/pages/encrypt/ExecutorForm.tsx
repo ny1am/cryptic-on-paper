@@ -35,8 +35,8 @@ export function ExecutorForm() {
       <div className="mt-5 basis-1/2 grow">
         <input
           type="text"
-          className="block w-full rounded-md shadow-sm text-sm focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
-          placeholder="message to encrypt..."
+          className="block w-full rounded-md shadow-sm text-sm h-10 focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="text to encrypt..."
           value={input || ''}
           onChange={inputChangeHandler}
         />
