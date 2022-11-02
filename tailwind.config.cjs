@@ -8,7 +8,12 @@ module.exports = {
       xs: '480px',
       ...defaultTheme.screens,
     },
-    extend: {},
+
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 };
