@@ -97,7 +97,13 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
           </div>
         </fieldset>
         <div className="mt-8 flex justify-end gap-x-4">
-          <Button type="submit" primary>
+          <Button
+            type="submit"
+            className="min-w-[120px]"
+            {...(areCypherOptionsRequired(selectedKey)
+              ? { secondary: true }
+              : { primary: true })}
+          >
             {areCypherOptionsRequired(selectedKey) ? `Configure` : `Submit`}
           </Button>
           <Button type="button" onClick={onDispose}>
