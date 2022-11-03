@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Dialog } from '@/components/Dialog';
 import { DynamicForm, DynamicFormUIConfig } from '@/components/DynamicForm';
 
 import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
@@ -22,13 +21,11 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
     CyphersOptionsRegister[T]
   >;
   return (
-    <Dialog title={`${cypherKey} options`} onClose={handleCancel}>
-      <DynamicForm
-        schema={schema}
-        uiConfig={uiConfig}
-        onSubmit={(d) => handleSubmit(cypherKey, d)}
-        onCancel={handleCancel}
-      />
-    </Dialog>
+    <DynamicForm
+      schema={schema}
+      uiConfig={uiConfig}
+      onSubmit={(d) => handleSubmit(cypherKey, d)}
+      onCancel={handleCancel}
+    />
   );
 }
