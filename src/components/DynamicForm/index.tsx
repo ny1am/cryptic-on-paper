@@ -99,7 +99,7 @@ export function DynamicForm<T extends Shape>({
           )}
         </div>
       ))}
-      <div className="mt-8 flex justify-end gap-x-4">
+      <div className="mt-10 flex justify-end gap-x-4">
         <Button type="submit" primary>
           Submit
         </Button>

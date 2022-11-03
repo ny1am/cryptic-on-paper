@@ -16,16 +16,23 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
   handleSubmit,
   handleCancel,
 }: React.PropsWithoutRef<CypherOptionsFormProps<T>>) {
-  const schema = pipeCfg[cypherKey].optionsSchema as FormSchemaType<T>;
-  const uiConfig = pipeCfg[cypherKey].uiConfig as DynamicFormUIConfig<
-    CyphersOptionsRegister[T]
-  >;
+  const cfg = pipeCfg[cypherKey];
+
+  const schema = cfg.optionsSchema as FormSchemaType<T>;
+  const uiConfig = cfg.uiConfig as DynamicFormUIConfig<CyphersOptionsRegister[T]>;
+  const description = cfg.meta.description.long || cfg.meta.description.short;
+
   return (
-    <DynamicForm
-      schema={schema}
-      uiConfig={uiConfig}
-      onSubmit={(d) => handleSubmit(cypherKey, d)}
-      onCancel={handleCancel}
-    />
+    <>
+      <p className="text-sm font-light text-gray-500 mb-8 max-w-[95%] tracking-wide">
+        {description}
+      </p>
+      <DynamicForm
+        schema={schema}
+        uiConfig={uiConfig}
+        onSubmit={(d) => handleSubmit(cypherKey, d)}
+        onCancel={handleCancel}
+      />
+    </>
   );
 }

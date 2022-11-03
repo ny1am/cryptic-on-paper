@@ -11,7 +11,7 @@ import {
   cyphersRegister,
 } from '../config';
 import { CypherOptionsForm } from './CypherOptionsForm';
-import { areCypherOptionsRequired } from './pipeConfig';
+import { areCypherOptionsRequired, pipeCfg } from './pipeConfig';
 
 type CypherKey = keyof CyphersOptionsRegister;
 const cypherKeys = Object.keys(cyphersRegister) as CypherKey[];
@@ -52,7 +52,7 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
   if (optionsForm) {
     return (
       <FocusLock>
-        <h2 className="text-lg font-medium leading-6 mb-6">{optionsForm} config</h2>
+        <h2 className="text-lg font-medium leading-6 mb-4">{optionsForm} config</h2>
         <CypherOptionsForm
           cypherKey={optionsForm}
           handleSubmit={handleOptionsSubmit}
@@ -64,14 +64,22 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
 
   return (
     <>
-      <h2 className="text-lg font-medium leading-6 mb-6">Select Cypher</h2>
-      <form autoComplete="off" onSubmit={() => handleAddCypher(selectedKey)}>
+      <h2 className="text-lg font-medium leading-6 mb-4">Select Cypher</h2>
+      <form
+        className="mt-8"
+        autoComplete="off"
+        onSubmit={() => handleAddCypher(selectedKey)}
+      >
         <fieldset>
           <legend className="sr-only">Cypher</legend>
           <div className="space-y-5">
             {cypherKeys
-              .map((key) => ({ cypherKey: key, htmlId: `c_${key.replace(/\W/g, '')}` }))
-              .map(({ cypherKey, htmlId }) => (
+              .map((key) => ({
+                cypherKey: key,
+                htmlId: `c_${key.replace(/\W/g, '')}`,
+                description: pipeCfg[key].meta.description?.short,
+              }))
+              .map(({ cypherKey, htmlId, description }) => (
                 <div key={htmlId} className="relative flex items-start">
                   <div className="flex h-5 items-center">
                     <input
@@ -79,24 +87,27 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
                       type="radio"
                       name="cypher"
                       className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      // aria-describedby={`${htmlId}-description`}
+                      aria-describedby={`${htmlId}-description`}
                       checked={cypherKey === selectedKey}
-                      onClick={() => setSelectedKey(cypherKey)}
+                      onChange={() => setSelectedKey(cypherKey)}
                     />
                   </div>
                   <div className="ml-3 text-sm">
                     <label htmlFor={htmlId} className="font-medium text-gray-700">
                       {cypherKey}
                     </label>
-                    {/* <p id={`${htmlId}-description`} className="text-gray-400 font-light">
-                      todo: add description
-                    </p> */}
+                    <p
+                      id={`${htmlId}-description`}
+                      className="text-xs text-gray-400 font-light mt-0.5"
+                    >
+                      {description}
+                    </p>
                   </div>
                 </div>
               ))}
           </div>
         </fieldset>
-        <div className="mt-8 flex justify-end gap-x-4">
+        <div className="mt-10 flex justify-end gap-x-4">
           <Button
             type="submit"
             className="min-w-[120px]"
