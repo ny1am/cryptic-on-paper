@@ -4,6 +4,7 @@ import React from 'react';
 import { Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
 
+import { Button } from '@/components/Button';
 import { RangeInput } from '@/components/RangeInput';
 import { TextInput } from '@/components/TextInput';
 
@@ -99,19 +100,12 @@ export function DynamicForm<T extends Shape>({
         </div>
       ))}
       <div className="mt-8 flex justify-end gap-x-4">
-        <button
-          type="submit"
-          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
+        <Button type="submit" primary>
           Submit
-        </button>
-        <button
-          type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          onClick={onCancel}
-        >
+        </Button>
+        <Button type="button" onClick={onCancel}>
           Cancel
-        </button>
+        </Button>
       </div>
     </form>
   );
