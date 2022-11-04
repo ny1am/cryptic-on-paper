@@ -24,7 +24,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         primary
           ? 'text-white border-transparent bg-indigo-600 hover:bg-indigo-700'
           : secondary
-          ? 'text-indigo-700 border-indigo-700 bg-indigo-50 hover:bg-indigo-100'
+          ? 'text-indigo-700 border-indigo-700 bg-white hover:text-indigo-500'
           : 'text-gray-700 border-gray-300 bg-white hover:text-gray-500',
         className
       )}

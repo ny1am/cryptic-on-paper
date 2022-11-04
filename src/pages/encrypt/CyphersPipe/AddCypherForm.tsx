@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react';
+import { RadioGroup } from '@headlessui/react';
+import cn from 'clsx';
+import React, { useContext, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import { Button } from '@/components/Button';
@@ -24,9 +26,9 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
   const { addCypher } = useContext(CiphersContext);
 
   const [selectedKey, setSelectedKey] = useState<CypherKey>(cypherKeys[0]);
-  const [optionsForm, setOptionsForm] = useState<CypherKeyWhenRequiredOptions>();
-  const closeOptionsForm = () => {
-    setOptionsForm(undefined);
+  const [configForm, setConfigForm] = useState<CypherKeyWhenRequiredOptions>();
+  const closeConfigForm = () => {
+    setConfigForm(undefined);
     onDispose();
   };
 
@@ -35,10 +37,15 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
       onDispose();
       return addCypher({ key, options: undefined });
     }
-    return setOptionsForm(key);
+    return setConfigForm(key);
   };
 
-  const handleOptionsSubmit = <
+  const handleSelectSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleAddCypher(selectedKey);
+  };
+
+  const handleConfigSubmit = <
     K extends CypherKeyWhenRequiredOptions,
     O extends CyphersOptionsRegister[K]
   >(
@@ -46,19 +53,17 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
     options: O
   ): void => {
     addCypher({ key, options } as CypherMeta);
-    closeOptionsForm();
+    closeConfigForm();
   };
 
-  if (optionsForm) {
+  if (configForm) {
     return (
       <FocusLock>
-        <h2 className="text-lg font-medium leading-6 mb-4">
-          {optionsForm} configuration
-        </h2>
+        <h2 className="text-lg font-medium leading-6 mb-4">{configForm} configuration</h2>
         <CypherOptionsForm
-          cypherKey={optionsForm}
-          handleSubmit={handleOptionsSubmit}
-          handleCancel={closeOptionsForm}
+          cypherKey={configForm}
+          handleSubmit={handleConfigSubmit}
+          handleCancel={closeConfigForm}
         />
       </FocusLock>
     );
@@ -67,14 +72,10 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
   return (
     <>
       <h2 className="text-lg font-medium leading-6 mb-4">Select Cypher</h2>
-      <form
-        className="mt-8"
-        autoComplete="off"
-        onSubmit={() => handleAddCypher(selectedKey)}
-      >
-        <fieldset>
-          <legend className="sr-only">Cypher</legend>
-          <div className="space-y-5">
+      <form className="mt-8" autoComplete="off" onSubmit={handleSelectSubmit}>
+        <RadioGroup value={selectedKey} onChange={setSelectedKey}>
+          <RadioGroup.Label className="sr-only">Select Cypher</RadioGroup.Label>
+          <div className="space-y-4">
             {cypherKeys
               .map((key) => ({
                 cypherKey: key,
@@ -82,33 +83,57 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
                 description: pipeCfg[key].meta.description?.short,
               }))
               .map(({ cypherKey, htmlId, description }) => (
-                <div key={htmlId} className="relative flex items-start">
-                  <div className="flex h-5 items-center">
-                    <input
-                      id={htmlId}
-                      type="radio"
-                      name="cypher"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      aria-describedby={`${htmlId}-description`}
-                      checked={cypherKey === selectedKey}
-                      onChange={() => setSelectedKey(cypherKey)}
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor={htmlId} className="font-medium text-gray-700">
-                      {cypherKey}
-                    </label>
-                    <p
-                      id={`${htmlId}-description`}
-                      className="text-xs text-gray-400 font-light mt-0.5"
-                    >
-                      {description}
-                    </p>
-                  </div>
-                </div>
+                <RadioGroup.Option
+                  key={htmlId}
+                  value={cypherKey}
+                  className={({ checked, active }) =>
+                    cn(
+                      checked ? 'border-transparent' : 'border-gray-300',
+                      active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
+                      'relative cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none flex justify-between'
+                    )
+                  }
+                >
+                  {({ active, checked }) => (
+                    <>
+                      <span className="flex items-center">
+                        <span className="flex flex-col text-sm">
+                          <RadioGroup.Label
+                            as="span"
+                            className="font-medium text-gray-900"
+                          >
+                            {cypherKey}
+                          </RadioGroup.Label>
+                          <RadioGroup.Description
+                            as="span"
+                            className="text-xs text-gray-400 font-light mt-1"
+                          >
+                            {description}
+                          </RadioGroup.Description>
+                        </span>
+                      </span>
+                      {areCypherOptionsRequired(cypherKey) && (
+                        <RadioGroup.Description
+                          as="span"
+                          className="mt-0 ml-4 text-xs text-indigo-500 text-right"
+                        >
+                          configurable
+                        </RadioGroup.Description>
+                      )}
+                      <span
+                        className={cn(
+                          active ? 'border' : 'border-2',
+                          checked ? 'border-indigo-500' : 'border-transparent',
+                          'pointer-events-none absolute -inset-px rounded-lg'
+                        )}
+                        aria-hidden="true"
+                      />
+                    </>
+                  )}
+                </RadioGroup.Option>
               ))}
           </div>
-        </fieldset>
+        </RadioGroup>
         <div className="mt-10 flex justify-end gap-x-4">
           <Button
             type="submit"
