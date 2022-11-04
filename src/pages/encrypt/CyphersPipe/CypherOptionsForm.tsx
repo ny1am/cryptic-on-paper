@@ -23,15 +23,15 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
     form.defaultValues as CyphersOptionsRegister[T]
   );
 
-  const description = cfg.meta.description.long || cfg.meta.description.short;
+  const description = cfg.meta.description.long || <p>{cfg.meta.description.short}</p>;
   const DemoComponent = cfg.meta.demo;
 
   return (
     <>
       <div className="mb-6">
-        <p className="pb-2 text-xs font-light text-gray-500 tracking-wider leading-5 whitespace-pre-wrap">
+        <div className="pb-2 text-xs font-light text-gray-500 tracking-wider leading-5">
           {description}
-        </p>
+        </div>
         {typeof DemoComponent !== 'undefined' && <DemoComponent {...formState} />}
       </div>
       <DynamicForm

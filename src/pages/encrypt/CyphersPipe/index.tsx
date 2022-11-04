@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 
+import { Badge } from '@/components/Badge';
+
 import { CiphersContext } from '../CiphersContext';
 import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
@@ -19,12 +21,9 @@ export function CyphersPipe() {
                   Object.entries(meta.options)
                     .filter((entry) => entry[1])
                     .map(([key, value]) => (
-                      <span
-                        key={key}
-                        className="ml-1 inline-flex items-center rounded bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800 whitespace-pre-wrap"
-                      >
+                      <Badge key={key} className="ml-1">
                         {key}: <strong>{value}</strong>
-                      </span>
+                      </Badge>
                     ))}
               </li>
             ))}
