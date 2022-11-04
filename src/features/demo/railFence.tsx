@@ -26,7 +26,7 @@ export function RailFenceDemo({ depth }: RailFenceDemoProps) {
 
   return (
     <div
-      className="h-[140px] flex flex-col items-center justify-center"
+      className="h-[150px] flex flex-col items-center justify-center border-t border-b border-dashed border-indigo-200"
       aria-hidden="true"
     >
       <ul

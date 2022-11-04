@@ -1,10 +1,12 @@
 import React from 'react';
 import zod from 'zod';
 
+import { Badge } from '@/components/Badge';
 import { DynamicFormUIConfig } from '@/components/DynamicForm';
 import { RangeInput } from '@/components/RangeInput';
 import { TextInput } from '@/components/TextInput';
 import { RailFenceDemo } from '@/features/demo';
+import { ToggleCaseDemo } from '@/features/demo/toggleCase';
 
 import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
 
@@ -65,6 +67,9 @@ export const pipeCfg: PipeCfg = {
               until the whole plaintext is written out.
             </p>
             <p>The ciphertext is then read off in rows.</p>
+            <p className="mt-2">
+              <Badge>depth</Badge> - number of rails
+            </p>
           </>
         ),
       },
@@ -89,7 +94,17 @@ export const pipeCfg: PipeCfg = {
     meta: {
       description: {
         short: `Substitution cipher. Toggles letter case of input characters.`,
+        long: (
+          <>
+            <p>Toggles letter case of input characters.</p>
+            <p className="mt-2">
+              <Badge>include</Badge> (optional) - toggle case is only applied to specified
+              characters regardless of letter case
+            </p>
+          </>
+        ),
       },
+      demo: ({ include }) => <ToggleCaseDemo include={include} />,
     },
   },
 };

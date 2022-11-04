@@ -52,7 +52,9 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
   if (optionsForm) {
     return (
       <FocusLock>
-        <h2 className="text-lg font-medium leading-6 mb-4">{optionsForm} config</h2>
+        <h2 className="text-lg font-medium leading-6 mb-4">
+          {optionsForm} configuration
+        </h2>
         <CypherOptionsForm
           cypherKey={optionsForm}
           handleSubmit={handleOptionsSubmit}
