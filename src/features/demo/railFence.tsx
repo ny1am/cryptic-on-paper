@@ -25,7 +25,10 @@ export function RailFenceDemo({ depth }: RailFenceDemoProps) {
   }
 
   return (
-    <div className="h-[140px] flex flex-col items-center justify-center">
+    <div
+      className="h-[140px] flex flex-col items-center justify-center"
+      aria-hidden="true"
+    >
       <ul
         className="inline-grid gap-1"
         style={{

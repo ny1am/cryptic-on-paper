@@ -14,7 +14,10 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
     return (
       <div className="mt-1">
         <input ref={ref} type="range" step="1" {...props} />
-        <div className="relative text-xs text-gray-500 flex justify-between" aria-hidden>
+        <div
+          className="relative text-xs text-gray-500 flex justify-between"
+          aria-hidden="true"
+        >
           {marks.map((v) => (
             <span key={v} className="w-3 text-center">
               {v}
