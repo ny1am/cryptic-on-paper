@@ -42,7 +42,7 @@ const createArrayRunnerMachine = (length: number) =>
     },
   });
 
-const createCaretIterator = (length: number) => {
+export const createCaretIterator = (length: number) => {
   const machine = createArrayRunnerMachine(length);
   const runner = interpret(machine).start();
   return {

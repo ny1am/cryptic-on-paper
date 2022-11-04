@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { DynamicForm, DynamicFormUIConfig } from '@/components/DynamicForm';
+import { DynamicForm } from '@/components/DynamicForm';
 
 import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
-import { FormSchemaType, pipeCfg } from './pipeConfig';
+import { FormType, pipeCfg } from './pipeConfig';
 
 type CypherOptionsFormProps<T extends CypherKeyWhenRequiredOptions> = {
   cypherKey: T;
@@ -17,20 +17,27 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
   handleCancel,
 }: React.PropsWithoutRef<CypherOptionsFormProps<T>>) {
   const cfg = pipeCfg[cypherKey];
+  const form = cfg.form;
 
-  const schema = cfg.optionsSchema as FormSchemaType<T>;
-  const uiConfig = cfg.uiConfig as DynamicFormUIConfig<CyphersOptionsRegister[T]>;
+  const [formState, setFormState] = useState<Partial<CyphersOptionsRegister[T]>>(
+    form.defaultValues as CyphersOptionsRegister[T]
+  );
+
   const description = cfg.meta.description.long || cfg.meta.description.short;
+  const DemoComponent = cfg.meta.demo;
 
   return (
     <>
-      <p className="text-sm font-light text-gray-500 mb-8 max-w-[95%] tracking-wide">
-        {description}
-      </p>
+      <div className="mb-6">
+        <p className="pb-2 text-xs font-light text-gray-500 tracking-wider leading-5 whitespace-pre-wrap">
+          {description}
+        </p>
+        {typeof DemoComponent !== 'undefined' && <DemoComponent {...formState} />}
+      </div>
       <DynamicForm
-        schema={schema}
-        uiConfig={uiConfig}
+        form={form as FormType<T>}
         onSubmit={(d) => handleSubmit(cypherKey, d)}
+        onChange={setFormState}
         onCancel={handleCancel}
       />
     </>

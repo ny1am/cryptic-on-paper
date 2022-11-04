@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'clsx';
 import React from 'react';
-import { Path, useForm } from 'react-hook-form';
+import { DeepPartial, Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
 
 import { Button } from '@/components/Button';
@@ -19,41 +19,53 @@ export type DynamicFormUIConfig<T extends Shape> = {
   };
 };
 
-type DynamicFormProps<T extends Shape> = {
-  schema: ZodSchema<T>;
-  uiConfig: DynamicFormUIConfig<T>;
+export type DynamicFormProps<T extends Shape> = {
+  form: {
+    validationSchema: ZodSchema<T>;
+    uiFields: DynamicFormUIConfig<T>;
+    defaultValues: T;
+  };
   onSubmit: (r: T) => void;
+  onChange: (r: DeepPartial<T>) => void;
   onCancel: () => void;
 };
 
 export function DynamicForm<T extends Shape>({
-  schema,
-  uiConfig,
+  form,
   onSubmit,
+  onChange,
   onCancel,
 }: React.PropsWithoutRef<DynamicFormProps<T>>) {
+  const { validationSchema, uiFields, defaultValues } = form;
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<T>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(validationSchema),
+    defaultValues: defaultValues as DeepPartial<T>,
   });
 
+  React.useEffect(() => {
+    const subscription = watch((value) => onChange(value));
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
   //TODO: handle with TS
-  if (!(schema instanceof ZodObject)) {
+  if (!(validationSchema instanceof ZodObject)) {
     throw new Error('schema should be an object');
   }
 
-  const fieldNames = Object.keys(schema.shape) as Path<T>[];
+  const fieldNames = Object.keys(validationSchema.shape) as Path<T>[];
   const fields = fieldNames.map((name) => {
-    const fieldCfg = uiConfig[name];
+    const fieldCfg = uiFields[name];
     return {
       name,
       Component: fieldCfg?.component || TextInput,
       props: fieldCfg?.props,
       valueAsNumber: fieldCfg?.valueAsNumber,
-      isOptional: schema.shape[name].isOptional(),
+      isOptional: validationSchema.shape[name].isOptional(),
       errorMsg: errors[name]?.message as string | undefined,
     };
   });
