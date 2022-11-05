@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/Button';
 import { Dialog } from '@/components/Dialog';
 
-import { AddCypherForm } from './AddCypherForm';
+import { AddCipherForm } from './AddCipherForm';
 
 export function AddButton() {
   const [dialog, setDialog] = useState<boolean>(false);
@@ -14,12 +14,12 @@ export function AddButton() {
     <>
       <Button type="button" primary onClick={() => setDialog(true)}>
         <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-        Add Cypher
+        Add Cipher
       </Button>
 
       {dialog && (
         <Dialog onClose={handleDialogClose}>
-          <AddCypherForm onDispose={handleDialogClose} />
+          <AddCipherForm onDispose={handleDialogClose} />
         </Dialog>
       )}
     </>

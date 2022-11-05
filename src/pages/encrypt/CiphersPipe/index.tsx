@@ -6,15 +6,15 @@ import { CiphersContext } from '../CiphersContext';
 import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
 
-export function CyphersPipe() {
-  const { selectedCyphers } = useContext(CiphersContext);
+export function CiphersPipe() {
+  const { selectedCiphers } = useContext(CiphersContext);
 
   return (
     <div className="rounded-md bg-white shadow">
       <div className="min-h-[16rem] p-6 flex flex-col">
-        {selectedCyphers.length > 0 ? (
+        {selectedCiphers.length > 0 ? (
           <ol className="divide-y divide-gray-200 list-decimal list-inside">
-            {selectedCyphers.map((meta, i) => (
+            {selectedCiphers.map((meta, i) => (
               <li key={i} className="px-6 py-4">
                 {meta.key}
                 {meta.options &&

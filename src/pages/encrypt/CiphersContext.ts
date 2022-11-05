@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 
-import { CypherMeta } from './config';
+import { CipherMeta } from './config';
 
 export const CiphersContext = createContext<{
-  selectedCyphers: CypherMeta[];
-  addCypher: (c: CypherMeta) => void;
+  selectedCiphers: CipherMeta[];
+  addCipher: (c: CipherMeta) => void;
 }>({
-  selectedCyphers: [],
-  addCypher: () => undefined,
+  selectedCiphers: [],
+  addCipher: () => undefined,
 });

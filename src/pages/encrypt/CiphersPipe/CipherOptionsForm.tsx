@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 
 import { DynamicForm } from '@/components/DynamicForm';
 
-import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
+import { CipherKeyWhenRequiredOptions, CiphersOptionsRegister } from '../config';
 import { FormType, pipeCfg } from './pipeConfig';
 
-type CypherOptionsFormProps<T extends CypherKeyWhenRequiredOptions> = {
-  cypherKey: T;
-  handleSubmit: (cypherKey: T, value: CyphersOptionsRegister[T]) => void;
+type CipherOptionsFormProps<T extends CipherKeyWhenRequiredOptions> = {
+  cipherKey: T;
+  handleSubmit: (cipherKey: T, value: CiphersOptionsRegister[T]) => void;
   handleCancel: () => void;
 };
 
-export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
-  cypherKey: cypherKey,
+export function CipherOptionsForm<T extends CipherKeyWhenRequiredOptions>({
+  cipherKey,
   handleSubmit,
   handleCancel,
-}: React.PropsWithoutRef<CypherOptionsFormProps<T>>) {
-  const cfg = pipeCfg[cypherKey];
+}: React.PropsWithoutRef<CipherOptionsFormProps<T>>) {
+  const cfg = pipeCfg[cipherKey];
   const form = cfg.form;
 
-  const [formState, setFormState] = useState<Partial<CyphersOptionsRegister[T]>>(
-    form.defaultValues as CyphersOptionsRegister[T]
+  const [formState, setFormState] = useState<Partial<CiphersOptionsRegister[T]>>(
+    form.defaultValues as CiphersOptionsRegister[T]
   );
 
   const description = cfg.meta.description.long || <p>{cfg.meta.description.short}</p>;
@@ -36,7 +36,7 @@ export function CypherOptionsForm<T extends CypherKeyWhenRequiredOptions>({
       </div>
       <DynamicForm
         form={form as FormType<T>}
-        onSubmit={(d) => handleSubmit(cypherKey, d)}
+        onSubmit={(d) => handleSubmit(cipherKey, d)}
         onChange={setFormState}
         onCancel={handleCancel}
       />

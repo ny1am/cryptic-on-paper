@@ -1,6 +1,6 @@
 import cn from 'clsx';
 
-import { createCaretIterator } from '@/features/cypher';
+import { createCaretIterator } from '@/features/cipher';
 
 interface RailFenceDemoProps {
   depth: number;

@@ -8,23 +8,23 @@ import { TextInput } from '@/components/TextInput';
 import { RailFenceDemo } from '@/features/demo';
 import { ToggleCaseDemo } from '@/features/demo/toggleCase';
 
-import { CypherKeyWhenRequiredOptions, CyphersOptionsRegister } from '../config';
+import { CipherKeyWhenRequiredOptions, CiphersOptionsRegister } from '../config';
 
-export type FormType<T extends CypherKeyWhenRequiredOptions> = {
-  validationSchema: zod.ZodSchema<CyphersOptionsRegister[T]>;
-  uiFields: DynamicFormUIConfig<CyphersOptionsRegister[T]>;
-  defaultValues: CyphersOptionsRegister[T];
+export type FormType<T extends CipherKeyWhenRequiredOptions> = {
+  validationSchema: zod.ZodSchema<CiphersOptionsRegister[T]>;
+  uiFields: DynamicFormUIConfig<CiphersOptionsRegister[T]>;
+  defaultValues: CiphersOptionsRegister[T];
 };
 
 type PipeCfg = {
-  [T in keyof CyphersOptionsRegister]: {
-    form: T extends CypherKeyWhenRequiredOptions ? FormType<T> : undefined;
+  [T in keyof CiphersOptionsRegister]: {
+    form: T extends CipherKeyWhenRequiredOptions ? FormType<T> : undefined;
     meta: {
       description: {
         short: string;
         long?: JSX.Element;
       };
-      demo?: React.FC<Partial<CyphersOptionsRegister[T]>>;
+      demo?: React.FC<Partial<CiphersOptionsRegister[T]>>;
     };
   };
 };
@@ -109,8 +109,8 @@ export const pipeCfg: PipeCfg = {
   },
 };
 
-export function areCypherOptionsRequired(
-  key: keyof CyphersOptionsRegister
-): key is CypherKeyWhenRequiredOptions {
+export function areCipherOptionsRequired(
+  key: keyof CiphersOptionsRegister
+): key is CipherKeyWhenRequiredOptions {
   return typeof pipeCfg[key].form !== 'undefined';
 }

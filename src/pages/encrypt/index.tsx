@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
 import { CiphersContext } from './CiphersContext';
-import { CypherMeta } from './config';
-import { CyphersPipe } from './CyphersPipe';
+import { CiphersPipe } from './CiphersPipe';
+import { CipherMeta } from './config';
 import { ExecutorForm } from './ExecutorForm';
 
 export function EncryptPage() {
-  const [selectedCyphers, setSelectedCyphers] = useState<CypherMeta[]>([]);
-  const addCypher = (c: CypherMeta) => setSelectedCyphers((sc) => [...sc, c]);
+  const [selectedCiphers, setSelectedCiphers] = useState<CipherMeta[]>([]);
+  const addCipher = (c: CipherMeta) => setSelectedCiphers((sc) => [...sc, c]);
 
   return (
-    <CiphersContext.Provider value={{ selectedCyphers, addCypher }}>
-      <CyphersPipe />
+    <CiphersContext.Provider value={{ selectedCiphers, addCipher }}>
+      <CiphersPipe />
       <ExecutorForm />
     </CiphersContext.Provider>
   );

@@ -1,32 +1,32 @@
 import {
-  railFenceCypherFactory,
-  reverseCypherFactory,
-  toggleCaseCypherFactory,
-} from '@/features/cypher';
+  railFenceCipherFactory,
+  reverseCipherFactory,
+  toggleCaseCipherFactory,
+} from '@/features/cipher';
 
-export const cyphersRegister = Object.freeze({
-  'Reverse': reverseCypherFactory,
-  'Rail fence': railFenceCypherFactory,
-  'Toggle case': toggleCaseCypherFactory,
+export const ciphersRegister = Object.freeze({
+  'Reverse': reverseCipherFactory,
+  'Rail fence': railFenceCipherFactory,
+  'Toggle case': toggleCaseCipherFactory,
 });
 
-export type CyphersOptionsRegister = {
-  [K in keyof typeof cyphersRegister]: Parameters<typeof cyphersRegister[K]> extends [
+export type CiphersOptionsRegister = {
+  [K in keyof typeof ciphersRegister]: Parameters<typeof ciphersRegister[K]> extends [
     infer A
   ]
     ? A
     : undefined;
 };
 
-export type CypherKeyWhenRequiredOptions = {
-  [K in keyof CyphersOptionsRegister]: CyphersOptionsRegister[K] extends undefined
+export type CipherKeyWhenRequiredOptions = {
+  [K in keyof CiphersOptionsRegister]: CiphersOptionsRegister[K] extends undefined
     ? never
     : K;
-}[keyof CyphersOptionsRegister];
+}[keyof CiphersOptionsRegister];
 
-export type CypherMeta = {
-  [K in keyof CyphersOptionsRegister]: {
+export type CipherMeta = {
+  [K in keyof CiphersOptionsRegister]: {
     key: K;
-    options: CyphersOptionsRegister[K];
+    options: CiphersOptionsRegister[K];
   };
-}[keyof CyphersOptionsRegister];
+}[keyof CiphersOptionsRegister];

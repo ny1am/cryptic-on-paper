@@ -3,23 +3,23 @@ import copyToClipboard from 'copy-to-clipboard';
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Cypher, encrypt } from '@/features/cypher';
+import { Cipher, encrypt } from '@/features/cipher';
 
 import { CiphersContext } from './CiphersContext';
-import { CypherMeta, cyphersRegister } from './config';
+import { CipherMeta, ciphersRegister } from './config';
 
-type FactoryType = CypherMeta['options'] extends infer R ? (opts: R) => Cypher : never;
+type FactoryType = CipherMeta['options'] extends infer R ? (opts: R) => Cipher : never;
 
 export function ExecutorForm() {
-  const { selectedCyphers } = useContext(CiphersContext);
+  const { selectedCiphers } = useContext(CiphersContext);
 
   const [input, setInput] = useState<string>('');
   const inputChangeHandler = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
 
-  const pipe = selectedCyphers.map((meta) => {
-    const factory = cyphersRegister[meta.key] as FactoryType;
+  const pipe = selectedCiphers.map((meta) => {
+    const factory = ciphersRegister[meta.key] as FactoryType;
     return factory(meta.options);
   });
   const result = input && encrypt(pipe, input);

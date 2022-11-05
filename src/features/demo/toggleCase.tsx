@@ -1,7 +1,7 @@
 import { ArrowDownIcon } from '@heroicons/react/24/outline';
 import cn from 'clsx';
 
-import { toggleCaseCypherFactory } from '../cypher';
+import { toggleCaseCipherFactory } from '../cipher';
 
 interface ToggleCaseDemoProps {
   include?: string;
@@ -9,7 +9,7 @@ interface ToggleCaseDemoProps {
 
 export function ToggleCaseDemo({ include }: ToggleCaseDemoProps) {
   const originalText = 'The quick brown FOX jumps over the lazy DOG';
-  const resultText = toggleCaseCypherFactory({ include })(originalText);
+  const resultText = toggleCaseCipherFactory({ include })(originalText);
 
   return (
     <div
