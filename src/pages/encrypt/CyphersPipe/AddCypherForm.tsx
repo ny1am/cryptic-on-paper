@@ -32,17 +32,12 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
     onDispose();
   };
 
-  const handleAddCypher = (key: CypherKey) => {
+  const attemptAddCypher = (key: CypherKey) => {
     if (!areCypherOptionsRequired(key)) {
       onDispose();
       return addCypher({ key, options: undefined });
     }
     return setConfigForm(key);
-  };
-
-  const handleSelectSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleAddCypher(selectedKey);
   };
 
   const handleConfigSubmit = <
@@ -72,83 +67,58 @@ export function AddCypherForm({ onDispose }: AddCypherFormProps) {
   return (
     <>
       <h2 className="text-lg font-medium leading-6 mb-4">Select Cypher</h2>
-      <form className="mt-8" autoComplete="off" onSubmit={handleSelectSubmit}>
-        <RadioGroup value={selectedKey} onChange={setSelectedKey}>
-          <RadioGroup.Label className="sr-only">Select Cypher</RadioGroup.Label>
-          <div className="space-y-4">
-            {cypherKeys
-              .map((key) => ({
-                cypherKey: key,
-                htmlId: `c_${key.replace(/\W/g, '')}`,
-                description: pipeCfg[key].meta.description?.short,
-              }))
-              .map(({ cypherKey, htmlId, description }) => (
-                <RadioGroup.Option
-                  key={htmlId}
-                  value={cypherKey}
-                  className={({ checked, active }) =>
-                    cn(
-                      checked ? 'border-transparent' : 'border-gray-300',
-                      active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
-                      'relative cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none flex justify-between'
-                    )
-                  }
-                >
-                  {({ active, checked }) => (
-                    <>
-                      <span className="flex items-center">
-                        <span className="flex flex-col text-sm">
-                          <RadioGroup.Label
-                            as="span"
-                            className="font-medium text-gray-900"
-                          >
-                            {cypherKey}
-                          </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className="text-xs text-gray-400 font-light mt-1"
-                          >
-                            {description}
-                          </RadioGroup.Description>
-                        </span>
-                      </span>
-                      {areCypherOptionsRequired(cypherKey) && (
-                        <RadioGroup.Description
-                          as="span"
-                          className="mt-0 ml-4 text-xs text-indigo-500 text-right"
-                        >
-                          configurable
-                        </RadioGroup.Description>
-                      )}
-                      <span
-                        className={cn(
-                          active ? 'border' : 'border-2',
-                          checked ? 'border-indigo-500' : 'border-transparent',
-                          'pointer-events-none absolute -inset-px rounded-lg'
-                        )}
-                        aria-hidden="true"
-                      />
-                    </>
-                  )}
-                </RadioGroup.Option>
-              ))}
-          </div>
-        </RadioGroup>
-        <div className="mt-10 flex justify-end gap-x-4">
-          <Button
-            type="submit"
-            className="min-w-[120px]"
-            {...(areCypherOptionsRequired(selectedKey)
-              ? { secondary: true }
-              : { primary: true })}
-          >
-            {areCypherOptionsRequired(selectedKey) ? `Configure` : `Submit`}
-          </Button>
-          <Button type="button" onClick={onDispose}>
-            Cancel
-          </Button>
+      <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
+        <RadioGroup.Label className="sr-only">Select Cypher</RadioGroup.Label>
+        <div className="space-y-4">
+          {cypherKeys
+            .map((key) => ({
+              cypherKey: key,
+              htmlId: `c_${key.replace(/\W/g, '')}`,
+              description: pipeCfg[key].meta.description?.short,
+            }))
+            .map(({ cypherKey, htmlId, description }) => (
+              <RadioGroup.Option
+                key={htmlId}
+                value={cypherKey}
+                as="button"
+                onClick={() => attemptAddCypher(cypherKey)}
+                className={({ active }) =>
+                  cn(
+                    active ? 'border-indigo-500 ring-2 ring-indigo-500' : '',
+                    'relative w-full text-left cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none flex justify-between'
+                  )
+                }
+              >
+                <span className="flex items-center">
+                  <span className="flex flex-col text-sm">
+                    <RadioGroup.Label as="span" className="font-medium text-gray-900">
+                      {cypherKey}
+                    </RadioGroup.Label>
+                    <RadioGroup.Description
+                      as="span"
+                      className="text-xs text-gray-400 font-light mt-1"
+                    >
+                      {description}
+                    </RadioGroup.Description>
+                  </span>
+                </span>
+                {areCypherOptionsRequired(cypherKey) && (
+                  <RadioGroup.Description
+                    as="span"
+                    className="mt-0 ml-4 text-xs text-indigo-500 text-right"
+                  >
+                    configurable
+                  </RadioGroup.Description>
+                )}
+              </RadioGroup.Option>
+            ))}
         </div>
-      </form>
+      </RadioGroup>
+      <div className="mt-10 flex justify-end gap-x-4">
+        <Button type="button" onClick={onDispose}>
+          Cancel
+        </Button>
+      </div>
     </>
   );
 }
