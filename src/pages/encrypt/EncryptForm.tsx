@@ -10,7 +10,7 @@ import { CipherMeta, ciphersRegister } from './config';
 
 type FactoryType = CipherMeta['options'] extends infer R ? (opts: R) => Cipher : never;
 
-export function ExecutorForm() {
+export function EncryptForm() {
   const { selectedCiphers } = useContext(CiphersContext);
 
   const [input, setInput] = useState<string>('');

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CiphersContext } from './CiphersContext';
 import { CiphersPipe } from './CiphersPipe';
 import { CipherMeta } from './config';
-import { ExecutorForm } from './ExecutorForm';
+import { EncryptForm } from './EncryptForm';
 
 export function EncryptPage() {
   const [selectedCiphers, setSelectedCiphers] = useState<CipherMeta[]>([]);
@@ -12,7 +12,7 @@ export function EncryptPage() {
   return (
     <CiphersContext.Provider value={{ selectedCiphers, addCipher }}>
       <CiphersPipe />
-      <ExecutorForm />
+      <EncryptForm />
     </CiphersContext.Provider>
   );
 }
