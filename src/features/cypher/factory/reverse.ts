@@ -1,6 +1,6 @@
 import { CypherFactory } from '../types';
 
-export const mirrorCypherFactory: CypherFactory =
+export const reverseCypherFactory: CypherFactory =
   () =>
   (input: string): string =>
     Array.from(input).reverse().join('');

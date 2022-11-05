@@ -30,11 +30,11 @@ type PipeCfg = {
 };
 
 export const pipeCfg: PipeCfg = {
-  'Mirror': {
+  'Reverse': {
     form: undefined,
     meta: {
       description: {
-        short: `Transposition cipher. Mirrors input from right to left.`,
+        short: `Transposition cipher. Reverses text.`,
       },
     },
   },

@@ -1,9 +1,9 @@
-import { mirrorCypherFactory } from '@/features/cypher';
+import { reverseCypherFactory } from '@/features/cypher';
 
 it('input: even amount of chars', () => {
-  expect(mirrorCypherFactory()('test')).toBe('tset');
+  expect(reverseCypherFactory()('test')).toBe('tset');
 });
 
 it('input: odd amount of chars', () => {
-  expect(mirrorCypherFactory()('testing')).toBe('gnitset');
+  expect(reverseCypherFactory()('testing')).toBe('gnitset');
 });

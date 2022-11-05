@@ -1,11 +1,11 @@
 import {
-  mirrorCypherFactory,
   railFenceCypherFactory,
+  reverseCypherFactory,
   toggleCaseCypherFactory,
 } from '@/features/cypher';
 
 export const cyphersRegister = Object.freeze({
-  'Mirror': mirrorCypherFactory,
+  'Reverse': reverseCypherFactory,
   'Rail fence': railFenceCypherFactory,
   'Toggle case': toggleCaseCypherFactory,
 });
