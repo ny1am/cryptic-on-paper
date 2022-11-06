@@ -14,7 +14,7 @@ function App() {
           className: 'text-sm',
           success: {
             iconTheme: {
-              primary: '#10b981',
+              primary: 'rgb(79, 70, 229)',
               secondary: 'white',
             },
           },

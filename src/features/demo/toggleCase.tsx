@@ -17,7 +17,7 @@ export function ToggleCaseDemo({ include }: ToggleCaseDemoProps) {
       aria-hidden="true"
     >
       <p>{originalText}</p>
-      <ArrowDownIcon className="w-[1.125rem] my-[0.625rem] text-indigo-700" />
+      <ArrowDownIcon className="w-4 my-[0.625rem] text-indigo-400" />
       <p>
         {Array.from(resultText).map((c, i) => (
           <span key={i} className={cn(c !== originalText[i] && 'text-orange-600')}>

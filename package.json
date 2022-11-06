@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.3",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@hookform/resolvers": "^2.9.10",
@@ -21,6 +22,7 @@
     "react-focus-lock": "^2.9.1",
     "react-hook-form": "^7.39.1",
     "react-hot-toast": "^2.4.0",
+    "uuid": "^9.0.0",
     "xstate": "^4.34.0",
     "zod": "^3.19.1"
   },
@@ -29,6 +31,7 @@
     "@types/jest": "^29.2.2",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@vitejs/plugin-react": "^2.2.0",

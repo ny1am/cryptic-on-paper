@@ -1,43 +1,29 @@
 import { useContext } from 'react';
 
-import { Badge } from '@/components/Badge';
+import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { CiphersContext } from '../CiphersContext';
 import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
+import { Pipe } from './Pipe';
 
 export function CiphersPipe() {
   const { selectedCiphers } = useContext(CiphersContext);
+  const [contentRef] = useAutoAnimate<HTMLDivElement>();
 
   return (
-    <div className="rounded-md bg-white shadow">
-      <div className="min-h-[16rem] p-6 flex flex-col">
+    <div className="rounded-md bg-white border border-gray-300">
+      <div ref={contentRef} className="min-h-[16rem] p-6 flex flex-col">
         {selectedCiphers.length > 0 ? (
-          <ol className="divide-y divide-gray-200 list-decimal list-inside">
-            {selectedCiphers.map((meta, i) => (
-              <li key={i} className="px-6 py-4">
-                {meta.key}
-                {meta.options &&
-                  Object.entries(meta.options)
-                    .filter((entry) => entry[1])
-                    .map(([key, value]) => (
-                      <Badge key={key} className="ml-1">
-                        {key}: <strong>{value}</strong>
-                      </Badge>
-                    ))}
-              </li>
-            ))}
-          </ol>
+          <Pipe />
         ) : (
-          <div className="grow flex justify-center items-center mb-10">
+          <div className="grow flex justify-center items-center my-10">
             <EmptyPipe />
           </div>
         )}
       </div>
-      <div className="border-t border-gray-200 px-4 pl-6 py-3">
-        <div className="flex justify-end">
-          <AddButton />
-        </div>
+      <div className="px-4 pl-6 py-3">
+        <AddButton />
       </div>
     </div>
   );

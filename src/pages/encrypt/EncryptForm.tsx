@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { Cipher, encrypt } from '@/features/cipher';
+import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { CiphersContext } from './CiphersContext';
 import { CipherMeta, ciphersRegister } from './config';
@@ -16,9 +17,9 @@ export function EncryptForm() {
   const [input, setInput] = useState<string>('');
   const inputChangeHandler = ({
     target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
+  }: React.ChangeEvent<HTMLTextAreaElement>) => setInput(value);
 
-  const pipe = selectedCiphers.map((meta) => {
+  const pipe = selectedCiphers.map(({ meta }) => {
     const factory = ciphersRegister[meta.key] as FactoryType;
     return factory(meta.options);
   });
@@ -27,31 +28,45 @@ export function EncryptForm() {
   const copy = () => {
     copyToClipboard(result);
     toast.success('Copied to clipboard!', { id: 'clipboard' });
-    setInput('');
   };
 
+  const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div className="mt-5 w-full flex items-end flex-wrap gap-y-5">
-      <div className="mt-5 basis-1/2 grow">
-        <input
-          type="text"
-          className="block w-full rounded-md shadow-sm text-sm h-10 focus:outline-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
-          placeholder="text to encrypt..."
+    <div ref={contentRef}>
+      <div className="w-full">
+        <label htmlFor="plaintext" className="sr-only">
+          Message to encrypt
+        </label>
+        <textarea
+          id="plaintext"
+          placeholder="Message to encrypt..."
+          rows={5}
+          className="block w-full rounded-md resize-none border-gray-300 shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
           value={input || ''}
           onChange={inputChangeHandler}
         />
       </div>
       {result && (
-        <div className="basis-1/2 grow flex items-center justify-end gap-4">
-          <div className="grow text-xl text-right whitespace-nowrap">{result}</div>
-          <button
-            type="button"
-            className="flex items-center rounded-md border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-200"
-            onClick={copy}
-          >
-            <span className="sr-only">Copy to Clipboard</span>
-            <ClipboardIcon className="h-5 w-5" aria-hidden="true" />
-          </button>
+        <div className="mt-2 flex flex-col items-end lg:mt-6">
+          <div className="w-full">
+            <div className="flex justify-between items-end">
+              <span className="block text-sm font-medium text-gray-700 mb-1">
+                Encrypted message
+              </span>
+              <button
+                type="button"
+                onClick={copy}
+                className="h-8 w-8 inline-flex justify-center items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 opacity-50 hover:opacity-100 focus:opacity-100"
+                title="Copy to clipboard"
+              >
+                <ClipboardIcon className="h-4" aria-hidden="true" />
+                <span className="sr-only">Copy to clipboard</span>
+              </button>
+            </div>
+            <pre className="text-sm break-all whitespace-pre-wrap bg-gray-50 overflow-y-auto p-2 rounded-md h-32 border border-gray-300">
+              {result}
+            </pre>
+          </div>
         </div>
       )}
     </div>

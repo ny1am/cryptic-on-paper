@@ -30,3 +30,8 @@ export type CipherMeta = {
     options: CiphersOptionsRegister[K];
   };
 }[keyof CiphersOptionsRegister];
+
+export type CipherUIMeta = {
+  meta: CipherMeta;
+  uuid: string;
+};

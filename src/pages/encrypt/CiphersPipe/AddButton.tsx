@@ -17,11 +17,9 @@ export function AddButton() {
         Add Cipher
       </Button>
 
-      {dialog && (
-        <Dialog onClose={handleDialogClose}>
-          <AddCipherForm onDispose={handleDialogClose} />
-        </Dialog>
-      )}
+      <Dialog onClose={handleDialogClose} isOpen={dialog}>
+        <AddCipherForm onDispose={handleDialogClose} />
+      </Dialog>
     </>
   );
 }
