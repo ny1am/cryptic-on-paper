@@ -1,6 +1,15 @@
-# cryptic on paper
+# Cryptic on paper
 
-work in progress...
+Encrypt messages with simple ciphers that you could replicate on a piece of paper.
+
+## Motivation
+
+I wanted a tool that would allow me to create robust passwords that are hard to remember but easy to calculate with a piece of paper. Ideal for creating a master password for your password manager or other important services.
+
+## Development
+
+[yarn](https://yarnpkg.com/) and [volta](https://volta.sh/) are preferred.
+Recommended node / yarn versions are specified in `package.json -> volta`.
 
 ## License
 
