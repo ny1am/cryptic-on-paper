@@ -16,7 +16,7 @@ export function EncryptPage() {
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
     <CiphersContext.Provider value={{ selectedCiphers, addCipher }}>
-      <div className="mx-auto mt-16 max-w-7xl px-4 lg:mt-24 lg:px-6">
+      <div className="mx-auto pt-16 max-w-7xl px-4 lg:pt-24 lg:px-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
             <span>Cryptic </span>
