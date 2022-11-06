@@ -22,6 +22,7 @@
     "react-focus-lock": "^2.9.1",
     "react-hook-form": "^7.39.1",
     "react-hot-toast": "^2.4.0",
+    "react-hotkeys-hook": "^4.0.2",
     "uuid": "^9.0.0",
     "xstate": "^4.34.0",
     "zod": "^3.19.1"

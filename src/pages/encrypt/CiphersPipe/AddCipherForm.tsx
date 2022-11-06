@@ -2,6 +2,7 @@ import { RadioGroup } from '@headlessui/react';
 import cn from 'clsx';
 import React, { useContext, useState } from 'react';
 import FocusLock from 'react-focus-lock';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
@@ -28,6 +29,18 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
 
   const [selectedKey, setSelectedKey] = useState<CipherKey>(cipherKeys[0]);
   const [configForm, setConfigForm] = useState<CipherKeyWhenRequiredOptions>();
+
+  useHotkeys(
+    'esc',
+    (e) => {
+      if (configForm) {
+        e.preventDefault();
+        setConfigForm(undefined);
+      }
+    },
+    { enableOnFormTags: true },
+    [configForm]
+  );
 
   const attemptAddCipher = (key: CipherKey) => {
     if (!areCipherOptionsRequired(key)) {
@@ -59,12 +72,12 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
-            handleCancel={onDispose}
+            handleCancel={() => setConfigForm(undefined)}
           />
         </FocusLock>
       )}
       {!configForm && (
-        <>
+        <FocusLock>
           <h2 className="text-lg font-medium leading-6 mb-4">Select Cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
             <RadioGroup.Label className="sr-only">Select Cipher</RadioGroup.Label>
@@ -118,7 +131,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
               Cancel
             </Button>
           </div>
-        </>
+        </FocusLock>
       )}
     </div>
   );
