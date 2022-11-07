@@ -11,7 +11,7 @@ import { EncryptForm } from './EncryptForm';
 export function EncryptPage() {
   const [selectedCiphers, setSelectedCiphers] = useState<CipherUIMeta[]>([]);
   const addCipher = (meta: CipherMeta) =>
-    setSelectedCiphers((array) => [...array, { meta: meta, uuid: generateUuid() }]);
+    setSelectedCiphers((array) => [...array, { meta, uuid: generateUuid() }]);
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
