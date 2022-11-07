@@ -41,7 +41,7 @@ export function EncryptForm() {
           id="plaintext"
           placeholder="Message to encrypt..."
           rows={5}
-          className="block w-full rounded-md resize-none border-gray-300 shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
+          className="block w-full rounded-md resize-none border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
           value={input || ''}
           onChange={inputChangeHandler}
         />

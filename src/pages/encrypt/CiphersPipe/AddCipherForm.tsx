@@ -97,7 +97,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     className={({ active }) =>
                       cn(
                         active ? 'border-indigo-500 ring-1 ring-indigo-500' : '',
-                        'relative w-full text-left cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none flex justify-between'
+                        'relative w-full text-left cursor-pointer rounded-lg border bg-white px-6 py-4 focus:outline-none flex justify-between'
                       )
                     }
                   >
