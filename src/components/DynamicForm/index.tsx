@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'clsx';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DeepPartial, Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
 
@@ -47,10 +47,10 @@ export function DynamicForm<T extends Shape>({
     defaultValues: defaultValues as DeepPartial<T>,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const subscription = watch((value) => onChange(value));
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, onChange]);
 
   //TODO: handle with TS
   if (!(validationSchema instanceof ZodObject)) {
