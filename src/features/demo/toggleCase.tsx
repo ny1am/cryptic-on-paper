@@ -1,6 +1,3 @@
-import { ArrowDownIcon } from '@heroicons/react/24/outline';
-import cn from 'clsx';
-
 import { toggleCaseCipherFactory } from '../cipher';
 
 interface ToggleCaseDemoProps {
@@ -13,17 +10,14 @@ export function ToggleCaseDemo({ include }: ToggleCaseDemoProps) {
 
   return (
     <div
-      className="min-h-[150px] flex flex-col justify-center items-center text-center text-sm border-t border-b border-dashed border-indigo-200"
+      className="min-h-[150px] font-mono flex flex-col justify-center items-center text-center text-sm border-t border-b border-dashed border-indigo-200"
       aria-hidden="true"
     >
       <p>{originalText}</p>
-      <ArrowDownIcon className="w-4 my-[0.625rem] text-indigo-400" />
-      <p>
-        {Array.from(resultText).map((c, i) => (
-          <span key={i} className={cn(c !== originalText[i] && 'text-orange-600')}>
-            {c}
-          </span>
-        ))}
+      <p className="mt-6">
+        {Array.from(resultText).map((c, i) =>
+          c !== originalText[i] ? <mark key={i}>{c}</mark> : <span key={i}>{c}</span>
+        )}
       </p>
     </div>
   );
