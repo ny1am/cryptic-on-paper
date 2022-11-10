@@ -1,4 +1,5 @@
 import {
+  caesarCipherFactory,
   railFenceCipherFactory,
   reverseCipherFactory,
   toggleCaseCipherFactory,
@@ -7,6 +8,7 @@ import {
 export const ciphersRegister = Object.freeze({
   'Reverse': reverseCipherFactory,
   'Rail fence': railFenceCipherFactory,
+  'Caesar': caesarCipherFactory,
   'Toggle case': toggleCaseCipherFactory,
 });
 

@@ -29,9 +29,10 @@ export function CipherOptionsForm<T extends CipherKeyWhenRequiredOptions>({
   return (
     <>
       <div className="mb-8">
-        <div className="mb-4 text-xs font-light text-gray-500 tracking-wider leading-5">
+        <div className="mb-4 text-xs font-light text-gray-500 tracking-wider leading-5 [&>p]:mt-2">
           {description}
         </div>
+
         {typeof DemoComponent !== 'undefined' && <DemoComponent {...formState} />}
       </div>
       <DynamicForm

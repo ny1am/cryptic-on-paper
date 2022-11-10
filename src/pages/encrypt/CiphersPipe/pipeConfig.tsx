@@ -54,7 +54,6 @@ export const pipeCfg: PipeCfg = {
         },
       },
     },
-
     meta: {
       description: {
         short: `Transposition cipher. It derives its name from the manner in which encryption is performed, in analogy to a fence built with horizontal rails.`,
@@ -67,13 +66,55 @@ export const pipeCfg: PipeCfg = {
               until the whole plaintext is written out.
             </p>
             <p>The ciphertext is then read off in rows.</p>
-            <p className="mt-2">
+            <p>
               <Badge>depth</Badge> - number of rails
             </p>
           </>
         ),
       },
       demo: ({ depth }) => <RailFenceDemo depth={depth || 4} />,
+    },
+  },
+  'Caesar': {
+    form: {
+      validationSchema: zod.object({
+        shift: zod.number().min(1).max(25),
+      }),
+      defaultValues: {
+        shift: 1,
+      },
+      uiFields: {
+        shift: {
+          component: RangeInput,
+          valueAsNumber: true,
+          props: { min: 1, max: 25 },
+        },
+      },
+    },
+    meta: {
+      description: {
+        short:
+          'Substitution cipher. Each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.',
+        long: (
+          <>
+            <p>
+              In the caesar cipher, each letter in the plaintext is replaced by a letter
+              some fixed number of positions down the alphabet.
+            </p>
+            <p>
+              For example, with a right shift of 3, A would be replaced by D, B would
+              become E, and so on.
+            </p>
+            <p>
+              The method is named after Julius Caesar, who used it in his private
+              correspondence.
+            </p>
+            <p>
+              <Badge>shift</Badge> - right shift of the alphabet
+            </p>
+          </>
+        ),
+      },
     },
   },
   'Toggle case': {
@@ -97,7 +138,7 @@ export const pipeCfg: PipeCfg = {
         long: (
           <>
             <p>Toggles letter case of input characters.</p>
-            <p className="mt-2">
+            <p>
               <Badge>include</Badge> (optional) - toggle case is only applied to specified
               characters regardless of letter case
             </p>
