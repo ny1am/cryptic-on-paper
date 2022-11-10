@@ -1,3 +1,5 @@
+import { latinAlphabet } from '@/utils';
+
 import { CipherFactory } from '../types';
 
 export type CaesarCipherOptions = {
@@ -5,7 +7,7 @@ export type CaesarCipherOptions = {
 };
 
 export const caesarCipherFactory: CipherFactory<CaesarCipherOptions> = ({ shift }) => {
-  const alphabet = [...Array(26)].map((_, i) => (i + 10).toString(36));
+  const alphabet = latinAlphabet;
   const transpositionMap: Record<string, string> = alphabet.reduce((acc, c, index) => {
     const newIndex = (index + shift) % alphabet.length;
     return { ...acc, [c]: alphabet[newIndex] };

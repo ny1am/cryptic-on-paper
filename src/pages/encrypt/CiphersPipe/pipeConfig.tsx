@@ -5,8 +5,7 @@ import { Badge } from '@/components/Badge';
 import { DynamicFormUIConfig } from '@/components/DynamicForm';
 import { RangeInput } from '@/components/RangeInput';
 import { TextInput } from '@/components/TextInput';
-import { RailFenceDemo } from '@/features/demo';
-import { ToggleCaseDemo } from '@/features/demo/toggleCase';
+import { CaesarDemo, RailFenceDemo, ToggleCaseDemo } from '@/features/demo';
 
 import { CipherKeyWhenRequiredOptions, CiphersOptionsRegister } from '../config';
 
@@ -72,7 +71,7 @@ export const pipeCfg: PipeCfg = {
           </>
         ),
       },
-      demo: ({ depth }) => <RailFenceDemo depth={depth || 4} />,
+      demo: ({ depth }) => <RailFenceDemo depth={depth ?? 4} />,
     },
   },
   'Caesar': {
@@ -115,6 +114,7 @@ export const pipeCfg: PipeCfg = {
           </>
         ),
       },
+      demo: ({ shift }) => <CaesarDemo shift={shift ?? 1} />,
     },
   },
   'Toggle case': {
