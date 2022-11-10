@@ -4,6 +4,7 @@ import zod from 'zod';
 import { Badge } from '@/components/Badge';
 import { DynamicFormUIConfig } from '@/components/DynamicForm';
 import { RangeInput } from '@/components/RangeInput';
+import { StepperInput } from '@/components/StepperInput';
 import { TextInput } from '@/components/TextInput';
 import { CaesarDemo, RailFenceDemo, ToggleCaseDemo } from '@/features/demo';
 
@@ -77,16 +78,16 @@ export const pipeCfg: PipeCfg = {
   'Caesar': {
     form: {
       validationSchema: zod.object({
-        shift: zod.number().min(1).max(25),
+        shift: zod.number({ invalid_type_error: 'Invalid number' }).min(1).max(25),
       }),
       defaultValues: {
         shift: 1,
       },
       uiFields: {
         shift: {
-          component: RangeInput,
+          component: StepperInput,
           valueAsNumber: true,
-          props: { min: 1, max: 25 },
+          props: { min: 1, max: 25, step: 1 },
         },
       },
     },
@@ -114,7 +115,7 @@ export const pipeCfg: PipeCfg = {
           </>
         ),
       },
-      demo: ({ shift }) => <CaesarDemo shift={shift ?? 1} />,
+      demo: ({ shift }) => <CaesarDemo shift={shift || 0} />,
     },
   },
   'Toggle case': {

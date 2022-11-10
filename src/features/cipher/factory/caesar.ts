@@ -2,6 +2,11 @@ import { latinAlphabet } from '@/utils';
 
 import { CipherFactory } from '../types';
 
+//to handle negative mod
+function mod(n: number, m: number) {
+  return ((n % m) + m) % m;
+}
+
 export type CaesarCipherOptions = {
   shift: number;
 };
@@ -9,7 +14,7 @@ export type CaesarCipherOptions = {
 export const caesarCipherFactory: CipherFactory<CaesarCipherOptions> = ({ shift }) => {
   const alphabet = latinAlphabet;
   const transpositionMap: Record<string, string> = alphabet.reduce((acc, c, index) => {
-    const newIndex = (index + shift) % alphabet.length;
+    const newIndex = mod(index + shift, alphabet.length);
     return { ...acc, [c]: alphabet[newIndex] };
   }, {});
 

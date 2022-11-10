@@ -6,6 +6,7 @@ import { ZodObject, ZodSchema } from 'zod';
 
 import { Button } from '@/components/Button';
 import { RangeInput } from '@/components/RangeInput';
+import { StepperInput } from '@/components/StepperInput';
 import { TextInput } from '@/components/TextInput';
 
 type Shape = { [x: string]: unknown };
@@ -13,7 +14,7 @@ type Shape = { [x: string]: unknown };
 //TODO: add type safety to props
 export type DynamicFormUIConfig<T extends Shape> = {
   [P in keyof T]: {
-    component: typeof RangeInput | typeof TextInput;
+    component: typeof RangeInput | typeof TextInput | typeof StepperInput;
     valueAsNumber?: boolean;
     props: object;
   };
@@ -70,7 +71,7 @@ export function DynamicForm<T extends Shape>({
     };
   });
   return (
-    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+    <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
       {fields.map(({ name, isOptional, errorMsg, valueAsNumber, Component, props }) => (
         <div key={name}>
           <div className="flex justify-between items-end">
@@ -93,7 +94,7 @@ export function DynamicForm<T extends Shape>({
               className={cn(
                 'w-full',
                 errorMsg
-                  ? `pr-10 border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
+                  ? `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
                   : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
               )}
               {...register(name, { valueAsNumber })}
