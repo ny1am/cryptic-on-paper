@@ -12,7 +12,7 @@ export function CiphersPipe() {
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
 
   return (
-    <div className="rounded-md bg-white border border-gray-300">
+    <div className="rounded-sm bg-white border border-indigo-100">
       <div ref={contentRef} className="min-h-[16rem] p-6 flex flex-col">
         {selectedCiphers.length > 0 ? (
           <Pipe />
@@ -22,7 +22,7 @@ export function CiphersPipe() {
           </div>
         )}
       </div>
-      <div className="px-4 pl-6 py-3">
+      <div className="px-3 pl-6 py-3 flex justify-end">
         <AddButton />
       </div>
     </div>

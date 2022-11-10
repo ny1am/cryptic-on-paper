@@ -1,4 +1,4 @@
-import { ClipboardIcon } from '@heroicons/react/24/outline';
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
 import copyToClipboard from 'copy-to-clipboard';
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -41,7 +41,7 @@ export function EncryptForm() {
           id="plaintext"
           placeholder="Message to encrypt..."
           rows={5}
-          className="block w-full rounded-md resize-none border-gray-300 text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
+          className="block w-full rounded-sm resize-none border-indigo-100 text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
           value={input || ''}
           onChange={inputChangeHandler}
         />
@@ -59,11 +59,11 @@ export function EncryptForm() {
                 className="h-8 w-8 inline-flex justify-center items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 opacity-50 hover:opacity-100 focus:opacity-100"
                 title="Copy to clipboard"
               >
-                <ClipboardIcon className="h-4" aria-hidden="true" />
+                <ClipboardDocumentListIcon className="h-5" aria-hidden="true" />
                 <span className="sr-only">Copy to clipboard</span>
               </button>
             </div>
-            <pre className="text-sm break-all whitespace-pre-wrap bg-gray-50 overflow-y-auto p-2 rounded-md h-32 border border-gray-300">
+            <pre className="text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm h-32 border border-indigo-100">
               {result}
             </pre>
           </div>

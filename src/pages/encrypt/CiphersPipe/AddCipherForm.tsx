@@ -1,4 +1,5 @@
 import { RadioGroup } from '@headlessui/react';
+import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import cn from 'clsx';
 import React, { useContext, useState } from 'react';
 import FocusLock from 'react-focus-lock';
@@ -66,9 +67,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     <div ref={contentRef}>
       {configForm && (
         <FocusLock>
-          <h2 className="text-lg font-medium leading-6 mb-4">
-            {configForm} configuration
-          </h2>
+          <h2 className="text-lg font-medium leading-6 mb-4">{configForm} keys</h2>
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
@@ -78,9 +77,9 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
       )}
       {!configForm && (
         <FocusLock>
-          <h2 className="text-lg font-medium leading-6 mb-4">Select Cipher</h2>
+          <h2 className="text-lg font-medium leading-6 mb-4">Select cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
-            <RadioGroup.Label className="sr-only">Select Cipher</RadioGroup.Label>
+            <RadioGroup.Label className="sr-only">Select cipher</RadioGroup.Label>
             <div className="space-y-4">
               {cipherKeys
                 .map((key) => ({
@@ -97,7 +96,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     className={({ active }) =>
                       cn(
                         active ? 'border-indigo-500 ring-1 ring-indigo-500' : '',
-                        'relative w-full text-left cursor-pointer rounded-lg border bg-white px-6 py-4 focus:outline-none flex justify-between'
+                        'relative w-full text-left cursor-pointer rounded-sm border bg-white px-6 py-4 focus:outline-none flex justify-between'
                       )
                     }
                   >
@@ -119,7 +118,8 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                         as="span"
                         className="mt-0 ml-4 text-xs text-indigo-500 text-right"
                       >
-                        configurable
+                        <span className="sr-only">has keys</span>
+                        <Cog8ToothIcon className="w-5" />
                       </RadioGroup.Description>
                     )}
                   </RadioGroup.Option>

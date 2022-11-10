@@ -9,7 +9,7 @@ export const StepperInput = forwardRef<
     <input
       ref={ref}
       type="number"
-      className={cn('block w-full rounded-md text-sm focus:outline-none', className)}
+      className={cn('block w-full rounded-sm text-sm focus:outline-none', className)}
       {...props}
     />
   );

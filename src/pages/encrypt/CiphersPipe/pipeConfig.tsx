@@ -86,6 +86,7 @@ export const pipeCfg: PipeCfg = {
       uiFields: {
         shift: {
           component: StepperInput,
+          label: `shift [1-25]`,
           valueAsNumber: true,
           props: { min: 1, max: 25, step: 1 },
         },

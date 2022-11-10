@@ -15,6 +15,7 @@ type Shape = { [x: string]: unknown };
 export type DynamicFormUIConfig<T extends Shape> = {
   [P in keyof T]: {
     component: typeof RangeInput | typeof TextInput | typeof StepperInput;
+    label?: string;
     valueAsNumber?: boolean;
     props: object;
   };
@@ -63,6 +64,7 @@ export function DynamicForm<T extends Shape>({
     const fieldCfg = uiFields[name];
     return {
       name,
+      label: fieldCfg?.label ?? name,
       Component: fieldCfg?.component || TextInput,
       props: fieldCfg?.props,
       valueAsNumber: fieldCfg?.valueAsNumber,
@@ -72,46 +74,48 @@ export function DynamicForm<T extends Shape>({
   });
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
-      {fields.map(({ name, isOptional, errorMsg, valueAsNumber, Component, props }) => (
-        <div key={name}>
-          <div className="flex justify-between items-end">
-            <label htmlFor={name} className="block text-sm font-medium text-gray-700">
-              {name}
-            </label>
-            {isOptional && (
-              <span
-                id={`${name}-optional`}
-                className="font-light text-xs ml-1 text-gray-400"
-              >
-                optional
-              </span>
+      {fields.map(
+        ({ name, label, isOptional, errorMsg, valueAsNumber, Component, props }) => (
+          <div key={name}>
+            <div className="flex justify-between items-end">
+              <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+                {label}
+              </label>
+              {isOptional && (
+                <span
+                  id={`${name}-optional`}
+                  className="font-light text-xs ml-1 text-gray-400"
+                >
+                  optional
+                </span>
+              )}
+            </div>
+            <div className="relative mt-1">
+              <Component
+                id={name}
+                {...props}
+                className={cn(
+                  'w-full',
+                  errorMsg
+                    ? `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
+                    : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
+                )}
+                {...register(name, { valueAsNumber })}
+                {...(isOptional && { 'aria-describedby': `${name}-optional` })}
+                {...(errorMsg && {
+                  'aria-invalid': 'true',
+                  'aria-describedby': `${name}-error`,
+                })}
+              />
+            </div>
+            {errorMsg && (
+              <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
+                {errorMsg}
+              </p>
             )}
           </div>
-          <div className="relative mt-1">
-            <Component
-              id={name}
-              {...props}
-              className={cn(
-                'w-full',
-                errorMsg
-                  ? `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
-                  : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
-              )}
-              {...register(name, { valueAsNumber })}
-              {...(isOptional && { 'aria-describedby': `${name}-optional` })}
-              {...(errorMsg && {
-                'aria-invalid': 'true',
-                'aria-describedby': `${name}-error`,
-              })}
-            />
-          </div>
-          {errorMsg && (
-            <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
-              {errorMsg}
-            </p>
-          )}
-        </div>
-      ))}
+        )
+      )}
       <div className="mt-10 flex justify-end gap-x-4">
         <Button type="submit" primary>
           Submit

@@ -14,7 +14,7 @@ export function AddButton() {
     <>
       <Button type="button" primary onClick={() => setDialog(true)}>
         <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-        Add Cipher
+        Add cipher
       </Button>
 
       <Dialog onClose={handleDialogClose} isOpen={dialog}>

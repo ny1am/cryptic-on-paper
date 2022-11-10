@@ -36,7 +36,7 @@ export function Dialog({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <D.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all min-w-[20rem] xs:my-20 xs:w-full xs:max-w-lg xs:p-6 xs:mx-auto">
+            <D.Panel className="relative transform overflow-hidden bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all min-w-[20rem] xs:my-20 xs:w-full xs:max-w-lg xs:p-6 xs:mx-auto xs:rounded-md">
               {children}
             </D.Panel>
           </Transition.Child>
