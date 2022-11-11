@@ -4,7 +4,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 export const StepperInput = forwardRef<
   HTMLInputElement,
   HTMLAttributes<HTMLInputElement>
->(function TextInputNoRef({ className, ...props }, ref) {
+>(function StepperInputNoRef({ className, ...props }, ref) {
   return (
     <input
       ref={ref}
