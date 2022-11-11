@@ -141,8 +141,8 @@ export const pipeCfg: PipeCfg = {
           <>
             <p>Toggles letter case of input characters.</p>
             <p>
-              <Badge>include</Badge> (optional) - toggle case is only applied to specified
-              characters regardless of letter case
+              <Badge>include</Badge> (optional) - toggle case only applies to the
+              specified characters regardless of letter case
             </p>
           </>
         ),
