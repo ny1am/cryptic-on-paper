@@ -14,10 +14,12 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.10.3",
     "@formkit/auto-animate": "^1.0.0-beta.3",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@hookform/resolvers": "^2.9.10",
+    "animate.css": "^4.1.1",
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.2",
     "react": "^18.2.0",
@@ -26,6 +28,7 @@
     "react-hook-form": "^7.39.1",
     "react-hot-toast": "^2.4.0",
     "react-hotkeys-hook": "^4.0.2",
+    "react-merge-refs": "^2.0.1",
     "uuid": "^9.0.0",
     "xstate": "^4.34.0",
     "zod": "^3.19.1",

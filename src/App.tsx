@@ -1,7 +1,9 @@
 import './index.css';
+import 'animate.css';
 
 import { Toaster } from 'react-hot-toast';
 
+import { Tooltip } from './components/Tooltip';
 import { GitHubIcon } from './icons/GitHubIcon';
 import { EncryptPage } from './pages/encrypt';
 
@@ -12,15 +14,17 @@ function App() {
         <EncryptPage />
       </div>
       <footer className="shrink-0 mx-auto w-full max-w-7xl px-4 py-4 flex justify-end lg:px-6">
-        <a
-          href="https://github.com/ny1am/cryptic-on-paper"
-          target="_blank"
-          className="h-8 w-8 inline-flex rounded-sm justify-center items-center opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          rel="noreferrer"
-        >
-          <span className="sr-only">GitHub source code</span>
-          <GitHubIcon className="h-5" aria-hidden={true} />
-        </a>
+        <Tooltip label="GitHub source code">
+          <a
+            href="https://github.com/ny1am/cryptic-on-paper"
+            target="_blank"
+            className="h-8 w-8 inline-flex rounded-sm justify-center items-center opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            rel="noreferrer"
+          >
+            <span className="sr-only">GitHub source code</span>
+            <GitHubIcon className="h-5" aria-hidden={true} />
+          </a>
+        </Tooltip>
       </footer>
       <Toaster
         position="top-right"

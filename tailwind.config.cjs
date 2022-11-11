@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
       },
+      animation: {
+        'zoom-in': 'zoomIn 0.1s',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
