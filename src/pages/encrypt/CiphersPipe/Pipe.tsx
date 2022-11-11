@@ -1,12 +1,10 @@
-import { useContext } from 'react';
-
 import { Badge } from '@/components/Badge';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { CiphersContext } from '../CiphersContext';
+import { useCiphersPipeStore } from '../store';
 
 export function Pipe() {
-  const { selectedCiphers } = useContext(CiphersContext);
+  const selectedCiphers = useCiphersPipeStore((s) => s.ciphers);
 
   const [listRef] = useAutoAnimate<HTMLOListElement>();
   return (

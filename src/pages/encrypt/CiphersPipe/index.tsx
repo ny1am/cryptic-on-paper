@@ -1,20 +1,28 @@
-import { useContext } from 'react';
+import { useCallback, useRef } from 'react';
 
+import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { CiphersContext } from '../CiphersContext';
+import { useCiphersPipeStore } from '../store';
 import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
 import { Pipe } from './Pipe';
 
 export function CiphersPipe() {
-  const { selectedCiphers } = useContext(CiphersContext);
-  const [contentRef] = useAutoAnimate<HTMLDivElement>();
+  const clearCiphers = useCiphersPipeStore((s) => s.deleteAll);
+  const hasCiphers = useCiphersPipeStore((s) => s.ciphers.length > 0);
 
+  const addButtonRef = useRef<HTMLButtonElement>(null);
+  const handleClear = useCallback(() => {
+    clearCiphers();
+    addButtonRef.current?.focus();
+  }, [clearCiphers]);
+
+  const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
     <div className="rounded-sm bg-white border border-indigo-100">
       <div ref={contentRef} className="min-h-[16rem] p-6 flex flex-col">
-        {selectedCiphers.length > 0 ? (
+        {hasCiphers ? (
           <Pipe />
         ) : (
           <div className="grow flex justify-center items-center my-10">
@@ -22,8 +30,13 @@ export function CiphersPipe() {
           </div>
         )}
       </div>
-      <div className="px-3 pl-6 py-3 flex justify-end">
-        <AddButton />
+      <div className="p-4 flex justify-between">
+        {hasCiphers && (
+          <Button type="button" onClick={handleClear}>
+            Clear
+          </Button>
+        )}
+        <AddButton ref={addButtonRef} className="ml-auto" />
       </div>
     </div>
   );

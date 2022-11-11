@@ -1,21 +1,15 @@
-import { useState } from 'react';
-import { v4 as generateUuid } from 'uuid';
-
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { CiphersContext } from './CiphersContext';
 import { CiphersPipe } from './CiphersPipe';
-import { CipherMeta, CipherUIMeta } from './config';
 import { EncryptForm } from './EncryptForm';
+import { useCiphersPipeStore } from './store';
 
 export function EncryptPage() {
-  const [selectedCiphers, setSelectedCiphers] = useState<CipherUIMeta[]>([]);
-  const addCipher = (meta: CipherMeta) =>
-    setSelectedCiphers((array) => [...array, { meta, uuid: generateUuid() }]);
+  const isPipeInit = useCiphersPipeStore((s) => s.isInit);
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <CiphersContext.Provider value={{ selectedCiphers, addCipher }}>
+    <>
       <div className="pattern-bg py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="text-center">
@@ -38,12 +32,12 @@ export function EncryptPage() {
         <div className="basis-72 grow-[10] shrink-0 lg:max-w-lg lg:mx-auto">
           <CiphersPipe />
         </div>
-        {selectedCiphers.length > 0 && (
+        {isPipeInit && (
           <div className="basis-72 grow shrink-0">
             <EncryptForm />
           </div>
         )}
       </div>
-    </CiphersContext.Provider>
+    </>
   );
 }

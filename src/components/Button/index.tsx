@@ -9,11 +9,10 @@ interface ButtonProps
     PropsWithChildren,
     React.AriaAttributes {
   primary?: boolean;
-  secondary?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ButtonNoRef(
-  { className, primary, secondary, ...props },
+  { className, primary, ...props },
   ref
 ) {
   return (
@@ -23,9 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         'inline-flex justify-center rounded-sm border px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
         primary
           ? 'text-white border-transparent bg-indigo-600 hover:bg-indigo-700'
-          : secondary
-          ? 'text-indigo-700 border-indigo-700 bg-white hover:text-indigo-500'
-          : 'text-gray-700 border-gray-300 bg-white hover:text-gray-500',
+          : 'text-gray-700 border-indigo-100 bg-white hover:text-gray-500',
         className
       )}
       {...props}

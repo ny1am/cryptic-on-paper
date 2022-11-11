@@ -8,13 +8,13 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { CiphersContext } from '../CiphersContext';
 import {
   CipherKeyWhenRequiredOptions,
   CipherMeta,
   CiphersOptionsRegister,
   ciphersRegister,
 } from '../config';
+import { useCiphersPipeStore } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 import { areCipherOptionsRequired, pipeCfg } from './pipeConfig';
 
@@ -26,7 +26,7 @@ type AddCipherFormProps = {
 };
 
 export function AddCipherForm({ onDispose }: AddCipherFormProps) {
-  const { addCipher } = useContext(CiphersContext);
+  const addCipher = useCiphersPipeStore((s) => s.add);
 
   const [selectedKey, setSelectedKey] = useState<CipherKey>(cipherKeys[0]);
   const [configForm, setConfigForm] = useState<CipherKeyWhenRequiredOptions>();
@@ -46,9 +46,9 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
   const attemptAddCipher = (key: CipherKey) => {
     if (!areCipherOptionsRequired(key)) {
       onDispose();
-      return addCipher({ key, options: undefined });
+      return void addCipher({ key, options: undefined });
     }
-    return setConfigForm(key);
+    return void setConfigForm(key);
   };
 
   const handleConfigSubmit = <
@@ -92,7 +92,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     key={htmlId}
                     value={cipherKey}
                     as="button"
-                    onClick={() => attemptAddCipher(cipherKey)}
+                    onClick={() => void attemptAddCipher(cipherKey)}
                     className={({ active }) =>
                       cn(
                         active ? 'border-indigo-500 ring-1 ring-indigo-500' : '',
