@@ -3,7 +3,7 @@ import copyToClipboard from 'copy-to-clipboard';
 import { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Tooltip } from '@/components/Tooltip';
+import { IconButton } from '@/components/IconButton';
 import { Cipher, encrypt } from '@/features/cipher';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
@@ -58,16 +58,11 @@ export function EncryptForm() {
               <span className="block text-sm font-medium text-gray-700 mb-1">
                 Encrypted message
               </span>
-              <Tooltip label="Copy to clipboard">
-                <button
-                  type="button"
-                  onClick={copy}
-                  className="h-8 w-8 inline-flex justify-center items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 opacity-50 hover:opacity-100 focus:opacity-100"
-                >
-                  <ClipboardDocumentListIcon className="h-5" aria-hidden="true" />
-                  <span className="sr-only">Copy to clipboard</span>
-                </button>
-              </Tooltip>
+              <IconButton
+                title="Copy to clipboard"
+                icon={<ClipboardDocumentListIcon className="h-5" />}
+                onClick={copy}
+              />
             </div>
             <pre className="text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm h-32 border border-indigo-100">
               {cipherText}

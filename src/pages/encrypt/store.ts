@@ -7,6 +7,7 @@ interface CiphersPipeState {
   ciphers: CipherUIMeta[];
   isInit: boolean;
   add: (meta: CipherMeta) => void;
+  delete: (uuid: CipherUIMeta['uuid']) => void;
   deleteAll: () => void;
 }
 
@@ -17,6 +18,10 @@ export const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
     set((state) => ({
       ciphers: [...(state.ciphers ?? []), { meta, uuid: generateUuid() }],
       isInit: true,
+    })),
+  delete: (uuid: CipherUIMeta['uuid']) =>
+    set((state) => ({
+      ciphers: state.ciphers.filter((c) => c.uuid !== uuid),
     })),
   deleteAll: () => set({ ciphers: [] }),
 }));
