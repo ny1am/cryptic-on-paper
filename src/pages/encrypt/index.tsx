@@ -32,11 +32,7 @@ export function EncryptPage() {
         <div className="basis-72 grow-[10] shrink-0 lg:max-w-lg lg:mx-auto">
           <CiphersPipe />
         </div>
-        {isPipeInit && (
-          <div className="basis-72 grow shrink-0">
-            <EncryptForm />
-          </div>
-        )}
+        {isPipeInit && <EncryptForm className="basis-72 grow shrink-0" />}
       </div>
     </>
   );

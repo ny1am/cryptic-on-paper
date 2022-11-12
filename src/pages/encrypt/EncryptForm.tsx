@@ -1,4 +1,5 @@
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
+import cn from 'clsx';
 import copyToClipboard from 'copy-to-clipboard';
 import { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -12,7 +13,11 @@ import { useCiphersPipeStore } from './store';
 
 type FactoryType = CipherMeta['options'] extends infer R ? (opts: R) => Cipher : never;
 
-export function EncryptForm() {
+interface EncryptFormProps {
+  className?: string;
+}
+
+export function EncryptForm({ className }: EncryptFormProps) {
   const selectedCiphers = useCiphersPipeStore((s) => s.ciphers);
 
   const [plainText, setPlainText] = useState<string>('');
@@ -37,7 +42,7 @@ export function EncryptForm() {
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div ref={contentRef}>
+    <div className={cn('flex flex-col', className)} ref={contentRef}>
       <div className="w-full">
         <label htmlFor="plaintext" className="sr-only">
           Message to encrypt
@@ -52,22 +57,20 @@ export function EncryptForm() {
         />
       </div>
       {cipherText && (
-        <div className="mt-2 flex flex-col items-end lg:mt-6">
-          <div className="w-full">
-            <div className="flex justify-between items-end">
-              <span className="block text-sm font-medium text-gray-700 mb-1">
-                Encrypted message
-              </span>
-              <IconButton
-                title="Copy to clipboard"
-                icon={<ClipboardDocumentListIcon className="h-5" />}
-                onClick={copy}
-              />
-            </div>
-            <pre className="text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm h-32 border border-indigo-100">
-              {cipherText}
-            </pre>
+        <div className="mt-2 grow flex flex-col items-end lg:mt-6">
+          <div className="mb-1 w-full flex justify-between items-end">
+            <span className="block text-sm font-medium text-gray-700">
+              Encrypted message
+            </span>
+            <IconButton
+              title="Copy to clipboard"
+              icon={<ClipboardDocumentListIcon className="h-5" />}
+              onClick={copy}
+            />
           </div>
+          <pre className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border border-indigo-100">
+            {cipherText}
+          </pre>
         </div>
       )}
     </div>
