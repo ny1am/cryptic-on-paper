@@ -77,9 +77,9 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
       )}
       {!configForm && (
         <FocusLock>
-          <h2 className="text-lg font-medium leading-6 mb-4">Select cipher</h2>
+          <h2 className="text-lg font-medium leading-6 mb-4">Select a cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
-            <RadioGroup.Label className="sr-only">Select cipher</RadioGroup.Label>
+            <RadioGroup.Label className="sr-only">Select a cipher</RadioGroup.Label>
             <div className="space-y-4">
               {cipherKeys
                 .map((key) => ({
@@ -96,7 +96,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     className={({ active }) =>
                       cn(
                         active ? 'border-indigo-500 ring-1 ring-indigo-500' : '',
-                        'relative w-full text-left cursor-pointer rounded-sm border bg-white px-6 py-4 focus:outline-none flex justify-between'
+                        'relative w-full text-left cursor-pointer rounded-sm border bg-white pl-6 pr-2 py-4 focus:outline-none flex justify-between'
                       )
                     }
                   >
@@ -116,7 +116,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     {areCipherOptionsRequired(cipherKey) && (
                       <RadioGroup.Description
                         as="span"
-                        className="mt-0 ml-4 text-xs text-indigo-500 text-right"
+                        className="mt-0 ml-4 text-xs text-gray-500 text-right"
                       >
                         <span className="sr-only">has keys</span>
                         <Cog8ToothIcon className="w-5" />
