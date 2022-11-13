@@ -12,7 +12,10 @@ import {
   useRole,
 } from '@floating-ui/react-dom-interactions';
 import { cloneElement, useMemo, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { mergeRefs } from 'react-merge-refs';
+
+import { AUTO_ANIMATE_DURATION } from '@/lib/auto-animate';
 
 interface TooltipProps {
   label: string;
@@ -32,7 +35,7 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
-    useHover(context),
+    useHover(context, { delay: { open: AUTO_ANIMATE_DURATION + 100 } }), //delay should be bigger then auto-animate duration
     useFocus(context),
     useRole(context, { role: 'tooltip' }),
     useDismiss(context),
@@ -47,7 +50,19 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
 
   return (
     <>
-      {cloneElement(children, getReferenceProps({ ref, ...children.props }))}
+      {cloneElement(
+        children,
+        getReferenceProps({
+          ref,
+          ...children.props,
+          ...(children.props?.onClick && {
+            onClick: (e) => {
+              flushSync(() => void setOpen(false));
+              return children.props.onClick(e);
+            },
+          }),
+        })
+      )}
       {open && (
         <div
           {...getFloatingProps({
