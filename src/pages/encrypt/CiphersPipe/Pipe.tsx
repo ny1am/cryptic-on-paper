@@ -20,19 +20,20 @@ export function Pipe() {
             key={uuid}
             className="pl-2 py-2 flex items-center justify-between border-b border-indigo-200"
           >
-            <span className="text-sm">
+            <div className="text-sm inline-flex flex-wrap gap-1 overflow-x-hidden">
               {meta.key}
               {meta.options &&
                 Object.entries(meta.options)
                   .filter((entry) => entry[1])
                   .map(([key, value]) => (
-                    <Badge key={key} className="ml-1">
+                    <Badge key={key}>
                       {key}: <strong>{value}</strong>
                     </Badge>
                   ))}
-            </span>
+            </div>
             <IconButton
               title="Delete"
+              className="shrink-0"
               icon={<MinusCircleIcon className="w-5" />}
               onClick={() => void deleteCipher(uuid)}
             />

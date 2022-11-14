@@ -29,7 +29,7 @@ export function EncryptPage() {
         ref={contentRef}
         className="mt-4 max-w-4xl mx-auto flex flex-wrap px-4 gap-4 lg:gap-10 lg:mt-10"
       >
-        <div className="basis-72 grow-[10] shrink-0 lg:max-w-lg lg:mx-auto">
+        <div className="basis-72 grow-[10] shrink-0 overflow-x-hidden lg:max-w-lg lg:mx-auto">
           <CiphersPipe />
         </div>
         {isPipeInit && <EncryptForm className="basis-72 grow shrink-0" />}
