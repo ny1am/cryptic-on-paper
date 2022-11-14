@@ -8,12 +8,16 @@ interface IconButtonProps {
   title: string;
   className?: string;
   icon: ReactElement;
+  disabled?: boolean;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   noTooltip?: boolean;
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function IconButtonNoRef({ title, className, onClick, icon, noTooltip }, ref) {
+  function IconButtonNoRef(
+    { title, className, onClick, icon, disabled, noTooltip },
+    ref
+  ) {
     return (
       <ConditionalWrapper
         condition={!noTooltip}
@@ -23,9 +27,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           type="button"
           className={cx(
-            'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
+            'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 disabled:!opacity-10 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
             className
           )}
+          disabled={disabled}
           onClick={onClick}
         >
           {cloneElement(icon, { 'aria-hidden': true })}
