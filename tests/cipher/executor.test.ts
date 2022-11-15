@@ -9,7 +9,7 @@ it('ciphers: one, string: any', () => {
 it('insure correct execution order; ciphers: multiple, string: any', () => {
   const input = 'someSecureMessage';
   const cipher1 = reverseCipherFactory();
-  const cipher2 = railFenceCipherFactory({ depth: 5 });
+  const cipher2 = railFenceCipherFactory({ height: 5 });
   expect(encrypt([cipher1, cipher2], input)).toBe(cipher2(cipher1(input)));
 });
 

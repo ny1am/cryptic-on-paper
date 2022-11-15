@@ -57,14 +57,14 @@ export const createCaretIterator = (length: number) => {
 };
 
 export type RailFenceCipherOptions = {
-  depth: number;
+  height: number;
 };
 
 export const railFenceCipherFactory: CipherFactory<RailFenceCipherOptions> =
-  ({ depth }) =>
+  ({ height }) =>
   (input: string): string => {
-    const caretIterator = createCaretIterator(depth);
-    const rails = new Array(depth).fill('');
+    const caretIterator = createCaretIterator(height);
+    const rails = new Array(height).fill('');
     for (const char of input) {
       rails[caretIterator.next().value] += char;
     }

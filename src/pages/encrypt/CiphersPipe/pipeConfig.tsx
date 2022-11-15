@@ -41,13 +41,13 @@ export const pipeCfg: PipeCfg = {
   'Rail fence': {
     form: {
       validationSchema: zod.object({
-        depth: zod.number().min(2).max(6),
+        height: zod.number().min(2).max(6),
       }),
       defaultValues: {
-        depth: 4,
+        height: 4,
       },
       uiFields: {
-        depth: {
+        height: {
           component: RangeInput,
           valueAsNumber: true,
           props: { min: 2, max: 6 },
@@ -67,12 +67,12 @@ export const pipeCfg: PipeCfg = {
             </p>
             <p>The ciphertext is then read off in rows.</p>
             <p>
-              <Badge>depth</Badge> - number of rails
+              <Badge>height</Badge> - number of rails
             </p>
           </>
         ),
       },
-      demo: ({ depth }) => <RailFenceDemo depth={depth ?? 4} />,
+      demo: ({ height }) => <RailFenceDemo height={height ?? 4} />,
     },
   },
   'Caesar': {
