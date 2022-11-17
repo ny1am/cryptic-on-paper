@@ -29,11 +29,18 @@ export function CipherOptionsForm<T extends CipherKeyWhenRequiredOptions>({
   return (
     <>
       <div className="mb-8">
-        <div className="mb-4 text-xs font-light text-gray-500 tracking-wider leading-5 [&>p]:mt-2">
+        <div className="mb-4 text-xs font-light text-gray-500 tracking-wider leading-5 [&>p]:mt-2 dark:text-gray-400">
           {description}
         </div>
 
-        {typeof DemoComponent !== 'undefined' && <DemoComponent {...formState} />}
+        {typeof DemoComponent !== 'undefined' && (
+          <div
+            className="h-[150px] mt-6 flex flex-col justify-center items-center border-y border-dashed border-indigo-200 dark:border-slate-500"
+            aria-hidden="true"
+          >
+            <DemoComponent {...formState} />
+          </div>
+        )}
       </div>
       <DynamicForm
         form={form as FormType<T>}

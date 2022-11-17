@@ -51,7 +51,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
           id="plaintext"
           placeholder="Message to encrypt..."
           rows={5}
-          className="block w-full rounded-sm resize-none border-indigo-100 text-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder:font-light"
+          className="block w-full rounded-sm resize-none border-primary text-sm focus-ring placeholder:font-light"
           value={plainText || ''}
           onChange={handlePlainTextChange}
         />
@@ -59,7 +59,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
       {cipherText && (
         <div className="mt-2 grow flex flex-col items-end lg:mt-6">
           <div className="mb-1 w-full flex justify-between items-end">
-            <span className="block text-sm font-medium text-gray-700">
+            <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Encrypted message
             </span>
             <IconButton
@@ -68,7 +68,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
               onClick={copy}
             />
           </div>
-          <pre className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border border-indigo-100">
+          <pre className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border-primary dark:bg-slate-700/50">
             {cipherText}
           </pre>
         </div>

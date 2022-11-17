@@ -1,4 +1,4 @@
-import './range.css';
+import './range.scss';
 
 import { forwardRef, HTMLAttributes } from 'react';
 
@@ -15,7 +15,7 @@ export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
       <div className="mt-1">
         <input ref={ref} type="range" step="1" {...props} />
         <div
-          className="relative text-xs text-gray-500 flex justify-between"
+          className="relative text-xs text-gray-500 flex justify-between dark:text-gray-400"
           aria-hidden="true"
         >
           {marks.map((v) => (

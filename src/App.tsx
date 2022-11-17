@@ -18,7 +18,7 @@ function App() {
           <a
             href="https://github.com/ny1am/cryptic-on-paper"
             target="_blank"
-            className="h-8 w-8 inline-flex rounded-sm justify-center items-center opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="h-8 w-8 inline-flex rounded-sm justify-center items-center opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus-ring"
             rel="noreferrer"
           >
             <span className="sr-only">GitHub source code</span>
@@ -27,7 +27,7 @@ function App() {
         </Tooltip>
       </footer>
       <Toaster
-        position="top-right"
+        position="bottom-right"
         toastOptions={{
           className: 'text-sm',
           success: {

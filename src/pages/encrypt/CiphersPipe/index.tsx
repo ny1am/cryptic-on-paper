@@ -20,7 +20,7 @@ export function CiphersPipe() {
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div className="rounded-sm bg-white border border-indigo-100">
+    <div className="rounded-sm border-primary">
       <div ref={contentRef} className="min-h-[16rem] p-6 flex flex-col">
         {hasCiphers ? (
           <Pipe />

@@ -1,7 +1,6 @@
 import { RadioGroup } from '@headlessui/react';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
-import cn from 'clsx';
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -93,16 +92,11 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     value={cipherKey}
                     as="button"
                     onClick={() => void attemptAddCipher(cipherKey)}
-                    className={({ active }) =>
-                      cn(
-                        active ? 'border-indigo-500 ring-1 ring-indigo-500' : '',
-                        'relative w-full text-left cursor-pointer rounded-sm border bg-white pl-6 pr-2 py-4 focus:outline-none flex justify-between'
-                      )
-                    }
+                    className="relative w-full text-left cursor-pointer rounded-sm border-primary pl-6 pr-2 py-4 flex justify-between"
                   >
                     <span className="flex items-center">
                       <span className="flex flex-col text-sm">
-                        <RadioGroup.Label as="span" className="font-medium text-gray-900">
+                        <RadioGroup.Label as="span" className="font-medium">
                           {cipherKey}
                         </RadioGroup.Label>
                         <RadioGroup.Description

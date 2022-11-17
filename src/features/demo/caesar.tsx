@@ -10,12 +10,9 @@ export function CaesarDemo({ shift }: CaesarDemoProps) {
   const resultText = caesarCipherFactory({ shift })(originalText);
 
   return (
-    <div
-      className="min-h-[150px] font-mono flex flex-col justify-center items-center text-center text-sm border-t border-b border-dashed border-indigo-200 tracking-widest"
-      aria-hidden="true"
-    >
-      <span>{originalText}</span>
-      <mark className="mt-6">{resultText}</mark>
-    </div>
+    <>
+      <span className="font-mono text-sm">{originalText}</span>
+      <mark className="mt-6 font-mono text-sm">{resultText}</mark>
+    </>
   );
 }

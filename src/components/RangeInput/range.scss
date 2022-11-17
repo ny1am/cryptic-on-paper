@@ -1,0 +1,9 @@
+$bg-color: #c7d2fe;
+$front-color: #4f46e5;
+@import 'library';
+
+.dark {
+  $bg-color: #334155;
+  $front-color: #a5b4fc;
+  @import 'library';
+}

@@ -18,9 +18,9 @@ export function Pipe() {
         {selectedCiphers.map(({ meta, uuid }) => (
           <li
             key={uuid}
-            className="pl-2 py-2 flex items-center justify-between border-b border-indigo-200"
+            className="pl-2 py-2 flex items-center justify-between border-b border-indigo-200 dark:border-slate-500"
           >
-            <div className="text-sm inline-flex flex-wrap gap-1 overflow-x-hidden">
+            <div className="text-sm inline-flex flex-wrap gap-1 gap-x-2 overflow-x-hidden">
               {meta.key}
               {meta.options &&
                 Object.entries(meta.options)

@@ -25,29 +25,24 @@ export function RailFenceDemo({ height }: RailFenceDemoProps) {
   }
 
   return (
-    <div
-      className="h-[150px] flex flex-col items-center justify-center border-t border-b border-dashed border-indigo-200"
-      aria-hidden="true"
+    <ul
+      className="inline-grid gap-1"
+      style={{
+        gridTemplateColumns: `repeat(${length}, minmax(0, 1fr))`,
+        gridTemplateRows: `repeat(${height}, minmax(0, 1fr))`,
+      }}
     >
-      <ul
-        className="inline-grid gap-1"
-        style={{
-          gridTemplateColumns: `repeat(${length}, minmax(0, 1fr))`,
-          gridTemplateRows: `repeat(${height}, minmax(0, 1fr))`,
-        }}
-      >
-        {matrix.flat().map(({ key, value }) => (
-          <li
-            key={key}
-            className={cn(
-              'inline-flex justify-center items-center text-[9px] font-semibold text-indigo-700 w-4 aspect-square',
-              value && 'border border-solid border-indigo-200 bg-indigo-50'
-            )}
-          >
-            {value}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {matrix.flat().map(({ key, value }) => (
+        <li
+          key={key}
+          className={cn(
+            'inline-flex justify-center items-center text-[9px] font-semibold w-4 aspect-square text-indigo-700 dark:text-slate-100',
+            value && 'border-primary bg-indigo-50 dark:bg-slate-700'
+          )}
+        >
+          {value}
+        </li>
+      ))}
+    </ul>
   );
 }

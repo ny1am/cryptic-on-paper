@@ -7,7 +7,10 @@ export const TextInput = forwardRef<HTMLInputElement, HTMLAttributes<HTMLInputEl
       <input
         ref={ref}
         type="text"
-        className={cn('block w-full rounded-sm text-sm focus:outline-none', className)}
+        className={cn(
+          'block w-full rounded-sm text-sm border-primary focus-ring',
+          className
+        )}
         {...props}
       />
     );

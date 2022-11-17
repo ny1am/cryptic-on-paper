@@ -78,13 +78,16 @@ export function DynamicForm<T extends Shape>({
         ({ name, label, isOptional, errorMsg, valueAsNumber, Component, props }) => (
           <div key={name}>
             <div className="flex justify-between items-end">
-              <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor={name}
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 {label}
               </label>
               {isOptional && (
                 <span
                   id={`${name}-optional`}
-                  className="font-light text-xs ml-1 text-gray-400"
+                  className="font-light text-xs ml-1 text-gray-400 dark:text-gray-500"
                 >
                   optional
                 </span>
@@ -96,9 +99,8 @@ export function DynamicForm<T extends Shape>({
                 {...props}
                 className={cn(
                   'w-full',
-                  errorMsg
-                    ? `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500`
-                    : `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500`
+                  errorMsg &&
+                    `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500 dark:text-red-400 dark:focus:border-red-300 dark:focus:ring-red-300`
                 )}
                 {...register(name, { valueAsNumber })}
                 {...(isOptional && { 'aria-describedby': `${name}-optional` })}
@@ -109,7 +111,10 @@ export function DynamicForm<T extends Shape>({
               />
             </div>
             {errorMsg && (
-              <p className="mt-2 text-sm text-red-600" id={`${name}-error`}>
+              <p
+                className="mt-2 text-sm text-red-600 dark:text-red-400"
+                id={`${name}-error`}
+              >
                 {errorMsg}
               </p>
             )}

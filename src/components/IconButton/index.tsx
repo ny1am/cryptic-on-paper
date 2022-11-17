@@ -16,7 +16,7 @@ export function IconButton({ title, className, icon, onClick }: IconButtonProps)
       <button
         type="button"
         className={cn(
-          'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo-500',
+          'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
           className
         )}
         onClick={onClick}
