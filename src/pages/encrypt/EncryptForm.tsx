@@ -2,9 +2,9 @@ import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
 import cn from 'clsx';
 import copyToClipboard from 'copy-to-clipboard';
 import { useCallback, useState } from 'react';
-import toast from 'react-hot-toast';
 
 import { IconButton } from '@/components/IconButton';
+import { success } from '@/components/Toast';
 import { Cipher, encrypt } from '@/features/cipher';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
@@ -36,7 +36,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
   const copy = useCallback(() => {
     if (cipherText) {
       copyToClipboard(cipherText);
-      toast.success('Copied to clipboard!', { id: 'clipboard' });
+      success('Copied to clipboard!', { id: 'clipboard' });
     }
   }, [cipherText]);
 
