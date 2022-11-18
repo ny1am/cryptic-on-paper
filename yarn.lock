@@ -1397,6 +1397,11 @@ cjs-module-lexer@^1.0.0:
   resolved "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-1.2.2.tgz"
   integrity sha512-cOU9usZw8/dXIXKtwa8pM0OTJQuJkxMN6w30csNRUerHfeQ5R6U3kkU/FtJeIf3M202OHfY2U8ccInBG7/xogA==
 
+class-variance-authority@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/class-variance-authority/-/class-variance-authority-0.3.0.tgz#40c824bfbe5c604ecb3e337a2353b4b86278888e"
+  integrity sha512-TFO+pzY9Gedqv8crPhprd647wxhvfpKevPPjiMcteEWsnkHX9yZrD1xMY3ZhRZnLwHUHCCP0LYO6KZIVag/5wQ==
+
 client-only@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz"
@@ -1410,11 +1415,6 @@ cliui@^8.0.1:
     string-width "^4.2.0"
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
-
-clsx@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
-  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 co@^4.6.0:
   version "4.6.0"

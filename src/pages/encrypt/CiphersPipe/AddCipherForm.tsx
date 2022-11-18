@@ -121,7 +121,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
             </div>
           </RadioGroup>
           <div className="mt-10 flex justify-end">
-            <Button type="button" onClick={onDispose}>
+            <Button onClick={onDispose} intent="cancel">
               Cancel
             </Button>
           </div>

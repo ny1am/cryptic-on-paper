@@ -13,7 +13,7 @@ export function Pipe() {
   const [listRef] = useAutoAnimate<HTMLOListElement>();
   return (
     <>
-      <h3 className="text-lg">Ciphers execution order</h3>
+      <h2 className="text-lg">Ciphers execution order</h2>
       <ol ref={listRef} className="mt-4">
         {selectedCiphers.map(({ meta, uuid }) => (
           <li

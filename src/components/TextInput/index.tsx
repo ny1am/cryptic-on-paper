@@ -1,4 +1,4 @@
-import cn from 'clsx';
+import { cx } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
 export const TextInput = forwardRef<HTMLInputElement, HTMLAttributes<HTMLInputElement>>(
@@ -7,7 +7,7 @@ export const TextInput = forwardRef<HTMLInputElement, HTMLAttributes<HTMLInputEl
       <input
         ref={ref}
         type="text"
-        className={cn(
+        className={cx(
           'block w-full rounded-sm text-sm border-primary focus-ring',
           className
         )}

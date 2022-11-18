@@ -1,4 +1,4 @@
-import cn from 'clsx';
+import { cx } from 'class-variance-authority';
 import React, { cloneElement, forwardRef, ReactElement } from 'react';
 
 import { ConditionalWrapper } from '@/components/ConditionalWrapper';
@@ -22,7 +22,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         <button
           ref={ref}
           type="button"
-          className={cn(
+          className={cx(
             'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
             className
           )}

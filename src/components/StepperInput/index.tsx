@@ -1,4 +1,4 @@
-import cn from 'clsx';
+import { cx } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
 export const StepperInput = forwardRef<
@@ -9,7 +9,7 @@ export const StepperInput = forwardRef<
     <input
       ref={ref}
       type="number"
-      className={cn(
+      className={cx(
         'block w-full rounded-sm text-sm border-primary focus-ring',
         className
       )}

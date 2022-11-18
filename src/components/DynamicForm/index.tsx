@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import cn from 'clsx';
+import { cx } from 'class-variance-authority';
 import React, { useEffect } from 'react';
 import { DeepPartial, Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
@@ -97,7 +97,7 @@ export function DynamicForm<T extends Shape>({
               <Component
                 id={name}
                 {...props}
-                className={cn(
+                className={cx(
                   'w-full',
                   errorMsg &&
                     `border-red-300 text-red-900 focus:border-red-500 focus:ring-red-500 dark:text-red-400 dark:focus:border-red-300 dark:focus:ring-red-300`
@@ -122,10 +122,10 @@ export function DynamicForm<T extends Shape>({
         )
       )}
       <div className="mt-10 flex justify-end gap-x-4">
-        <Button type="submit" primary>
+        <Button type="submit" intent="primary">
           Submit
         </Button>
-        <Button type="button" onClick={onCancel}>
+        <Button intent="cancel" onClick={onCancel}>
           Cancel
         </Button>
       </div>

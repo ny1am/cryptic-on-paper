@@ -1,5 +1,5 @@
 import { ClipboardDocumentListIcon } from '@heroicons/react/24/outline';
-import cn from 'clsx';
+import { cx } from 'class-variance-authority';
 import copyToClipboard from 'copy-to-clipboard';
 import { useCallback, useState } from 'react';
 
@@ -23,7 +23,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
   const [plainText, setPlainText] = useState<string>('');
   const handlePlainTextChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement>) =>
-      setPlainText(value),
+      void setPlainText(value),
     []
   );
 
@@ -42,7 +42,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div className={cn('flex flex-col', className)} ref={contentRef}>
+    <div className={cx('flex flex-col', className)} ref={contentRef}>
       <div className="w-full">
         <label htmlFor="plaintext" className="sr-only">
           Message to encrypt

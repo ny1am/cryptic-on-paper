@@ -32,7 +32,7 @@ export function CiphersPipe() {
       </div>
       <div className="p-4 flex justify-between">
         {hasCiphers && (
-          <Button type="button" onClick={handleClear}>
+          <Button onClick={handleClear} intent="cancel">
             Clear
           </Button>
         )}
