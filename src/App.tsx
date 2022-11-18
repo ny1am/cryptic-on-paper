@@ -9,11 +9,11 @@ import { EncryptPage } from './pages/encrypt';
 function App() {
   return (
     <>
+      <ThemeLoader />
       <Layout>
         <EncryptPage />
       </Layout>
       <Toaster />
-      <ThemeLoader />
     </>
   );
 }

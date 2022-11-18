@@ -6,16 +6,25 @@ import { Fragment } from 'react';
 import { IconButton } from '../IconButton';
 import { useTheme } from './hooks';
 
-const themes = [
-  { name: 'Light', value: 'light', icon: SunIcon },
-  { name: 'Dark', value: 'dark', icon: MoonIcon },
-  { name: 'System', value: 'system', icon: ComputerDesktopIcon },
-];
+const themes = Object.freeze({
+  'light': {
+    name: 'Light',
+    icon: SunIcon,
+  },
+  'dark': {
+    name: 'Dark',
+    icon: MoonIcon,
+  },
+  'system': {
+    name: 'System',
+    icon: ComputerDesktopIcon,
+  },
+});
 
 export function ThemeSelector() {
   const [isDarkMode, theme, setTheme] = useTheme();
 
-  const selectedTheme = themes.find((t) => t.value === theme);
+  const selectedTheme = themes[theme];
   const SelectedIcon = isDarkMode ? MoonIcon : SunIcon;
 
   return (
@@ -23,7 +32,7 @@ export function ThemeSelector() {
       <Listbox.Label className="sr-only">Theme</Listbox.Label>
       <Listbox.Button
         as={IconButton}
-        title={`${selectedTheme?.name} theme`}
+        title={selectedTheme.name}
         className="bg-white dark:bg-slate-900"
         icon={<SelectedIcon className="w-5" />}
         noTooltip
@@ -35,10 +44,10 @@ export function ThemeSelector() {
         enterTo="transform opacity-100 scale-100"
       >
         <Listbox.Options className="absolute top-full right-0 mt-3 w-36 space-y-1 rounded-sm bg-white p-3 text-sm font-medium shadow-md border-primary focus:outline-none dark:bg-slate-800">
-          {themes.map((theme) => (
+          {Object.entries(themes).map(([value, theme]) => (
             <Listbox.Option
-              key={theme.value}
-              value={theme.value}
+              key={value}
+              value={value}
               className={({ active, selected }) =>
                 cn(
                   'flex cursor-pointer select-none items-center rounded-[0.625rem] p-1',
