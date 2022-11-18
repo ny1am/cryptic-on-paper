@@ -7,17 +7,12 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import {
-  CipherKeyWhenRequiredOptions,
-  CipherMeta,
-  CiphersOptionsRegister,
-  ciphersRegister,
-} from '../config';
+import { CipherMeta, CipherMetaWithRequiredOptions, ciphersRegister } from '../config';
 import { useCiphersPipeStore } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 import { areCipherOptionsRequired, pipeCfg } from './pipeConfig';
 
-type CipherKey = keyof CiphersOptionsRegister;
+type CipherKey = keyof typeof ciphersRegister;
 const cipherKeys = Object.keys(ciphersRegister) as CipherKey[];
 
 type AddCipherFormProps = {
@@ -28,7 +23,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
   const addCipher = useCiphersPipeStore((s) => s.add);
 
   const [selectedKey, setSelectedKey] = useState<CipherKey>(cipherKeys[0]);
-  const [configForm, setConfigForm] = useState<CipherKeyWhenRequiredOptions>();
+  const [configForm, setConfigForm] = useState<CipherMetaWithRequiredOptions['key']>();
 
   useHotkeys(
     'esc',
@@ -47,17 +42,14 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
       onDispose();
       return void addCipher({ key, options: undefined });
     }
-    return void setConfigForm(key);
+    setConfigForm(key);
   };
 
-  const handleConfigSubmit = <
-    K extends CipherKeyWhenRequiredOptions,
-    O extends CiphersOptionsRegister[K]
-  >(
-    key: K,
-    options: O
+  const handleConfigSubmit = <T extends CipherMeta>(
+    key: T['key'],
+    options: T['options']
   ): void => {
-    addCipher({ key, options } as CipherMeta);
+    addCipher({ key, options } as T);
     onDispose();
   };
 
@@ -70,7 +62,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
-            handleCancel={() => setConfigForm(undefined)}
+            handleCancel={() => void setConfigForm(undefined)}
           />
         </FocusLock>
       )}

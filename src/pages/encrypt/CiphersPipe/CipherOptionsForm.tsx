@@ -2,30 +2,26 @@ import React, { useState } from 'react';
 
 import { DynamicForm } from '@/components/DynamicForm';
 
-import { CipherKeyWhenRequiredOptions, CiphersOptionsRegister } from '../config';
-import { FormType, pipeCfg } from './pipeConfig';
+import { CipherMetaWithRequiredOptions } from '../config';
+import { pipeCfg } from './pipeConfig';
 
-type CipherOptionsFormProps<T extends CipherKeyWhenRequiredOptions> = {
-  cipherKey: T;
-  handleSubmit: (cipherKey: T, value: CiphersOptionsRegister[T]) => void;
+type CipherOptionsFormProps<T extends CipherMetaWithRequiredOptions> = {
+  cipherKey: T['key'];
+  handleSubmit: (cipherKey: T['key'], value: T['options']) => void;
   handleCancel: () => void;
 };
 
-export function CipherOptionsForm<T extends CipherKeyWhenRequiredOptions>({
+export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
   cipherKey,
   handleSubmit,
   handleCancel,
 }: React.PropsWithoutRef<CipherOptionsFormProps<T>>) {
-  const cfg = pipeCfg[cipherKey];
-  const form = cfg.form;
+  const cfg = pipeCfg[cipherKey] as typeof pipeCfg[CipherMetaWithRequiredOptions['key']];
+  const { form, meta } = cfg;
 
-  const [formState, setFormState] = useState<Partial<CiphersOptionsRegister[T]>>(
-    form.defaultValues as CiphersOptionsRegister[T]
-  );
+  const [formState, setFormState] = useState(form.defaultValues);
 
-  const description = cfg.meta.description.long || <p>{cfg.meta.description.short}</p>;
-  const DemoComponent = cfg.meta.demo;
-
+  const description = meta.description.long || <p>{meta.description.short}</p>;
   return (
     <>
       <div className="mb-8">
@@ -33,17 +29,17 @@ export function CipherOptionsForm<T extends CipherKeyWhenRequiredOptions>({
           {description}
         </div>
 
-        {typeof DemoComponent !== 'undefined' && (
+        {typeof meta.demo !== 'undefined' && (
           <div
             className="h-[150px] mt-6 flex flex-col justify-center items-center border-y border-dashed border-indigo-200 dark:border-slate-500"
             aria-hidden="true"
           >
-            <DemoComponent {...formState} />
+            <meta.demo {...formState} />
           </div>
         )}
       </div>
-      <DynamicForm
-        form={form as FormType<T>}
+      <DynamicForm<T['options']>
+        form={form}
         onSubmit={(d) => handleSubmit(cipherKey, d)}
         onChange={setFormState}
         onCancel={handleCancel}

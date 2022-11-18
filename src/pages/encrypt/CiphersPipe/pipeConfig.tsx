@@ -1,4 +1,3 @@
-import React from 'react';
 import zod from 'zod';
 
 import { Badge } from '@/components/Badge';
@@ -8,23 +7,25 @@ import { StepperInput } from '@/components/StepperInput';
 import { TextInput } from '@/components/TextInput';
 import { CaesarDemo, RailFenceDemo, ToggleCaseDemo } from '@/features/demo';
 
-import { CipherKeyWhenRequiredOptions, CiphersOptionsRegister } from '../config';
+import { CipherMeta, CipherMetaWithRequiredOptions } from '../config';
 
-export type FormType<T extends CipherKeyWhenRequiredOptions> = {
-  validationSchema: zod.ZodSchema<CiphersOptionsRegister[T]>;
-  uiFields: DynamicFormUIConfig<CiphersOptionsRegister[T]>;
-  defaultValues: CiphersOptionsRegister[T];
+export type FormType<T extends CipherMetaWithRequiredOptions> = {
+  validationSchema: zod.ZodSchema<T['options']>;
+  uiFields: DynamicFormUIConfig<T['options']>;
+  defaultValues: T['options'];
 };
 
 type PipeCfg = {
-  [T in keyof CiphersOptionsRegister]: {
-    form: T extends CipherKeyWhenRequiredOptions ? FormType<T> : undefined;
+  [T in CipherMeta['key']]: {
+    form: T extends CipherMetaWithRequiredOptions['key']
+      ? FormType<Extract<CipherMetaWithRequiredOptions, { key: T }>>
+      : undefined;
     meta: {
       description: {
         short: string;
         long?: JSX.Element;
       };
-      demo?: React.FC<Partial<CiphersOptionsRegister[T]>>;
+      demo?: (props: Partial<Extract<CipherMeta, { key: T }>['options']>) => JSX.Element;
     };
   };
 };
@@ -153,7 +154,7 @@ export const pipeCfg: PipeCfg = {
 };
 
 export function areCipherOptionsRequired(
-  key: keyof CiphersOptionsRegister
-): key is CipherKeyWhenRequiredOptions {
+  key: CipherMeta['key']
+): key is CipherMetaWithRequiredOptions['key'] {
   return typeof pipeCfg[key].form !== 'undefined';
 }

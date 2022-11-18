@@ -12,28 +12,13 @@ export const ciphersRegister = Object.freeze({
   'Toggle case': toggleCaseCipherFactory,
 });
 
-export type CiphersOptionsRegister = {
-  [K in keyof typeof ciphersRegister]: Parameters<typeof ciphersRegister[K]> extends [
-    infer A
-  ]
-    ? A
-    : undefined;
-};
-
-export type CipherKeyWhenRequiredOptions = {
-  [K in keyof CiphersOptionsRegister]: CiphersOptionsRegister[K] extends undefined
-    ? never
-    : K;
-}[keyof CiphersOptionsRegister];
-
+type CiphersRegister = typeof ciphersRegister;
 export type CipherMeta = {
-  [K in keyof CiphersOptionsRegister]: {
+  [K in keyof CiphersRegister]: {
     key: K;
-    options: CiphersOptionsRegister[K];
+    options: Parameters<CiphersRegister[K]> extends [infer A] ? A : undefined;
   };
-}[keyof CiphersOptionsRegister];
+}[keyof CiphersRegister];
 
-export type CipherUIMeta = {
-  meta: CipherMeta;
-  uuid: string;
-};
+export type CipherMetaWithRequiredOptions = Exclude<CipherMeta, { options: undefined }>;
+export type CipherUIMeta = { meta: CipherMeta; uuid: string };
