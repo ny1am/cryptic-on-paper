@@ -7,6 +7,11 @@
   textarea, input[type] {
     @apply bg-inherit;
   }
+
+  html, textarea {
+    @apply scrollbar-thin scrollbar-thumb-indigo-300;
+  }
+
 }
 
 @tailwind components;
