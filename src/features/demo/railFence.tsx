@@ -1,6 +1,8 @@
 import { cx } from 'class-variance-authority';
+import { useMemo } from 'react';
 
 import { createCaretIterator } from '@/features/cipher';
+import { useAutoAnimate } from '@/lib/auto-animate';
 
 interface RailFenceDemoProps {
   height: number;
@@ -8,24 +10,26 @@ interface RailFenceDemoProps {
 
 export function RailFenceDemo({ height }: RailFenceDemoProps) {
   const originalText = 'supersecrettext'.toUpperCase();
+
+  const matrix = useMemo(() => {
+    const result = new Array(height)
+      .fill(new Array(originalText.length).fill(''))
+      .map((arr, i) =>
+        arr.map((_: unknown, j: number) => ({ key: `${i}_${j}`, value: '' }))
+      );
+    const caretIterator = createCaretIterator(height);
+    for (let i = 0; i < originalText.length; i++) {
+      const caretState = caretIterator.next();
+      result[caretState.value][i] = { key: `${i}`, value: originalText[i] };
+    }
+    return result;
+  }, [originalText, height]);
+
   const length = originalText.length;
-
-  const matrix = new Array(height).fill(new Array(length).fill('')).map((arr, i) =>
-    arr.map((_: unknown, j: number) => ({
-      key: (i + 1) * 100 + j, //unique random big number; use for animation maybe
-      value: '',
-    }))
-  );
-
-  const caretIterator = createCaretIterator(height);
-
-  for (let i = 0; i < length; i++) {
-    const caretState = caretIterator.next();
-    matrix[caretState.value][i] = { key: i, value: originalText[i] };
-  }
-
+  const [parentRef] = useAutoAnimate<HTMLUListElement>();
   return (
     <ul
+      ref={parentRef}
       className="inline-grid gap-1"
       style={{
         gridTemplateColumns: `repeat(${length}, minmax(0, 1fr))`,
