@@ -27,7 +27,7 @@ export const AddButton = forwardRef<HTMLButtonElement, AddButtonProps>(
           Add cipher
         </Button>
 
-        <Dialog onClose={handleDialogClose} isOpen={dialog}>
+        <Dialog onClose={handleDialogClose} isOpen={dialog} ariaLabel="Select a cipher">
           <AddCipherForm onDispose={handleDialogClose} />
         </Dialog>
       </>

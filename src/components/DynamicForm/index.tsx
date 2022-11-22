@@ -87,7 +87,7 @@ export function DynamicForm<T extends Shape>({
               {isOptional && (
                 <span
                   id={`${name}-optional`}
-                  className="font-light text-xs ml-1 text-gray-400 dark:text-gray-500"
+                  className="font-light text-xs ml-1 text-gray-400"
                 >
                   optional
                 </span>

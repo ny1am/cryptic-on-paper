@@ -5,16 +5,19 @@ type DialogProps = {
   onClose: () => void;
   isOpen: boolean;
   children: React.ReactNode;
+  ariaLabel: string;
 };
 
 export function Dialog({
   children,
   onClose,
   isOpen,
+  ariaLabel,
 }: React.PropsWithoutRef<DialogProps>) {
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
       <D className="relative z-10" open={true} onClose={onClose}>
+        <D.Title className="sr-only">{ariaLabel}</D.Title>
         <Transition.Child
           as={React.Fragment}
           enter="ease-out duration-300"

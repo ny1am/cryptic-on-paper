@@ -70,7 +70,6 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
         <FocusLock>
           <h2 className="text-lg font-medium leading-6 mb-4">Select a cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
-            <RadioGroup.Label className="sr-only">Select a cipher</RadioGroup.Label>
             <div className="space-y-4">
               {cipherKeys
                 .map((key) => ({
