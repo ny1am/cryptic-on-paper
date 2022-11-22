@@ -3,6 +3,7 @@ import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { keys } from 'remeda';
 
 import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
@@ -12,8 +13,7 @@ import { useCiphersPipeStore } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 import { areCipherOptionsRequired, pipeCfg } from './pipeConfig';
 
-type CipherKey = keyof typeof ciphersRegister;
-const cipherKeys = Object.keys(ciphersRegister) as CipherKey[];
+const cipherKeys = keys.strict(ciphersRegister);
 
 type AddCipherFormProps = {
   onDispose: () => void;
@@ -22,7 +22,7 @@ type AddCipherFormProps = {
 export function AddCipherForm({ onDispose }: AddCipherFormProps) {
   const addCipher = useCiphersPipeStore((s) => s.add);
 
-  const [selectedKey, setSelectedKey] = useState<CipherKey>(cipherKeys[0]);
+  const [selectedKey, setSelectedKey] = useState(cipherKeys[0]);
   const [configForm, setConfigForm] = useState<CipherMetaWithRequiredOptions['key']>();
 
   useHotkeys(
@@ -37,7 +37,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     [configForm]
   );
 
-  const attemptAddCipher = (key: CipherKey) => {
+  const attemptAddCipher = (key: typeof cipherKeys[number]) => {
     if (!areCipherOptionsRequired(key)) {
       onDispose();
       return void addCipher({ key, options: undefined });

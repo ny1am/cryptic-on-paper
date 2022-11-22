@@ -30,7 +30,7 @@ type PipeCfg = {
   };
 };
 
-export const pipeCfg: PipeCfg = {
+export const pipeCfg: PipeCfg = Object.freeze({
   'Reverse': {
     form: undefined,
     meta: {
@@ -151,7 +151,7 @@ export const pipeCfg: PipeCfg = {
       demo: ({ include }) => <ToggleCaseDemo include={include} />,
     },
   },
-};
+});
 
 export function areCipherOptionsRequired(
   key: CipherMeta['key']

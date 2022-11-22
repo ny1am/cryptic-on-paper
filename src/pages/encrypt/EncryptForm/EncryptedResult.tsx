@@ -9,7 +9,7 @@ import { Cipher, encrypt } from '@/features/cipher';
 import { CipherMeta, ciphersRegister } from '../config';
 import { useCiphersPipeStore } from '../store';
 
-type FactoryType = CipherMeta['options'] extends infer R ? (opts: R) => Cipher : never;
+type FactoryType = (opts: CipherMeta['options']) => Cipher;
 
 interface Props {
   text: string;
