@@ -11,9 +11,15 @@ import { useAutoAnimate } from '@/lib/auto-animate';
 import { CipherMeta, CipherMetaWithRequiredOptions, ciphersRegister } from '../config';
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
-import { areCipherOptionsRequired, pipeCfg } from './pipeConfig';
+import { pipeCfg } from './pipeConfig';
 
 const cipherKeys = keys.strict(ciphersRegister);
+
+function areCipherOptionsRequired(
+  key: CipherMeta['key']
+): key is CipherMetaWithRequiredOptions['key'] {
+  return typeof pipeCfg[key].form !== 'undefined';
+}
 
 type AddCipherFormProps = {
   onDispose: () => void;
@@ -76,8 +82,9 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                   cipherKey: key,
                   htmlId: `c_${key.replace(/\W/g, '')}`,
                   description: pipeCfg[key].meta.description?.short,
+                  hasKeys: areCipherOptionsRequired(key),
                 }))
-                .map(({ cipherKey, htmlId, description }) => (
+                .map(({ cipherKey, htmlId, description, hasKeys }) => (
                   <RadioGroup.Option
                     key={htmlId}
                     value={cipherKey}
@@ -98,7 +105,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                         </RadioGroup.Description>
                       </span>
                     </span>
-                    {areCipherOptionsRequired(cipherKey) && (
+                    {hasKeys && (
                       <RadioGroup.Description
                         as="span"
                         className="mt-0 ml-4 text-xs text-gray-500 text-right"

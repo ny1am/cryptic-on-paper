@@ -7,7 +7,7 @@ type UUID = string;
 
 interface CiphersPipeState {
   ciphers: { meta: CipherMeta; uuid: UUID }[];
-  isInit: boolean;
+  isInitialized: boolean;
   actions: {
     add: (meta: CipherMeta) => void;
     delete: (uuid: UUID) => void;
@@ -17,12 +17,12 @@ interface CiphersPipeState {
 
 const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
   ciphers: [],
-  isInit: false,
+  isInitialized: false,
   actions: {
     add: (meta: CipherMeta) =>
       set(({ ciphers }) => ({
         ciphers: [...(ciphers ?? []), { meta, uuid: generateUuid() }],
-        isInit: true,
+        isInitialized: true,
       })),
     delete: (uuid: UUID) =>
       set(({ ciphers }) => ({
@@ -32,7 +32,7 @@ const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
   },
 }));
 
-export const useIsPipeInit = () => useCiphersPipeStore((s) => s.isInit);
+export const useIsPipeInitialized = () => useCiphersPipeStore((s) => s.isInitialized);
 export const usePipeCiphers = () => useCiphersPipeStore((s) => s.ciphers);
 export const useIsPipeEmpty = () => useCiphersPipeStore((s) => s.ciphers.length === 0);
 export const usePipeActions = () => useCiphersPipeStore((s) => s.actions);

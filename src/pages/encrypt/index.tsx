@@ -3,10 +3,10 @@ import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { CiphersPipe } from './CiphersPipe';
 import { EncryptForm } from './EncryptForm';
-import { useIsPipeInit } from './store';
+import { useIsPipeInitialized } from './store';
 
 export function EncryptPage() {
-  const isPipeInit = useIsPipeInit();
+  const isPipeInitialized = useIsPipeInitialized();
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
@@ -19,7 +19,7 @@ export function EncryptPage() {
         <div className="basis-72 grow-[10] shrink-0 overflow-x-hidden lg:max-w-lg lg:mx-auto">
           <CiphersPipe />
         </div>
-        {isPipeInit && <EncryptForm className="basis-72 grow shrink-0" />}
+        {isPipeInitialized && <EncryptForm className="basis-72 grow shrink-0" />}
       </div>
     </>
   );

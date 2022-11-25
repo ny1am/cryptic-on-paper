@@ -152,9 +152,3 @@ export const pipeCfg: PipeCfg = Object.freeze({
     },
   },
 });
-
-export function areCipherOptionsRequired(
-  key: CipherMeta['key']
-): key is CipherMetaWithRequiredOptions['key'] {
-  return typeof pipeCfg[key].form !== 'undefined';
-}
