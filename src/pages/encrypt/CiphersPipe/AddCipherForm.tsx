@@ -9,7 +9,7 @@ import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { CipherMeta, CipherMetaWithRequiredOptions, ciphersRegister } from '../config';
-import { useCiphersPipeStore } from '../store';
+import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 import { areCipherOptionsRequired, pipeCfg } from './pipeConfig';
 
@@ -20,7 +20,7 @@ type AddCipherFormProps = {
 };
 
 export function AddCipherForm({ onDispose }: AddCipherFormProps) {
-  const addCipher = useCiphersPipeStore((s) => s.add);
+  const { add: addCipher } = usePipeActions();
 
   const [selectedKey, setSelectedKey] = useState(cipherKeys[0]);
   const [configForm, setConfigForm] = useState<CipherMetaWithRequiredOptions['key']>();

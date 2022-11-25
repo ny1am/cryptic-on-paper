@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { useCiphersPipeStore } from '../store';
+import { useIsPipeEmpty } from '../store';
 import { EncryptedResult } from './EncryptedResult';
 
 interface EncryptFormProps {
@@ -16,7 +16,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
     target: { value },
   }: React.ChangeEvent<HTMLTextAreaElement>) => void setPlainText(value);
 
-  const isPipeEmpty = useCiphersPipeStore((s) => s.ciphers.length === 0);
+  const isPipeEmpty = useIsPipeEmpty();
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (

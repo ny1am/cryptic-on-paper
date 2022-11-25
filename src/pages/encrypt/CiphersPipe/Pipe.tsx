@@ -4,11 +4,11 @@ import { Badge } from '@/components/Badge';
 import { IconButton } from '@/components/IconButton';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { useCiphersPipeStore } from '../store';
+import { usePipeActions, usePipeCiphers } from '../store';
 
 export function Pipe() {
-  const selectedCiphers = useCiphersPipeStore((s) => s.ciphers);
-  const deleteCipher = useCiphersPipeStore((s) => s.delete);
+  const selectedCiphers = usePipeCiphers();
+  const { delete: deleteCipher } = usePipeActions();
 
   const [listRef] = useAutoAnimate<HTMLOListElement>();
   return (

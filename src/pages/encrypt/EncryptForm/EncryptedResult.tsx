@@ -7,7 +7,7 @@ import { success } from '@/components/Toast';
 import { Cipher, encrypt } from '@/features/cipher';
 
 import { CipherMeta, ciphersRegister } from '../config';
-import { useCiphersPipeStore } from '../store';
+import { usePipeCiphers } from '../store';
 
 type FactoryType = (opts: CipherMeta['options']) => Cipher;
 
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function EncryptedResult({ text }: Props) {
-  const selectedCiphers = useCiphersPipeStore((s) => s.ciphers);
+  const selectedCiphers = usePipeCiphers();
   const deferredText = useDeferredValue(text);
 
   const pipe = useMemo(

@@ -3,25 +3,36 @@ import create from 'zustand';
 
 import { CipherMeta, CipherUIMeta } from './config';
 
+type UUID = CipherUIMeta['uuid'];
+
 interface CiphersPipeState {
   ciphers: CipherUIMeta[];
   isInit: boolean;
-  add: (meta: CipherMeta) => void;
-  delete: (uuid: CipherUIMeta['uuid']) => void;
-  deleteAll: () => void;
+  actions: {
+    add: (meta: CipherMeta) => void;
+    delete: (uuid: UUID) => void;
+    deleteAll: () => void;
+  };
 }
 
-export const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
+const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
   ciphers: [],
   isInit: false,
-  add: (meta: CipherMeta) =>
-    set((state) => ({
-      ciphers: [...(state.ciphers ?? []), { meta, uuid: generateUuid() }],
-      isInit: true,
-    })),
-  delete: (uuid: CipherUIMeta['uuid']) =>
-    set((state) => ({
-      ciphers: state.ciphers.filter((c) => c.uuid !== uuid),
-    })),
-  deleteAll: () => set({ ciphers: [] }),
+  actions: {
+    add: (meta: CipherMeta) =>
+      set(({ ciphers }) => ({
+        ciphers: [...(ciphers ?? []), { meta, uuid: generateUuid() }],
+        isInit: true,
+      })),
+    delete: (uuid: UUID) =>
+      set(({ ciphers }) => ({
+        ciphers: ciphers.filter((c) => c.uuid !== uuid),
+      })),
+    deleteAll: () => set({ ciphers: [] }),
+  },
 }));
+
+export const useIsPipeInit = () => useCiphersPipeStore((s) => s.isInit);
+export const usePipeCiphers = () => useCiphersPipeStore((s) => s.ciphers);
+export const useIsPipeEmpty = () => useCiphersPipeStore((s) => s.ciphers.length === 0);
+export const usePipeActions = () => useCiphersPipeStore((s) => s.actions);

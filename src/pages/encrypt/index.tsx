@@ -3,10 +3,10 @@ import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { CiphersPipe } from './CiphersPipe';
 import { EncryptForm } from './EncryptForm';
-import { useCiphersPipeStore } from './store';
+import { useIsPipeInit } from './store';
 
 export function EncryptPage() {
-  const isPipeInit = useCiphersPipeStore((s) => s.isInit);
+  const isPipeInit = useIsPipeInit();
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
