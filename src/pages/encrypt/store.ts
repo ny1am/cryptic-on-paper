@@ -1,12 +1,12 @@
 import { v4 as generateUuid } from 'uuid';
 import create from 'zustand';
 
-import { CipherMeta, CipherUIMeta } from './config';
+import { CipherMeta } from './config';
 
-type UUID = CipherUIMeta['uuid'];
+type UUID = string;
 
 interface CiphersPipeState {
-  ciphers: CipherUIMeta[];
+  ciphers: { meta: CipherMeta; uuid: UUID }[];
   isInit: boolean;
   actions: {
     add: (meta: CipherMeta) => void;

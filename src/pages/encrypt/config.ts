@@ -21,4 +21,3 @@ export type CipherMeta = {
 }[keyof CiphersRegister];
 
 export type CipherMetaWithRequiredOptions = Exclude<CipherMeta, { options: undefined }>;
-export type CipherUIMeta = { meta: CipherMeta; uuid: string };
