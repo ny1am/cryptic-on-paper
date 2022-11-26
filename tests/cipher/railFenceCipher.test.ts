@@ -1,25 +1,33 @@
-import { railFenceCipherFactory } from '@/features/cipher';
+import { createCaretIterator, railFenceCipherFactory } from '@/features/cipher';
 
-it('height: 2, input: short', () => {
-  expect(railFenceCipherFactory({ height: 2 })('test')).toBe('tset');
+describe('caesar cipher', () => {
+  it.concurrent.each([
+    { height: 2, input: 'test', output: 'tset' },
+    { height: 3, input: '12345', output: '15243' },
+    { height: 3, input: '123456789', output: '159246837' },
+    { height: 4, input: '123456789', output: '172683594' },
+    { height: 5, input: '1234567890', output: '1928037465' },
+    { height: 1, input: 'test', output: 'test' },
+  ])('encrypt basics', ({ height, input, output }) => {
+    expect(railFenceCipherFactory({ height })(input)).toBe(output);
+  });
 });
 
-it('height: 3, input: short', () => {
-  expect(railFenceCipherFactory({ height: 3 })('12345')).toBe('15243');
-});
+describe('caret iterator', () => {
+  const callLimitHelper = ((limit) => {
+    let count = 0;
+    return {
+      next: () => ++count >= limit,
+    };
+  })(100);
 
-it('height: 3, input: long', () => {
-  expect(railFenceCipherFactory({ height: 3 })('123456789')).toBe('159246837');
-});
-
-it('height: 4, input: short', () => {
-  expect(railFenceCipherFactory({ height: 4 })('123456789')).toBe('172683594');
-});
-
-it('height: 5, input: short', () => {
-  expect(railFenceCipherFactory({ height: 5 })('1234567890')).toBe('1928037465');
-});
-
-it('height: 1, input: short', () => {
-  expect(railFenceCipherFactory({ height: 1 })('test')).toBe('test');
+  it('check whether iterable', () => {
+    const length = 3;
+    const iterable = createCaretIterator(length);
+    for (const caret of iterable) {
+      expect(caret).toBeGreaterThanOrEqual(0);
+      expect(caret).toBeLessThan(length);
+      if (!callLimitHelper.next()) break;
+    }
+  });
 });
