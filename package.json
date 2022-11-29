@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint src",
     "test": "jest",
+    "cy:run": "cypress run",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist"
   },
@@ -47,6 +48,7 @@
     "@typescript-eslint/parser": "^5.44.0",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
+    "cypress": "^11.2.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
