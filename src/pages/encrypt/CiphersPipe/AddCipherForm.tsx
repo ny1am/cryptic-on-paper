@@ -91,6 +91,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     as="button"
                     onClick={() => void attemptAddCipher(cipherKey)}
                     className="relative w-full text-left cursor-pointer rounded-sm border-primary pl-6 pr-2 py-4 flex justify-between"
+                    data-test={`btn-attempt-add-cipher-${cipherKey}`}
                   >
                     <span className="flex items-center">
                       <span className="flex flex-col text-sm">

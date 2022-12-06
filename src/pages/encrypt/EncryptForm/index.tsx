@@ -32,6 +32,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
           className="block w-full rounded-sm resize-none border-primary text-sm focus-ring placeholder:font-light"
           value={plainText || ''}
           onChange={handlePlainTextChange}
+          data-test="input-plaintext"
         />
       </div>
       {plainText && !isPipeEmpty && <EncryptedResult text={plainText} />}

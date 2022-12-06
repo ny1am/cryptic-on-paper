@@ -1,9 +1,18 @@
 /// <reference types="cypress" />
 
-describe('smoke test', () => {
-  it('there is add cipher button', () => {
+import { reverseCipherFactory } from '@/features/cipher';
+
+describe('simplest main flow', () => {
+  it('add reverse cipher and test output', () => {
+    //arrange
+    const plaintext = 'test';
     cy.visit('/');
-    cy.get('main button').should('have.length', 1);
-    cy.get('main button').first().should('have.text', 'Add cipher');
+    //act
+    cy.dataTest('btn-show-ciphers').click();
+    cy.dataTest('btn-attempt-add-cipher-Reverse').click();
+    cy.dataTest('input-plaintext').type(plaintext);
+    const ciphertext = reverseCipherFactory()(plaintext);
+    //assert
+    cy.dataTest('text-ciphertext').should('have.text', ciphertext);
   });
 });

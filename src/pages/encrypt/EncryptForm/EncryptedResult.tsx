@@ -49,7 +49,10 @@ export function EncryptedResult({ text }: Props) {
           onClick={copy}
         />
       </div>
-      <pre className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border-primary dark:bg-slate-700/50">
+      <pre
+        className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border-primary dark:bg-slate-700/50"
+        data-test="text-ciphertext"
+      >
         {cipherText}
       </pre>
     </div>
