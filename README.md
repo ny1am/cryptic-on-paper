@@ -8,8 +8,8 @@ I wanted a tool that would allow me to create robust passwords that are hard to 
 
 ## Development
 
-[yarn](https://yarnpkg.com/) and [volta](https://volta.sh/) are preferred.
-Recommended node / yarn versions are specified in `package.json -> volta`.
+[pnpm](https://pnpm.io/) and [volta](https://volta.sh/) are preferred.
+Recommended node version is specified in `package.json -> volta`.
 
 ## License
 
