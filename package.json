@@ -9,9 +9,11 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
-    "test": "jest",
-    "cy:run": "cypress run",
-    "deploy": "pnpm run build && gh-pages -d dist"
+    "test:unit": "jest",
+    "test:internal": "pnpm run lint && pnpm run test:unit && pnpm run build",
+    "test:cypress": "cypress run",
+    "test:deploy": "pnpm run test:internal && pnpm run test:cypress",
+    "deploy": "pnpm run test:deploy && gh-pages -d dist"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.1",
