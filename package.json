@@ -11,8 +11,7 @@
     "lint": "eslint src",
     "test": "jest",
     "cy:run": "cypress run",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "pnpm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.1",
