@@ -70,8 +70,5 @@
     "vite": "^3.2.5",
     "vite-tsconfig-paths": "^4.0.1"
   },
-  "license": "MIT",
-  "volta": {
-    "node": "18.12.1"
-  }
+  "license": "MIT"
 }

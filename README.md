@@ -8,8 +8,8 @@ I wanted a tool that would allow me to create robust passwords that are hard to 
 
 ## Development
 
-[pnpm](https://pnpm.io/) and [volta](https://volta.sh/) are preferred.
-Recommended node version is specified in `package.json -> volta`.
+[pnpm](https://pnpm.io/) and [fnm](https://github.com/Schniz/fnm) are preferred.
+Recommended node version is specified in `.nvmrc`.
 
 ## License
 
