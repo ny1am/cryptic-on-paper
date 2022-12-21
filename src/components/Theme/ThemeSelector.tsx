@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 import { Fragment } from 'react';
 
 import { IconButton } from '../IconButton';
-import { useTheme } from './hooks';
+import { useTheme } from './store';
 
 const themes = Object.freeze({
   'light': {

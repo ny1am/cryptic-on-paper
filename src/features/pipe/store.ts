@@ -1,7 +1,7 @@
 import { v4 as generateUuid } from 'uuid';
 import create from 'zustand';
 
-import { CipherMeta } from './config';
+import { CipherMeta } from '../config';
 
 type UUID = string;
 

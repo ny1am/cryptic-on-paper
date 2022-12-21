@@ -6,12 +6,16 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { keys } from 'remeda';
 
 import { Button } from '@/components/Button';
+import {
+  CipherMeta,
+  CipherMetaWithRequiredOptions,
+  ciphersRegister,
+} from '@/features/config';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { CipherMeta, CipherMetaWithRequiredOptions, ciphersRegister } from '../config';
+import { pipeCfg } from '../pipeConfig';
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
-import { pipeCfg } from './pipeConfig';
 
 const cipherKeys = keys.strict(ciphersRegister);
 

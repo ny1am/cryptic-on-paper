@@ -3,8 +3,8 @@ import { useCallback, useRef } from 'react';
 import { Button } from '@/components/Button';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
+import { AddButton } from '../AddCipher';
 import { useIsPipeEmpty, usePipeActions } from '../store';
-import { AddButton } from './AddButton';
 import { EmptyPipe } from './EmptyPipe';
 import { Pipe } from './Pipe';
 

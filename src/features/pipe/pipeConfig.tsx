@@ -5,9 +5,8 @@ import { DynamicFormUIConfig } from '@/components/DynamicForm';
 import { RangeInput } from '@/components/RangeInput';
 import { StepperInput } from '@/components/StepperInput';
 import { TextInput } from '@/components/TextInput';
+import { CipherMeta, CipherMetaWithRequiredOptions } from '@/features/config';
 import { CaesarDemo, RailFenceDemo, ToggleCaseDemo } from '@/features/demo';
-
-import { CipherMeta, CipherMetaWithRequiredOptions } from '../config';
 
 export type FormType<T extends CipherMetaWithRequiredOptions> = {
   validationSchema: zod.ZodSchema<T['options']>;

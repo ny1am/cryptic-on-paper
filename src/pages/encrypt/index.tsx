@@ -1,9 +1,7 @@
 import { Hero } from '@/components/Hero';
+import { EncryptForm } from '@/features/encrypt-form';
+import { CiphersPipe, useIsPipeInitialized } from '@/features/pipe';
 import { useAutoAnimate } from '@/lib/auto-animate';
-
-import { CiphersPipe } from './CiphersPipe';
-import { EncryptForm } from './EncryptForm';
-import { useIsPipeInitialized } from './store';
 
 export function EncryptPage() {
   const isPipeInitialized = useIsPipeInitialized();

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useTheme } from './hooks';
+import { useTheme } from './store';
 
 export function ThemeLoader() {
   const [isDarkMode] = useTheme();

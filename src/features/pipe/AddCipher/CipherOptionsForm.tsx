@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import { DynamicForm } from '@/components/DynamicForm';
+import { CipherMetaWithRequiredOptions } from '@/features/config';
 
-import { CipherMetaWithRequiredOptions } from '../config';
-import { pipeCfg } from './pipeConfig';
+import { pipeCfg } from '../pipeConfig';
 
 type CipherOptionsFormProps<T extends CipherMetaWithRequiredOptions> = {
   cipherKey: T['key'];

@@ -1,20 +1,20 @@
 import { cx } from 'class-variance-authority';
-import { useState } from 'react';
 
+import { useIsPipeEmpty } from '@/features/pipe';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { useIsPipeEmpty } from '../store';
 import { EncryptedResult } from './EncryptedResult';
+import { usePlaintext } from './store';
 
 interface EncryptFormProps {
   className?: string;
 }
 
 export function EncryptForm({ className }: EncryptFormProps) {
-  const [plainText, setPlainText] = useState<string>('');
-  const handlePlainTextChange = ({
+  const [plaintext, setPlaintext] = usePlaintext();
+  const handlePlaintextChange = ({
     target: { value },
-  }: React.ChangeEvent<HTMLTextAreaElement>) => void setPlainText(value);
+  }: React.ChangeEvent<HTMLTextAreaElement>) => void setPlaintext(value);
 
   const isPipeEmpty = useIsPipeEmpty();
 
@@ -30,12 +30,12 @@ export function EncryptForm({ className }: EncryptFormProps) {
           placeholder="Message to encrypt..."
           rows={5}
           className="block w-full rounded-sm resize-none border-primary text-sm focus-ring placeholder:font-light"
-          value={plainText || ''}
-          onChange={handlePlainTextChange}
+          value={plaintext || ''}
+          onChange={handlePlaintextChange}
           data-test="input-plaintext"
         />
       </div>
-      {plainText && !isPipeEmpty && <EncryptedResult text={plainText} />}
+      {plaintext && !isPipeEmpty && <EncryptedResult text={plaintext} />}
     </div>
   );
 }

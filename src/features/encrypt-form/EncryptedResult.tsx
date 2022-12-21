@@ -5,9 +5,8 @@ import { useCallback, useDeferredValue, useMemo } from 'react';
 import { IconButton } from '@/components/IconButton';
 import { success } from '@/components/Toast';
 import { Cipher, encrypt } from '@/features/cipher';
-
-import { CipherMeta, ciphersRegister } from '../config';
-import { usePipeCiphers } from '../store';
+import { CipherMeta, ciphersRegister } from '@/features/config';
+import { usePipeCiphers } from '@/features/pipe';
 
 type FactoryType = (opts: CipherMeta['options']) => Cipher;
 
