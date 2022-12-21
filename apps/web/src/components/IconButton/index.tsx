@@ -27,7 +27,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           type="button"
           className={cx(
-            'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 disabled:!opacity-10 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
+            'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 disabled:!opacity-10 disabled:cursor-not-allowed hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
             className
           )}
           disabled={disabled}
