@@ -1,5 +1,6 @@
 import {
   caesarCipherFactory,
+  Cipher,
   railFenceCipherFactory,
   reverseCipherFactory,
   toggleCaseCipherFactory,
@@ -11,6 +12,11 @@ export const ciphersRegister = Object.freeze({
   'Caesar': caesarCipherFactory,
   'Toggle case': toggleCaseCipherFactory,
 });
+
+export function createCipher(meta: CipherMeta): Cipher {
+  const factory = ciphersRegister[meta.key] as (opts: CipherMeta['options']) => Cipher;
+  return factory(meta.options);
+}
 
 type CiphersRegister = typeof ciphersRegister;
 export type CipherMeta = {

@@ -5,11 +5,10 @@ import { useCallback, useDeferredValue, useMemo } from 'react';
 import { IconButton } from '@/components/IconButton';
 import { TextBlock } from '@/components/TextBlock';
 import { success } from '@/components/Toast';
-import { Cipher, encrypt } from '@/features/cipher';
-import { CipherMeta, ciphersRegister } from '@/features/config';
+import { encrypt } from '@/features/cipher';
+import { createCipher } from '@/features/config';
+import { ExplainButton } from '@/features/explain';
 import { usePipeCiphers } from '@/features/pipe';
-
-type FactoryType = (opts: CipherMeta['options']) => Cipher;
 
 interface Props {
   text: string;
@@ -20,11 +19,7 @@ export function EncryptedResult({ text }: Props) {
   const deferredText = useDeferredValue(text);
 
   const pipe = useMemo(
-    () =>
-      selectedCiphers.map(({ meta }) => {
-        const factory = ciphersRegister[meta.key] as FactoryType;
-        return factory(meta.options);
-      }),
+    () => selectedCiphers.map(({ meta }) => createCipher(meta)),
     [selectedCiphers]
   );
 
@@ -43,11 +38,14 @@ export function EncryptedResult({ text }: Props) {
         <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Encrypted message
         </span>
-        <IconButton
-          title="Copy to clipboard"
-          icon={<ClipboardDocumentListIcon className="h-5" />}
-          onClick={copy}
-        />
+        <div className="flex gap-1">
+          <ExplainButton />
+          <IconButton
+            title="Copy to clipboard"
+            icon={<ClipboardDocumentListIcon className="h-5" />}
+            onClick={copy}
+          />
+        </div>
       </div>
       <TextBlock text={cipherText} className="min-h-[8rem]" />
     </div>
