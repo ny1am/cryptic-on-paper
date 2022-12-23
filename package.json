@@ -1,7 +1,7 @@
 {
   "name": "cryptic-on-paper",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://ny1am.github.io/cryptic-on-paper",
   "type": "module",
   "scripts": {
