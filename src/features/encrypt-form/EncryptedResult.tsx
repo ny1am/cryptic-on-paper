@@ -3,6 +3,7 @@ import copyToClipboard from 'copy-to-clipboard';
 import { useCallback, useDeferredValue, useMemo } from 'react';
 
 import { IconButton } from '@/components/IconButton';
+import { TextBlock } from '@/components/TextBlock';
 import { success } from '@/components/Toast';
 import { Cipher, encrypt } from '@/features/cipher';
 import { CipherMeta, ciphersRegister } from '@/features/config';
@@ -48,12 +49,7 @@ export function EncryptedResult({ text }: Props) {
           onClick={copy}
         />
       </div>
-      <pre
-        className="min-h-[8rem] w-full grow text-sm break-all whitespace-pre-wrap bg-indigo-50/50 overflow-y-auto p-2 rounded-sm border-primary dark:bg-slate-700/50"
-        data-test="text-ciphertext"
-      >
-        {cipherText}
-      </pre>
+      <TextBlock text={cipherText} className="min-h-[8rem]" />
     </div>
   );
 }
