@@ -1,6 +1,5 @@
 import '@fontsource/poppins/300.css';
 import '@fontsource/poppins/400.css';
-import 'animate.css';
 import './index.css';
 
 import { Layout } from './components/Layout';

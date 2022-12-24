@@ -4,19 +4,19 @@
     @apply focus:outline-none focus-ring focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900;
   }
 
-  textarea, input[type] {
+  textarea,
+  input[type] {
     @apply bg-inherit;
   }
 
-  html, textarea {
+  html,
+  textarea {
     @apply scrollbar-thin scrollbar-thumb-indigo-300;
   }
-
 }
 
 @tailwind components;
 @layer components {
-
   .focus-ring {
     @apply focus:ring-indigo-500 dark:focus:ring-indigo-300;
   }
@@ -28,17 +28,29 @@
 
 @tailwind utilities;
 
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 .dark {
   color-scheme: dark;
 }
 
 .pattern-bg {
-  background-image: linear-gradient(#eef2ff 1.5px, transparent 1.5px), linear-gradient(to right, #eef2ff 1.5px, transparent 1.5px);
+  background-image: linear-gradient(#eef2ff 1.5px, transparent 1.5px),
+    linear-gradient(to right, #eef2ff 1.5px, transparent 1.5px);
   background-size: 20px 20px;
   background-position: right 25px bottom 8px;
 }
 
 .dark .pattern-bg {
-  background-image: linear-gradient(#110100 1.5px, transparent 1.5px), linear-gradient(to right, #110100 1.5px, transparent 1.5px);
+  background-image: linear-gradient(#110100 1.5px, transparent 1.5px),
+    linear-gradient(to right, #110100 1.5px, transparent 1.5px);
 }
-
