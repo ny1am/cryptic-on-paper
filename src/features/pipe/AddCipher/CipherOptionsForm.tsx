@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
 import { DynamicForm } from '@/components/DynamicForm';
-import { CipherMetaWithRequiredOptions } from '@/features/config';
-
-import { pipeCfg } from '../pipeConfig';
+import { CipherMetaWithRequiredOptions, ciphersRegister } from '@/features/config';
 
 type CipherOptionsFormProps<T extends CipherMetaWithRequiredOptions> = {
   cipherKey: T['key'];
@@ -16,12 +14,13 @@ export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
   handleSubmit,
   handleCancel,
 }: React.PropsWithoutRef<CipherOptionsFormProps<T>>) {
-  const cfg = pipeCfg[cipherKey] as typeof pipeCfg[CipherMetaWithRequiredOptions['key']];
+  const cfg = ciphersRegister[cipherKey];
   const { form, meta } = cfg;
 
   const [formState, setFormState] = useState(form.defaultValues);
 
   const description = meta.description.long || <p>{meta.description.short}</p>;
+  const DemoComponent = meta.demo as undefined | ((p: T['options']) => JSX.Element);
   return (
     <>
       <div className="mb-8">
@@ -29,12 +28,12 @@ export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
           {description}
         </div>
 
-        {typeof meta.demo !== 'undefined' && (
+        {DemoComponent && (
           <div
             className="h-[150px] mt-6 flex flex-col justify-center items-center border-y border-dashed border-indigo-200 dark:border-slate-500"
             aria-hidden="true"
           >
-            <meta.demo {...formState} />
+            <DemoComponent {...formState} />
           </div>
         )}
       </div>

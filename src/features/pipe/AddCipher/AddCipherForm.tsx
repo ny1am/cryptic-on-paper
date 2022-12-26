@@ -13,7 +13,6 @@ import {
 } from '@/features/config';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-import { pipeCfg } from '../pipeConfig';
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 
@@ -22,7 +21,7 @@ const cipherKeys = keys.strict(ciphersRegister);
 function areCipherOptionsRequired(
   key: CipherMeta['key']
 ): key is CipherMetaWithRequiredOptions['key'] {
-  return typeof pipeCfg[key].form !== 'undefined';
+  return typeof ciphersRegister[key].form !== 'undefined';
 }
 
 type AddCipherFormProps = {
@@ -85,7 +84,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                 .map((key) => ({
                   cipherKey: key,
                   htmlId: `c_${key.replace(/\W/g, '')}`,
-                  description: pipeCfg[key].meta.description?.short,
+                  description: ciphersRegister[key].meta.description?.short,
                   hasKeys: areCipherOptionsRequired(key),
                 }))
                 .map(({ cipherKey, htmlId, description, hasKeys }) => (
