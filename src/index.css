@@ -24,6 +24,10 @@
   .border-primary {
     @apply border border-indigo-100 dark:border-slate-700;
   }
+
+  .bg-primary {
+    @apply bg-white dark:bg-slate-900;
+  }
 }
 
 @tailwind utilities;

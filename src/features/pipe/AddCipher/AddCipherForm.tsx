@@ -1,4 +1,4 @@
-import { RadioGroup } from '@headlessui/react';
+import { RadioGroup, Transition } from '@headlessui/react';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import FocusLock from 'react-focus-lock';
@@ -11,7 +11,6 @@ import {
   CipherMetaWithRequiredOptions,
   ciphersRegister,
 } from '@/features/config';
-import { useAutoAnimate } from '@/lib/auto-animate';
 
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
@@ -62,21 +61,20 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     onDispose();
   };
 
-  const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div ref={contentRef}>
+    <>
       {configForm && (
-        <FocusLock>
+        <StepWrapper>
           <h2 className="text-lg font-medium leading-6 mb-4">{configForm} keys</h2>
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
             handleCancel={() => void setConfigForm(undefined)}
           />
-        </FocusLock>
+        </StepWrapper>
       )}
       {!configForm && (
-        <FocusLock>
+        <StepWrapper>
           <h2 className="text-lg font-medium leading-6 mb-4">Select a cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
             <div className="space-y-4">
@@ -127,8 +125,22 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
               Cancel
             </Button>
           </div>
-        </FocusLock>
+        </StepWrapper>
       )}
-    </div>
+    </>
+  );
+}
+
+function StepWrapper({ children }: React.PropsWithChildren) {
+  return (
+    <Transition
+      appear={true}
+      show={true}
+      enter="transition-opacity duration-300"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+    >
+      <FocusLock>{children}</FocusLock>
+    </Transition>
   );
 }

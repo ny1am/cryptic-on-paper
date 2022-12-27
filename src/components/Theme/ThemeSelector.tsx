@@ -47,7 +47,7 @@ export function ThemeSelector() {
       <Listbox.Button
         as={IconButton}
         title={selectedTheme.name}
-        className="bg-white dark:bg-slate-900"
+        className="bg-primary"
         icon={<SelectedIcon className="w-5" />}
         noTooltip
       />

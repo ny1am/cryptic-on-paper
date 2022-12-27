@@ -32,7 +32,7 @@ export function Dialog({
             aria-hidden="true"
           />
         </Transition.Child>
-        <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="fixed inset-0 z-10 overflow-y-scroll">
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-300"
@@ -42,7 +42,7 @@ export function Dialog({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <D.Panel className="relative transform overflow-hidden bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all min-w-[20rem] dark:bg-slate-900 xs:my-20 xs:w-full xs:max-w-lg xs:p-6 xs:mx-auto xs:rounded-md">
+            <D.Panel className="relative transform overflow-hidden bg-primary px-4 pt-5 pb-4 text-left shadow-xl transition-all min-w-[20rem] xs:my-20 xs:w-full xs:max-w-lg xs:p-6 xs:mx-auto xs:rounded-md">
               {children}
             </D.Panel>
           </Transition.Child>
