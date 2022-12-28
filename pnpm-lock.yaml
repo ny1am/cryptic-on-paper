@@ -35,13 +35,13 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-focus-lock: ^2.9.2
-  react-hook-form: ^7.41.1
+  react-hook-form: ^7.41.2
   react-hot-toast: ^2.4.0
-  react-hotkeys-hook: 4.3.0
+  react-hotkeys-hook: 4.3.2
   react-merge-refs: ^2.0.1
   remeda: ^1.3.0
   sass: ^1.57.1
-  tailwind-scrollbar: ^2.0.1
+  tailwind-scrollbar: ^2.1.0
   tailwindcss: ^3.2.4
   ts-jest: ^29.0.3
   typescript: ^4.9.4
@@ -58,16 +58,16 @@ dependencies:
   '@formkit/auto-animate': 1.0.0-beta.5
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.13_react@18.2.0
-  '@hookform/resolvers': 2.9.10_react-hook-form@7.41.1
+  '@hookform/resolvers': 2.9.10_react-hook-form@7.41.2
   class-variance-authority: 0.4.0_typescript@4.9.4
   copy-to-clipboard: 3.3.3
   jotai: 1.12.0_react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-focus-lock: 2.9.2_kzbn2opkn2327fwg5yzwzya5o4
-  react-hook-form: 7.41.1_react@18.2.0
+  react-hook-form: 7.41.2_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
-  react-hotkeys-hook: 4.3.0_biqbaboplfbrettd7655fr4n2y
+  react-hotkeys-hook: 4.3.2_biqbaboplfbrettd7655fr4n2y
   react-merge-refs: 2.0.1
   remeda: 1.3.0
   uuid: 9.0.0
@@ -99,7 +99,7 @@ devDependencies:
   postcss: 8.4.20
   prettier: 2.8.1
   sass: 1.57.1
-  tailwind-scrollbar: 2.0.1_tailwindcss@3.2.4
+  tailwind-scrollbar: 2.1.0_tailwindcss@3.2.4
   tailwindcss: 3.2.4_postcss@8.4.20
   ts-jest: 29.0.3_p6ekqnroyms5nhqbfxosryz7rm
   typescript: 4.9.4
@@ -800,12 +800,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@hookform/resolvers/2.9.10_react-hook-form@7.41.1:
+  /@hookform/resolvers/2.9.10_react-hook-form@7.41.2:
     resolution: {integrity: sha512-JIL1DgJIlH9yuxcNGtyhsWX/PgNltz+5Gr6+8SX9fhXc/hPbEIk6wPI82nhgvp3uUb6ZfAM5mqg/x7KR7NAb+A==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.41.1_react@18.2.0
+      react-hook-form: 7.41.2_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -4714,8 +4714,8 @@ packages:
       use-sidecar: 1.1.2_kzbn2opkn2327fwg5yzwzya5o4
     dev: false
 
-  /react-hook-form/7.41.1_react@18.2.0:
-    resolution: {integrity: sha512-IHUozfwuqE+P201KIJwotMd+UCKqzIprseR8UUjz1jRupkZeubg0xyeMLIaT192zHv7vBBu9bibpNV5cIB4E9g==}
+  /react-hook-form/7.41.2_react@18.2.0:
+    resolution: {integrity: sha512-Uz5kNlfkEZve0sr5y2LsxPDGN3eNDjjKb1XJgand1E5Ay0S3zWo8YcJQNGu88/Zs6JaFnrJqTXbSr6B2q7wllA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -4737,8 +4737,8 @@ packages:
       - csstype
     dev: false
 
-  /react-hotkeys-hook/4.3.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-U7wOxar+7SnocOv9Ha4Rzf5nTd2qg4SNGGqv7e4HfYKefr/a3J4Hw8Wwok0k2F+JNfsHN9wVgKgLJXbf0yVJXQ==}
+  /react-hotkeys-hook/4.3.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-ZA/li3kBDHuRTtJIf7Td41UU87bPtnt9xV4r+PlEzpnFoYRDVspk3B+mlaX75zowyQygMVmoaWnM4B88lkyExQ==}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
@@ -5149,8 +5149,8 @@ packages:
     resolution: {integrity: sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==}
     dev: false
 
-  /tailwind-scrollbar/2.0.1_tailwindcss@3.2.4:
-    resolution: {integrity: sha512-OcR7qHBbux4k+k6bWqnEQFYFooLK/F4dhkBz6nvswIoaA9ancZ5h20e0tyV7ifSWLDCUBtpG+1NHRA8HMRH/wg==}
+  /tailwind-scrollbar/2.1.0_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-zpvY5mDs0130YzYjZKBiDaw32rygxk5RyJ4KmeHjGnwkvbjm/PszON1m4Bbt2DkMRIXlXsfNevykAESgURN4KA==}
     engines: {node: '>=12.13.0'}
     peerDependencies:
       tailwindcss: 3.x
