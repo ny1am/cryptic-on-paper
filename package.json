@@ -9,6 +9,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
+    "analyze:bundle": "npx vite-bundle-visualizer",
     "test:unit": "jest",
     "test:internal": "pnpm run lint && pnpm run test:unit && pnpm run build",
     "test:cypress": "cypress run",
