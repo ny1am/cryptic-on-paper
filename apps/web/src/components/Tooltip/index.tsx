@@ -10,7 +10,7 @@ import {
   useHover,
   useInteractions,
   useRole,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 import { cloneElement, useMemo, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { mergeRefs } from 'react-merge-refs';
