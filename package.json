@@ -1,20 +1,16 @@
 {
   "name": "cryptic-on-paper",
-  "private": true,
   "version": "1.2.0",
   "homepage": "https://ny1am.github.io/cryptic-on-paper",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint src",
-    "analyze:bundle": "npx vite-bundle-visualizer",
-    "test:unit": "jest",
-    "test:internal": "pnpm run lint && pnpm run test:unit && pnpm run build",
-    "test:cypress": "cypress run",
-    "test:deploy": "pnpm run test:internal && pnpm run test:cypress",
-    "deploy": "pnpm run test:deploy && gh-pages -d dist"
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm --filter '*' lint",
+    "test": "pnpm --filter '*' test",
+    "test:static": "pnpm run lint && pnpm run test && pnpm run build",
+    "test:deploy": "pnpm run test:static && pnpm --filter web test:cypress",
+    "deploy": "pnpm run test:deploy && gh-pages -d apps/web/dist"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.3",
@@ -66,7 +62,7 @@
     "tailwind-scrollbar": "^2.1.0",
     "tailwindcss": "^3.2.4",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.9.4",
+    "typescript": "4.9.4",
     "vite": "^4.0.3",
     "vite-tsconfig-paths": "^4.0.3"
   },
