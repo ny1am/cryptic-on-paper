@@ -14,8 +14,9 @@ jobs:
         with:
           node-version: '18'
       - run: pnpm install
-      - run: pnpm run test:internal
+      - run: pnpm run test:static
       - uses: cypress-io/github-action@v5
         with:
+          project: ./apps/web
           start: pnpm run dev
           browser: chrome

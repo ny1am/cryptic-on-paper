@@ -1,0 +1,17 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "analyze:bundle": "npx vite-bundle-visualizer",
+    "test:cypress": "cypress run"
+  },
+  "dependencies": {
+    "@cop/utils": "workspace:utils@*",
+    "@cop/ciphers": "workspace:ciphers@*"
+  }
+}
