@@ -17,6 +17,6 @@ jobs:
       - run: pnpm run test:static
       - uses: cypress-io/github-action@v5
         with:
-          project: ./apps/web
+          project: ./apps/web-e2e
           start: pnpm run dev
           browser: chrome

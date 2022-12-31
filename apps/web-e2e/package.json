@@ -1,0 +1,12 @@
+{
+  "name": "web-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint src",
+    "cypress": "cypress run"
+  },
+  "dependencies": {
+    "@cop/ciphers": "workspace:ciphers@*"
+  }
+}
