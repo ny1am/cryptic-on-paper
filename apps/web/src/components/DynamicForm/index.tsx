@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cx } from 'class-variance-authority';
 import React, { useEffect } from 'react';
-import { DeepPartial, Path, UnPackAsyncDefaultValues, useForm } from 'react-hook-form';
+import { DeepPartial, Path, useForm } from 'react-hook-form';
 import { ZodObject, ZodSchema } from 'zod';
 
 import { Button } from '@/components/Button';
@@ -59,9 +59,7 @@ export function DynamicForm<T extends Shape>({
     throw new Error('schema should be an object');
   }
 
-  const fieldNames = Object.keys(validationSchema.shape) as Path<
-    UnPackAsyncDefaultValues<T>
-  >[];
+  const fieldNames = Object.keys(validationSchema.shape) as Path<T>[];
   const fields = fieldNames.map((name) => {
     const fieldCfg = uiFields[name];
     return {
