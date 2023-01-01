@@ -21,7 +21,10 @@ export function CiphersPipe() {
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
     <div className="rounded-sm border-primary">
-      <div ref={contentRef} className="min-h-[16rem] p-6 flex flex-col overflow-hidden">
+      <div
+        ref={contentRef}
+        className="min-h-[11rem] p-6 flex flex-col overflow-hidden xs:min-h-[16rem]"
+      >
         {isPipeEmpty ? (
           <div className="grow flex justify-center items-center my-10">
             <EmptyPipe />

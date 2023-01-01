@@ -10,7 +10,7 @@ export const StepperInput = forwardRef<
       ref={ref}
       type="number"
       className={cx(
-        'block w-full rounded-sm text-sm border-primary focus-ring',
+        'block w-full rounded-sm text-md border-primary focus-ring',
         className
       )}
       {...props}
