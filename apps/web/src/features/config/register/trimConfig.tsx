@@ -1,7 +1,7 @@
 import { trimCipherFactory, TrimCipherOptions } from '@cop/ciphers';
 import zod from 'zod';
 
-import { TextInput } from '@/components/TextInput';
+import { StepperInput } from '@/components/StepperInput';
 import { TrimDemo } from '@/features/demo';
 
 import { CipherConfig } from './types';
@@ -17,7 +17,7 @@ export const trimConfig: CipherConfig<TrimCipherOptions> = {
     },
     uiFields: {
       length: {
-        component: TextInput,
+        component: StepperInput,
         valueAsNumber: true,
         props: { maxLength: 5 },
       },
