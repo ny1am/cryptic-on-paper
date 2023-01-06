@@ -1,4 +1,3 @@
-import { v4 as generateUuid } from 'uuid';
 import create from 'zustand';
 
 import { CipherMeta } from '../config';
@@ -21,7 +20,7 @@ const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
   actions: {
     add: (meta: CipherMeta) =>
       set(({ ciphers }) => ({
-        ciphers: [...(ciphers ?? []), { meta, uuid: generateUuid() }],
+        ciphers: [...(ciphers ?? []), { meta, uuid: crypto.randomUUID() }],
         isInitialized: true,
       })),
     delete: (uuid: UUID) =>
