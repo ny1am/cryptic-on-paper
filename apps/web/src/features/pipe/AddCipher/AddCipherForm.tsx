@@ -45,7 +45,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     [configForm]
   );
 
-  const attemptAddCipher = (key: typeof cipherKeys[number]) => {
+  const attemptAddCipher = (key: (typeof cipherKeys)[number]) => {
     if (!areCipherOptionsRequired(key)) {
       onDispose();
       return void addCipher({ key, options: undefined });
