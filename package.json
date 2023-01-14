@@ -9,8 +9,7 @@
     "preview": "pnpm --filter web preview",
     "lint": "pnpm --filter '*' lint",
     "test": "pnpm --filter '*' test",
-    "test:static": "pnpm run lint && pnpm run test && pnpm run build",
-    "test:deploy": "pnpm run test:static && pnpm --filter web-e2e cypress",
+    "test:deploy": "pnpm run lint && pnpm run test && pnpm run build && pnpm --filter web-e2e cypress",
     "deploy": "pnpm run test:deploy && gh-pages -d apps/web/dist"
   },
   "dependencies": {
