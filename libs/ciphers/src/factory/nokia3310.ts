@@ -7,10 +7,7 @@ export type Nokia3310CipherOptions = {
 };
 
 function repeatChar(char: string, times: number) {
-  return new Array(times)
-    .fill(null)
-    .map(() => char)
-    .join('');
+  return Array.from({ length: times }, () => char).join('');
 }
 
 export const nokia3310CipherFactory: CipherFactory<Nokia3310CipherOptions> = ({

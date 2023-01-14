@@ -1,6 +1,6 @@
 import './range.scss';
 
-import { forwardRef, HTMLAttributes } from 'react';
+import { forwardRef, HTMLAttributes, useMemo } from 'react';
 
 type RangeInputProps = HTMLAttributes<HTMLInputElement> & {
   min: number;
@@ -10,7 +10,10 @@ type RangeInputProps = HTMLAttributes<HTMLInputElement> & {
 export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
   function RangeInputNoRef(props, ref) {
     const { min, max } = props;
-    const marks = new Array(max - min + 1).fill(0).map((_, i) => `${min + i}`);
+    const marks = useMemo(
+      () => Array.from({ length: max - min + 1 }, (_, i) => `${min + i}`),
+      [min, max]
+    );
     return (
       <div className="mt-1">
         <input ref={ref} type="range" step="1" {...props} />

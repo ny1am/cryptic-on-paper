@@ -1,1 +1,4 @@
-export const latinAlphabet = [...Array(26)].map((_, i) => (i + 10).toString(36));
+export const latinAlphabet = Array.from(
+  { length: 'z'.charCodeAt(0) - 'a'.charCodeAt(0) + 1 },
+  (_, i) => String.fromCharCode(i + 'a'.charCodeAt(0))
+);

@@ -12,11 +12,13 @@ export function RailFenceDemo({ height }: RailFenceDemoProps) {
   const originalText = 'supersecrettext'.toUpperCase();
 
   const matrix = useMemo(() => {
-    const result = new Array(height)
-      .fill(new Array(originalText.length).fill(''))
-      .map((arr, i) =>
-        arr.map((_: unknown, j: number) => ({ key: `${i}_${j}`, value: '' }))
-      );
+    const result = Array.from({ length: height }, (_, i) =>
+      Array.from({ length: originalText.length }, (_, j) => ({
+        key: `${i}_${j}`,
+        value: '',
+      }))
+    );
+
     const caretIterator = createCaretIterator(height);
     for (let i = 0; i < originalText.length; i++) {
       const caretState = caretIterator.next();

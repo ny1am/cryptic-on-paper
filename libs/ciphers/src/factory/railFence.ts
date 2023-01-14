@@ -64,7 +64,7 @@ export const railFenceCipherFactory: CipherFactory<RailFenceCipherOptions> =
   ({ height }) =>
   (input: string): string => {
     const caretIterator = createCaretIterator(height);
-    const rails = new Array(height).fill('');
+    const rails = Array.from({ length: height }, () => '');
     for (const char of input) {
       rails[caretIterator.next().value] += char;
     }
