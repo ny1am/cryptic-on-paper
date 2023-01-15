@@ -7,7 +7,17 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
-    "analyze:bundle": "npx vite-bundle-visualizer"
+    "analyze:bundle": "vite-bundle-visualizer"
+  },
+  "nx": {
+    "targets": {
+      "preview": {
+        "dependsOn": ["build"]
+      },
+      "analyze:bundle": {
+        "dependsOn": ["build"]
+      }
+    }
   },
   "dependencies": {
     "@cop/utils": "workspace:utils@*",
