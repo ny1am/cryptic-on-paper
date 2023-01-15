@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "jock.svg"
+    "jock.svg",
+    "nrwl.angular-console"
   ]
 }
