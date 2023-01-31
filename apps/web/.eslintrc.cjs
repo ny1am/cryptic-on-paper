@@ -7,9 +7,7 @@ module.exports = {
     'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
   settings: {
-    react: {
-      version: 'detect',
-    },
+    react: { version: 'detect' },
   },
   env: {
     browser: true,
