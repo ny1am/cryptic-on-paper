@@ -77,7 +77,7 @@ export function DynamicForm<T extends Shape>({
       {fields.map(
         ({ name, label, isOptional, errorMsg, valueAsNumber, Component, props }) => (
           <div key={name}>
-            <div className="flex justify-between items-end">
+            <div className="flex items-end justify-between">
               <label
                 htmlFor={name}
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -87,7 +87,7 @@ export function DynamicForm<T extends Shape>({
               {isOptional && (
                 <span
                   id={`${name}-optional`}
-                  className="font-light text-xs ml-1 text-gray-400"
+                  className="ml-1 text-xs font-light text-gray-400"
                 >
                   optional
                 </span>

@@ -57,7 +57,7 @@ export function ThemeSelector() {
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
       >
-        <Listbox.Options className="absolute top-full right-0 mt-3 w-36 space-y-1 rounded-sm bg-white p-3 text-sm font-medium shadow-md border-primary focus:outline-none dark:bg-slate-800">
+        <Listbox.Options className="border-primary absolute top-full right-0 mt-3 w-36 space-y-1 rounded-sm bg-white p-3 text-sm font-medium shadow-md focus:outline-none dark:bg-slate-800">
           {Object.entries(themes).map(([value, theme]) => (
             <Listbox.Option key={value} value={value} className={optionCva}>
               <div className="rounded-md bg-white p-1 shadow-md ring-1 ring-slate-900/5 dark:bg-slate-700 dark:ring-inset dark:ring-white/5">

@@ -5,18 +5,18 @@ import { GitHubIcon } from '@/icons/GitHubIcon';
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <header className="shrink-0 mx-auto w-full max-w-7xl px-4 flex justify-end lg:px-6">
+      <header className="mx-auto flex w-full max-w-7xl shrink-0 justify-end px-4 lg:px-6">
         <div className="absolute py-4">
           <ThemeSelector />
         </div>
       </header>
       <main className="grow">{children}</main>
-      <footer className="shrink-0 mx-auto w-full max-w-7xl px-4 py-4 flex justify-end lg:px-6">
+      <footer className="mx-auto flex w-full max-w-7xl shrink-0 justify-end px-4 py-4 lg:px-6">
         <Tooltip label="GitHub source code">
           <a
             href="https://github.com/ny1am/cryptic-on-paper"
             target="_blank"
-            className="h-8 w-8 inline-flex rounded-sm justify-center items-center opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus-ring"
+            className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2"
             rel="noreferrer"
           >
             <span className="sr-only">GitHub source code</span>

@@ -23,8 +23,8 @@ export function EncryptedResult({ text }: Props) {
   const cipherText = useMemo(() => encrypt(pipe, deferredText), [pipe, deferredText]);
 
   return (
-    <div className="mt-2 grow flex flex-col items-end lg:mt-6">
-      <div className="mb-1 w-full flex justify-between items-end">
+    <div className="mt-2 flex grow flex-col items-end lg:mt-6">
+      <div className="mb-1 flex w-full items-end justify-between">
         <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
           Encrypted message
         </span>

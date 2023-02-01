@@ -32,7 +32,7 @@ export function ExplainView({ onDispose }: Props) {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="text-lg font-medium leading-6 mb-4">Logs</h2>
+        <h2 className="mb-4 text-lg font-medium leading-6">Logs</h2>
         <IconButton
           title="Close"
           className="shrink-0"
@@ -41,7 +41,7 @@ export function ExplainView({ onDispose }: Props) {
           onClick={onDispose}
         />
       </div>
-      <div className="flex gap-y-6 flex-col">
+      <div className="flex flex-col gap-y-6">
         <LogItem title="User input" text={plaintext} />
         {ciphers.map((c) => (
           <LogItem

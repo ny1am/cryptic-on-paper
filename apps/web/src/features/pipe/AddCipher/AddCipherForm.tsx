@@ -65,7 +65,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     <>
       {configForm && (
         <StepWrapper>
-          <h2 className="text-lg font-medium leading-6 mb-4">{configForm} keys</h2>
+          <h2 className="mb-4 text-lg font-medium leading-6">{configForm} keys</h2>
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
@@ -75,7 +75,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
       )}
       {!configForm && (
         <StepWrapper>
-          <h2 className="text-lg font-medium leading-6 mb-4">Select a cipher</h2>
+          <h2 className="mb-4 text-lg font-medium leading-6">Select a cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
             <div className="space-y-4">
               {cipherKeys
@@ -91,7 +91,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     value={cipherKey}
                     as="button"
                     onClick={() => void attemptAddCipher(cipherKey)}
-                    className="relative w-full text-left cursor-pointer rounded-sm border-primary pl-6 pr-2 py-4 flex justify-between"
+                    className="border-primary relative flex w-full cursor-pointer justify-between rounded-sm py-4 pl-6 pr-2 text-left"
                     data-test={`btn-attempt-add-cipher-${cipherKey}`}
                   >
                     <span className="flex items-center">
@@ -101,7 +101,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                         </RadioGroup.Label>
                         <RadioGroup.Description
                           as="span"
-                          className="text-xs text-gray-400 font-light mt-1"
+                          className="mt-1 text-xs font-light text-gray-400"
                         >
                           {description}
                         </RadioGroup.Description>
@@ -110,7 +110,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     {hasKeys && (
                       <RadioGroup.Description
                         as="span"
-                        className="mt-0 ml-4 text-xs text-gray-500 text-right"
+                        className="mt-0 ml-4 text-right text-xs text-gray-500"
                       >
                         <span className="sr-only">has keys</span>
                         <Cog8ToothIcon className="w-5" />

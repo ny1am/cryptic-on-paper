@@ -12,12 +12,12 @@ export function EncryptPage() {
       <Hero />
       <div
         ref={contentRef}
-        className="mt-4 max-w-4xl mx-auto flex flex-wrap px-4 gap-4 lg:gap-10 lg:mt-10"
+        className="mx-auto mt-4 flex max-w-4xl flex-wrap gap-4 px-4 lg:mt-10 lg:gap-10"
       >
-        <div className="basis-72 grow-[10] shrink-0 overflow-x-hidden lg:max-w-lg lg:mx-auto">
+        <div className="shrink-0 grow-[10] basis-72 overflow-x-hidden lg:mx-auto lg:max-w-lg">
           <CiphersPipe />
         </div>
-        {isPipeInitialized && <EncryptForm className="basis-72 grow shrink-0" />}
+        {isPipeInitialized && <EncryptForm className="shrink-0 grow basis-72" />}
       </div>
     </>
   );

@@ -20,20 +20,20 @@ export function CiphersPipe() {
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();
   return (
-    <div className="rounded-sm border-primary">
+    <div className="border-primary rounded-sm">
       <div
         ref={contentRef}
-        className="min-h-[11rem] p-6 flex flex-col overflow-hidden xs:min-h-[16rem]"
+        className="flex min-h-[11rem] flex-col overflow-hidden p-6 xs:min-h-[16rem]"
       >
         {isPipeEmpty ? (
-          <div className="grow flex justify-center items-center my-10">
+          <div className="my-10 flex grow items-center justify-center">
             <EmptyPipe />
           </div>
         ) : (
           <Pipe />
         )}
       </div>
-      <div className="p-4 flex justify-between">
+      <div className="flex justify-between p-4">
         {!isPipeEmpty && (
           <Button onClick={handleClear} intent="cancel">
             Clear

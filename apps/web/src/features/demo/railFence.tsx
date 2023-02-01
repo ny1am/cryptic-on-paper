@@ -42,7 +42,7 @@ export function RailFenceDemo({ height }: RailFenceDemoProps) {
         <li
           key={key}
           className={cx(
-            'inline-flex justify-center items-center text-[9px] font-semibold w-4 aspect-square text-indigo-700 dark:text-slate-100',
+            'inline-flex aspect-square w-4 items-center justify-center text-[9px] font-semibold text-indigo-700 dark:text-slate-100',
             value && 'border-primary bg-indigo-50 dark:bg-slate-700'
           )}
         >

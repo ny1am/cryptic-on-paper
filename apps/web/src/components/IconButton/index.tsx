@@ -23,7 +23,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           type="button"
           className={cx(
-            'w-8 h-8 inline-flex items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
+            'inline-flex h-8 w-8 items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
             className
           )}
           onClick={onClick}
