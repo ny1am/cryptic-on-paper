@@ -6,5 +6,5 @@
     }
   },
   "include": ["src", "tests"],
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.json"
 }
