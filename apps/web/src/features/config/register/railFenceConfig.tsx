@@ -42,6 +42,8 @@ export const railFenceConfig: CipherConfig<RailFenceCipherOptions> = {
         </>
       ),
     },
-    demo: ({ height }) => <RailFenceDemo height={height ?? 4} />,
+    demo: ({ height }) => (
+      <RailFenceDemo height={height ?? railFenceConfig.form.defaultValues.height} />
+    ),
   },
 };
