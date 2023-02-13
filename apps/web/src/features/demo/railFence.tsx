@@ -1,8 +1,8 @@
 import { createCaretIterator } from '@cop/ciphers';
 import { cx } from 'class-variance-authority';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
-import { useAutoAnimate } from '@/lib/auto-animate';
+import { autoAnimate } from '@/lib/auto-animate';
 
 interface RailFenceDemoProps {
   height: number;
@@ -28,7 +28,12 @@ export function RailFenceDemo({ height }: RailFenceDemoProps) {
   }, [originalText, height]);
 
   const length = originalText.length;
-  const [parentRef] = useAutoAnimate<HTMLUListElement>();
+
+  const parentRef = useRef(null);
+  useEffect(() => {
+    parentRef.current && autoAnimate(parentRef.current);
+  }, [parentRef]);
+
   return (
     <ul
       ref={parentRef}
