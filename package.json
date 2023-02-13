@@ -14,7 +14,7 @@
     "deploy": "pnpm run test:deploy && gh-pages -d apps/web/dist"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.19.1",
+    "@floating-ui/react": "^0.19.2",
     "@fontsource/poppins": "^4.5.10",
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@headlessui/react": "^1.7.10",
@@ -31,7 +31,7 @@
     "react-hotkeys-hook": "4.3.5",
     "react-merge-refs": "^2.0.1",
     "remeda": "^1.6.1",
-    "xstate": "^4.35.4",
+    "xstate": "^4.36.0",
     "zod": "^3.20.6",
     "zustand": "^4.3.3"
   },
@@ -41,8 +41,8 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
     "@types/uuid": "^9.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
     "cypress": "^12.5.1",
