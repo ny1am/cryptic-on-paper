@@ -32,7 +32,7 @@ export function Dialog({
             aria-hidden="true"
           />
         </Transition.Child>
-        <div className="fixed inset-0 z-10 overflow-y-scroll">
+        <div className="fixed inset-0 z-10 w-screen overflow-y-scroll">
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-300"
