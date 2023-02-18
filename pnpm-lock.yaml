@@ -50,7 +50,6 @@ importers:
       tailwindcss: ^3.2.7
       ts-jest: ^29.0.5
       typescript: 4.9.5
-      use-debounce: ^9.0.3
       vite: ^4.1.2
       vite-bundle-visualizer: ^0.5.0
       vite-tsconfig-paths: ^4.0.5
@@ -75,7 +74,6 @@ importers:
       react-hotkeys-hook: 4.3.5_biqbaboplfbrettd7655fr4n2y
       react-merge-refs: 2.0.1
       remeda: 1.6.1
-      use-debounce: 9.0.3_react@18.2.0
       xstate: 4.36.0
       zod: 3.20.6
       zustand: 4.3.3_react@18.2.0
@@ -6212,15 +6210,6 @@ packages:
       '@types/react': 18.0.28
       react: 18.2.0
       tslib: 2.4.1
-    dev: false
-
-  /use-debounce/9.0.3_react@18.2.0:
-    resolution: {integrity: sha512-FhtlbDtDXILJV7Lix5OZj5yX/fW1tzq+VrvK1fnT2bUrPOGruU9Rw8NCEn+UI9wopfERBEZAOQ8lfeCJPllgnw==}
-    engines: {node: '>= 10.0.0'}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /use-sidecar/1.1.2_pmekkgnqduwlme35zpnqhenc34:

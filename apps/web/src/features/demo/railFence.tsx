@@ -1,8 +1,8 @@
 import { createCaretIterator } from '@cop/ciphers';
 import { cx } from 'class-variance-authority';
 import { useEffect, useMemo, useRef } from 'react';
-import { useDebounce } from 'use-debounce';
 
+import { useThrottle } from '@/hooks';
 import { autoAnimate } from '@/lib/auto-animate';
 
 interface RailFenceDemoProps {
@@ -12,7 +12,7 @@ interface RailFenceDemoProps {
 export function RailFenceDemo(props: RailFenceDemoProps) {
   const originalText = 'supersecrettext'.toUpperCase();
 
-  const [height] = useDebounce(props.height, 350);
+  const height = useThrottle(props.height, 400);
 
   const matrix = useMemo(() => {
     const result = Array.from({ length: height }, (_, i) =>

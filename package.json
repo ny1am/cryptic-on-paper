@@ -31,7 +31,6 @@
     "react-hotkeys-hook": "4.3.5",
     "react-merge-refs": "^2.0.1",
     "remeda": "^1.6.1",
-    "use-debounce": "^9.0.3",
     "xstate": "^4.36.0",
     "zod": "^3.20.6",
     "zustand": "^4.3.3"
