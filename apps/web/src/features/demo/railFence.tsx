@@ -1,6 +1,7 @@
 import { createCaretIterator } from '@cop/ciphers';
 import { cx } from 'class-variance-authority';
 import { useEffect, useMemo, useRef } from 'react';
+import { useDebounce } from 'use-debounce';
 
 import { autoAnimate } from '@/lib/auto-animate';
 
@@ -8,8 +9,10 @@ interface RailFenceDemoProps {
   height: number;
 }
 
-export function RailFenceDemo({ height }: RailFenceDemoProps) {
+export function RailFenceDemo(props: RailFenceDemoProps) {
   const originalText = 'supersecrettext'.toUpperCase();
+
+  const [height] = useDebounce(props.height, 350);
 
   const matrix = useMemo(() => {
     const result = Array.from({ length: height }, (_, i) =>
