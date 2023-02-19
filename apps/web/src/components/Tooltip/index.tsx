@@ -73,7 +73,7 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
               left: x ?? 0,
             },
           })}
-          className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#fcfcff] px-2 py-1 text-xs dark:bg-[#030300]"
+          className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#fcfcff] px-2 py-1 text-xs motion-reduce:animate-none dark:bg-[#030300]"
         >
           {label}
         </div>
