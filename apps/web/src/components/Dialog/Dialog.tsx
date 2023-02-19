@@ -1,5 +1,6 @@
-import { Dialog as D, Transition } from '@headlessui/react';
 import React from 'react';
+
+import { Dialog as D, Transition } from '@/lib/headlessui';
 
 type DialogProps = {
   onClose: () => void;

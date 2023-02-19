@@ -1,4 +1,3 @@
-import { RadioGroup, Transition } from '@headlessui/react';
 import { Cog8ToothIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import FocusLock from 'react-focus-lock';
@@ -11,6 +10,7 @@ import {
   CipherMetaWithRequiredOptions,
   ciphersRegister,
 } from '@/features/config';
+import { RadioGroup, Transition } from '@/lib/headlessui';
 
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';

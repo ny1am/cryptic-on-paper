@@ -1,7 +1,8 @@
-import { Listbox, Transition } from '@headlessui/react';
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { cva } from 'class-variance-authority';
 import { Fragment } from 'react';
+
+import { Listbox, Transition } from '@/lib/headlessui';
 
 import { IconButton } from '../IconButton';
 import { useTheme } from './store';

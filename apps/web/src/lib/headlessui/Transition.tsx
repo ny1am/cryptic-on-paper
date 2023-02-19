@@ -1,0 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Transition as RawTransition } from '@headlessui/react';
+import { forwardRef } from 'react';
+
+const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const motionReducedOverrides = {
+  enter: '',
+  enterFrom: 'opacity-0',
+  enterTo: 'opacity-100',
+  leave: '',
+  leaveFrom: 'opacity-100',
+  leaveTo: 'opacity-0',
+} as const;
+
+const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
+  return (
+    <RawTransition
+      ref={ref}
+      {...(props as any)}
+      {...(motionReduced ? motionReducedOverrides : {})}
+    />
+  );
+}) as typeof RawTransition.Root;
+
+const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
+  return (
+    <RawTransition.Child
+      ref={ref}
+      {...(props as any)}
+      {...(motionReduced ? motionReducedOverrides : {})}
+    />
+  );
+}) as typeof RawTransition.Child;
+
+export const Transition = Object.assign(TransitionRoot, {
+  Child: TransitionChild,
+  Root: TransitionRoot,
+});
