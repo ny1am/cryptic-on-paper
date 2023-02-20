@@ -21,15 +21,15 @@ export function Dialog({
         <D.Title className="sr-only">{ariaLabel}</D.Title>
         <Transition.Child
           as={React.Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
+          enter="duration-0"
+          enterFrom="opacity-50"
           enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+          leave="duration-0"
+          leaveFrom="opacity-50"
+          leaveTo="opacity-100"
         >
           <div
-            className="fixed inset-0 bg-gray-500/75 dark:bg-gray-500/90 dark:blur-xl"
+            className="bg-primary fixed inset-0 xs:bg-slate-500/75 xs:dark:bg-slate-700/90"
             aria-hidden="true"
           />
         </Transition.Child>
@@ -43,7 +43,7 @@ export function Dialog({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <D.Panel className="bg-primary relative min-w-[20rem] transform overflow-hidden px-4 pt-5 pb-4 text-left shadow-xl transition-all xs:my-20 xs:mx-auto xs:w-full xs:max-w-lg xs:rounded-md xs:p-6">
+            <D.Panel className="bg-primary relative min-w-[20rem] transform overflow-hidden px-4 pt-5 pb-4 text-left transition-all xs:my-20 xs:mx-auto xs:w-full xs:max-w-lg xs:rounded-md xs:p-6 xs:shadow-xl">
               {children}
             </D.Panel>
           </Transition.Child>
