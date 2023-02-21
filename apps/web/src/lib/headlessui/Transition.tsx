@@ -2,7 +2,7 @@
 import { Transition as RawTransition } from '@headlessui/react';
 import { forwardRef } from 'react';
 
-const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+import { useMotionReduced } from '@/hooks';
 
 const motionReducedOverrides = {
   enter: '',
@@ -14,6 +14,7 @@ const motionReducedOverrides = {
 } as const;
 
 const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
+  const motionReduced = useMotionReduced();
   return (
     <RawTransition
       ref={ref}
@@ -24,6 +25,7 @@ const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
 }) as typeof RawTransition.Root;
 
 const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
+  const motionReduced = useMotionReduced();
   return (
     <RawTransition.Child
       ref={ref}
