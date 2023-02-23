@@ -22,7 +22,7 @@ const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
       {...(motionReduced ? motionReducedOverrides : {})}
     />
   );
-}) as typeof RawTransition.Root;
+}) as unknown as typeof RawTransition.Root;
 
 const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
   const motionReduced = useMotionReduced();
@@ -33,7 +33,7 @@ const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
       {...(motionReduced ? motionReducedOverrides : {})}
     />
   );
-}) as typeof RawTransition.Child;
+}) as unknown as typeof RawTransition.Child;
 
 export const Transition = Object.assign(TransitionRoot, {
   Child: TransitionChild,

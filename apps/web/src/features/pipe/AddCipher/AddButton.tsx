@@ -11,7 +11,7 @@ interface AddButtonProps {
 }
 
 export const AddButton = forwardRef<HTMLButtonElement, AddButtonProps>(
-  function AddButtonNoRef({ className }, ref) {
+  function AddButtonInner({ className }, ref) {
     const [dialog, openDialog, closeDialog] = useDialog();
 
     return (

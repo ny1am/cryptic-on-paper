@@ -24,7 +24,7 @@ interface ButtonProps
     React.AriaAttributes,
     VariantProps<typeof buttonCva> {}
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ButtonNoRef(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ButtonInner(
   { className, intent, ...props },
   ref
 ) {

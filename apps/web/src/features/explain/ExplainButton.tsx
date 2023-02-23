@@ -11,6 +11,7 @@ export function ExplainButton() {
   return (
     <>
       <IconButton
+        type="button"
         title="View logs"
         icon={<DocumentMagnifyingGlassIcon className="h-5" />}
         onClick={openDialog}

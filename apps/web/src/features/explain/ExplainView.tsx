@@ -34,6 +34,7 @@ export function ExplainView({ onDispose }: Props) {
       <div className="flex justify-between">
         <h2 className="mb-4 text-lg font-medium leading-6">Logs</h2>
         <IconButton
+          type="button"
           title="Close"
           className="shrink-0"
           noTooltip

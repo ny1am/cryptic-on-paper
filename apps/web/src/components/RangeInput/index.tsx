@@ -8,7 +8,7 @@ type RangeInputProps = HTMLAttributes<HTMLInputElement> & {
 };
 
 export const RangeInput = forwardRef<HTMLInputElement, RangeInputProps>(
-  function RangeInputNoRef(props, ref) {
+  function RangeInputInner(props, ref) {
     const { min, max } = props;
     const marks = useMemo(
       () => Array.from({ length: max - min + 1 }, (_, i) => `${min + i}`),

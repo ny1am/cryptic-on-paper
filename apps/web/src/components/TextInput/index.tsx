@@ -2,7 +2,7 @@ import { cx } from 'class-variance-authority';
 import { forwardRef, HTMLAttributes } from 'react';
 
 export const TextInput = forwardRef<HTMLInputElement, HTMLAttributes<HTMLInputElement>>(
-  function TextInputNoRef({ className, ...props }, ref) {
+  function TextInputInner({ className, ...props }, ref) {
     return (
       <input
         ref={ref}

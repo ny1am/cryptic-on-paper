@@ -32,6 +32,7 @@ export function Pipe() {
                   ))}
             </div>
             <IconButton
+              type="button"
               title="Delete"
               className="shrink-0"
               icon={<MinusCircleIcon className="w-5" />}

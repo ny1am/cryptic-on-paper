@@ -7,7 +7,7 @@ interface BaseRailFenceDemoProps {
 }
 
 export const BaseRailFenceDemo = forwardRef<HTMLUListElement, BaseRailFenceDemoProps>(
-  function BaseRailFenceDemoNoRef({ height }, ref) {
+  function BaseRailFenceDemoInner({ height }, ref) {
     const originalText = 'supersecrettext'.toUpperCase();
 
     const matrix = useMemo(() => {

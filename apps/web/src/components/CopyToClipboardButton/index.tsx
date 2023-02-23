@@ -19,6 +19,7 @@ export function CopyToClipboardButton({ text }: Props) {
 
   return (
     <IconButton
+      type="button"
       title="Copy to clipboard"
       icon={<ClipboardDocumentListIcon className="h-5" />}
       onClick={copy}
