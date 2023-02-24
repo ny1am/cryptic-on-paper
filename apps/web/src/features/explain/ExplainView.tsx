@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { Button } from '@/components/Button';
 import { IconButton } from '@/components/IconButton';
 import { CipherMeta, createCipher } from '@/features/config';
-import { usePlaintext } from '@/features/encrypt-form';
+import { usePlaintext } from '@/features/encryptForm';
 import { usePipeCiphers } from '@/features/pipe';
 
 import { LogItem } from './LogItem';

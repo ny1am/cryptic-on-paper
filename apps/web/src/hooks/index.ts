@@ -1,2 +1,2 @@
-export * from './use-motion-reduced';
-export * from './use-throttle';
+export * from './useMotionReduced';
+export * from './useThrottle';

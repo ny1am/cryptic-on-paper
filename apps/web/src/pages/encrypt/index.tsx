@@ -1,5 +1,5 @@
 import { Hero } from '@/components/Hero';
-import { EncryptForm } from '@/features/encrypt-form';
+import { EncryptForm } from '@/features/encryptForm';
 import { CiphersPipe, useIsPipeInitialized } from '@/features/pipe';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
