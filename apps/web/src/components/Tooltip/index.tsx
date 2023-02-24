@@ -9,11 +9,11 @@ import {
   useFocus,
   useHover,
   useInteractions,
+  useMergeRefs,
   useRole,
 } from '@floating-ui/react';
-import { cloneElement, useMemo, useState } from 'react';
+import { cloneElement, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { mergeRefs } from 'react-merge-refs';
 
 import { AUTO_ANIMATE_DURATION } from '@/lib/auto-animate';
 
@@ -42,11 +42,7 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
   ]);
 
   // Preserve the consumer's ref
-  const ref = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    () => mergeRefs([reference, (children as any).ref]),
-    [reference, children]
-  );
+  const ref = useMergeRefs([reference, (children as any).ref]);
 
   return (
     <>

@@ -44,7 +44,6 @@ importers:
       react-hook-form: ^7.43.2
       react-hot-toast: ^2.4.0
       react-hotkeys-hook: 4.3.7
-      react-merge-refs: ^2.0.1
       remeda: ^1.6.2
       sass: ^1.58.3
       tailwindcss: ^3.2.7
@@ -72,7 +71,6 @@ importers:
       react-hook-form: 7.43.2_react@18.2.0
       react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
       react-hotkeys-hook: 4.3.7_biqbaboplfbrettd7655fr4n2y
-      react-merge-refs: 2.0.1
       remeda: 1.6.2
       xstate: 4.36.0
       zod: 3.20.6
@@ -5480,10 +5478,6 @@ packages:
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
-
-  /react-merge-refs/2.0.1:
-    resolution: {integrity: sha512-pywF6oouJWuqL26xV3OruRSIqai31R9SdJX/I3gP2q8jLxUnA1IwXcLW8werUHLZOrp4N7YOeQNZrh/BKrHI4A==}
-    dev: false
 
   /react-refresh/0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
