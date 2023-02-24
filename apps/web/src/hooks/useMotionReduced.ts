@@ -10,13 +10,10 @@ export function useMotionReduced(): boolean {
   const { current: mediaQuery } = useRef(window.matchMedia(QUERY));
 
   useEffect(() => {
-    const listener = () => {
-      setPrefersReducedMotion(!!mediaQuery.matches);
-    };
+    const listener = () => void setPrefersReducedMotion(!!mediaQuery.matches);
+
     mediaQuery.addEventListener('change', listener);
-    return () => {
-      mediaQuery.removeEventListener('change', listener);
-    };
+    return () => mediaQuery.removeEventListener('change', listener);
   }, [mediaQuery]);
 
   return prefersReducedMotion;
