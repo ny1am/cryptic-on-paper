@@ -26,7 +26,7 @@ interface TooltipProps {
 export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) => {
   const [open, setOpen] = useState(false);
 
-  const { x, y, reference, floating, strategy, context } = useFloating({
+  const { x, y, refs, strategy, context } = useFloating({
     placement,
     open,
     onOpenChange: setOpen,
@@ -34,15 +34,20 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
     whileElementsMounted: autoUpdate,
   });
 
+  const hover = useHover(context, { delay: { open: AUTO_ANIMATE_DURATION + 100 } }); //delay should be bigger then auto-animate duration
+  const focus = useFocus(context);
+  const role = useRole(context, { role: 'tooltip' });
+  const dismiss = useDismiss(context);
+
   const { getReferenceProps, getFloatingProps } = useInteractions([
-    useHover(context, { delay: { open: AUTO_ANIMATE_DURATION + 100 } }), //delay should be bigger then auto-animate duration
-    useFocus(context),
-    useRole(context, { role: 'tooltip' }),
-    useDismiss(context),
+    hover,
+    focus,
+    role,
+    dismiss,
   ]);
 
-  // Preserve the consumer's ref
-  const ref = useMergeRefs([reference, (children as any).ref]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ref = useMergeRefs([refs.setReference, (children as any).ref]);
 
   return (
     <>
@@ -62,12 +67,8 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
       {open && (
         <div
           {...getFloatingProps({
-            ref: floating,
-            style: {
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
-            },
+            ref: refs.setFloating,
+            style: { position: strategy, top: y ?? 0, left: x ?? 0 },
           })}
           className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#fcfcff] px-2 py-1 text-xs motion-reduce:animate-none dark:bg-[#030300]"
         >
