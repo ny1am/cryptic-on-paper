@@ -33,7 +33,7 @@ export function EncryptedResult({ text }: Props) {
           <CopyToClipboardButton text={cipherText} />
         </div>
       </div>
-      <TextBlock text={cipherText} className="min-h-[8rem]" />
+      <TextBlock text={cipherText} className="min-h-[8rem]" showNumberOfChars />
     </div>
   );
 }

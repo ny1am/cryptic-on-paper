@@ -15,6 +15,9 @@ module.exports = {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
       },
+      fontSize: {
+        '2xs': '.625rem',
+      },
       animation: {
         'zoom-in': 'zoomIn 0.1s',
       },
