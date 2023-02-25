@@ -1,54 +1,34 @@
-import { assign, createMachine, interpret } from 'xstate';
-
 import { CipherFactory } from '../types';
 
-const createArrayRunnerMachine = (length: number) =>
-  createMachine({
-    predictableActionArguments: true,
-    context: { caret: 0, length },
-    initial: 'wait',
-    states: {
-      'wait': { on: { 'NEXT': 'move' } },
-      'move': {
-        initial: 'forward',
-        states: {
-          'forward': {
-            on: {
-              'NEXT': [
-                { cond: 'canMoveForward', target: 'forward', actions: ['moveForward'] },
-                { cond: 'canMoveBack', target: 'back', actions: ['moveBack'] },
-              ],
-            },
-          },
-          'back': {
-            on: {
-              'NEXT': [
-                { cond: 'canMoveBack', target: 'back', actions: ['moveBack'] },
-                { cond: 'canMoveForward', target: 'forward', actions: ['moveForward'] },
-              ],
-            },
-          },
-        },
-      },
-    },
-  }).withConfig({
-    guards: {
-      canMoveForward: ({ caret, length }) => caret < length - 1,
-      canMoveBack: ({ caret }) => caret > 0,
-    },
-    actions: {
-      moveBack: assign({ caret: ({ caret }) => caret - 1 }),
-      moveForward: assign({ caret: ({ caret }) => caret + 1 }),
-    },
-  });
+const createArrayRunnerMachine = (length: number) => {
+  let caret = 0;
+  let direction = 'forward' as 'forward' | 'back';
+
+  const next = () => {
+    if (length <= 1) return caret;
+
+    if (direction === 'forward') {
+      if (caret < length - 1) return ++caret;
+      direction = 'back';
+      return --caret;
+    }
+
+    if (caret > 0) return --caret;
+    direction = 'forward';
+    return ++caret;
+  };
+
+  return { caret, next };
+};
 
 export const createCaretIterator = (length: number) => {
   const machine = createArrayRunnerMachine(length);
-  const runner = interpret(machine).start();
+  let caret = machine.caret;
   return {
     next() {
-      const { context } = runner.send('NEXT');
-      return { value: context.caret, done: false };
+      const result = { value: caret, done: false };
+      caret = machine.next();
+      return result;
     },
     [Symbol.iterator]() {
       return this;

@@ -52,7 +52,6 @@ importers:
       vite: ^4.1.4
       vite-bundle-visualizer: ^0.6.0
       vite-tsconfig-paths: ^4.0.5
-      xstate: ^4.36.0
       zod: ^3.20.6
       zustand: ^4.3.3
     dependencies:
@@ -72,7 +71,6 @@ importers:
       react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
       react-hotkeys-hook: 4.3.7_biqbaboplfbrettd7655fr4n2y
       remeda: 1.6.2
-      xstate: 4.36.0
       zod: 3.20.6
       zustand: 4.3.3_react@18.2.0
     devDependencies:
@@ -6395,10 +6393,6 @@ packages:
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
     dev: true
-
-  /xstate/4.36.0:
-    resolution: {integrity: sha512-AUI+KPgyy3g4PDpZWzUy/5ubd8VymbqikNmrJx5AQfqh+AQnemkBiabGROno+am1wUl2yeuT3UDrzUTSidfa6g==}
-    dev: false
 
   /xtend/4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}

@@ -30,7 +30,6 @@
     "react-hot-toast": "^2.4.0",
     "react-hotkeys-hook": "4.3.7",
     "remeda": "^1.6.2",
-    "xstate": "^4.36.0",
     "zod": "^3.20.6",
     "zustand": "^4.3.3"
   },
