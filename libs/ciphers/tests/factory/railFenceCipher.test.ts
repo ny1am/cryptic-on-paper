@@ -1,6 +1,6 @@
 import { createCaretIterator, railFenceCipherFactory } from '@/.';
 
-describe('caesar cipher', () => {
+describe('rail fence cipher', () => {
   it.concurrent.each([
     { height: 2, input: 'test', output: 'tset' },
     { height: 3, input: '12345', output: '15243' },
