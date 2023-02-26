@@ -1,6 +1,7 @@
 # Cryptic on paper
 
-[![Github CI Status](https://github.com/ny1am/cryptic-on-paper/actions/workflows/main.yml/badge.svg)](https://github.com/ny1am/cryptic-on-paper/actions/workflows/main.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/121222a6-84bf-4138-80c5-a9e393396971/deploy-status)](https://app.netlify.com/sites/cryptic-on-paper/deploys)
+[![build check](https://github.com/ny1am/cryptic-on-paper/actions/workflows/build.yml/badge.svg)](https://github.com/ny1am/cryptic-on-paper/actions/workflows/build.yml)
 
 Encrypt messages with simple ciphers that you could replicate on a piece of paper.
 
