@@ -7,7 +7,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   server: { port: 3000 },
   preview: { port: 3000 },
-  base: '/cryptic-on-paper/',
   plugins: [
     tsconfigPaths(),
     react(),

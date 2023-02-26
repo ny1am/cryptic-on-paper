@@ -2,3 +2,6 @@
 **/dist
 **/coverage
 **/cypress
+
+# Local Netlify folder
+.netlify

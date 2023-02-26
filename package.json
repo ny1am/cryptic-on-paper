@@ -1,7 +1,7 @@
 {
   "name": "cryptic-on-paper",
   "version": "1.2.0",
-  "homepage": "https://ny1am.github.io/cryptic-on-paper",
+  "homepage": "https://cryptic-on-paper.netlify.app",
   "private": true,
   "scripts": {
     "dev": "nx dev web",
@@ -10,8 +10,7 @@
     "lint": "nx run-many --target=lint",
     "test": "nx run-many --target=test",
     "e2e": "nx cypress web-e2e",
-    "test:deploy": "pnpm run lint && pnpm run test && pnpm run build && pnpm run e2e",
-    "deploy": "pnpm run test:deploy && gh-pages -d apps/web/dist"
+    "test:deploy": "pnpm run lint && pnpm run test && pnpm run build && pnpm run e2e"
   },
   "dependencies": {
     "@floating-ui/react": "^0.19.2",
@@ -53,7 +52,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "gh-pages": "^5.0.0",
     "jest": "^29.4.3",
     "nx": "^15.7.2",
     "postcss": "^8.4.21",
