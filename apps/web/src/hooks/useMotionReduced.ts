@@ -1,20 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
-
-const QUERY = '(prefers-reduced-motion: reduce)';
+import { useCallback, useRef, useSyncExternalStore } from 'react';
 
 export function useMotionReduced(): boolean {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
-    window.matchMedia(QUERY).matches
+  const { current: mediaQuery } = useRef(
+    window.matchMedia('(prefers-reduced-motion: reduce)')
   );
 
-  const { current: mediaQuery } = useRef(window.matchMedia(QUERY));
+  const subscribe = useCallback(
+    (callback: VoidFunction) => {
+      mediaQuery.addEventListener('change', callback);
+      return () => mediaQuery.removeEventListener('change', callback);
+    },
+    [mediaQuery]
+  );
 
-  useEffect(() => {
-    const listener = () => void setPrefersReducedMotion(!!mediaQuery.matches);
+  const getSnapshot = useCallback(() => !!mediaQuery.matches, [mediaQuery]);
 
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
-  }, [mediaQuery]);
-
-  return prefersReducedMotion;
+  return useSyncExternalStore(subscribe, getSnapshot);
 }
