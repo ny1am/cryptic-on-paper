@@ -1,3 +1,8 @@
+const restrictedLibs = [
+  { original: '@formkit/auto-animate', replacement: '@/libs/auto-animate' },
+  { original: '@headlessui', replacement: '@/libs/headlessui' },
+];
+
 module.exports = {
   extends: [
     '../../.eslintrc.cjs',
@@ -28,16 +33,10 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
-            patterns: [
-              {
-                group: ['@formkit/auto-animate*'],
-                message: 'Please import from `@/libs/auto-animate` instead.',
-              },
-              {
-                group: ['@headlessui*'],
-                message: 'Please import from `@/libs/headlessui` instead.',
-              },
-            ],
+            patterns: restrictedLibs.map((lib) => ({
+              group: [`${lib.original}*`],
+              message: `Please import from "${lib.replacement}" instead.`,
+            })),
           },
         ],
       },
