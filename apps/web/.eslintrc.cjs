@@ -22,5 +22,25 @@ module.exports = {
         'react/prop-types': 'off',
       },
     },
+    {
+      files: ['!src/lib/**/*'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['@formkit/auto-animate*'],
+                message: 'Please import from `@/libs/auto-animate` instead.',
+              },
+              {
+                group: ['@headlessui*'],
+                message: 'Please import from `@/libs/headlessui` instead.',
+              },
+            ],
+          },
+        ],
+      },
+    },
   ],
 };
