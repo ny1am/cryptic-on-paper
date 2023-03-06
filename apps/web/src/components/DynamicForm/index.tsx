@@ -8,13 +8,18 @@ import { Button } from '@/components/Button';
 import { RangeInput } from '@/components/RangeInput';
 import { StepperInput } from '@/components/StepperInput';
 import { TextInput } from '@/components/TextInput';
+import { ToggleInput } from '@/components/ToggleInput';
 
 type Shape = { [x: string]: unknown };
 
 //TODO: add type safety to props
 export type DynamicFormUIConfig<T extends Shape> = {
   [P in keyof T]: {
-    component: typeof RangeInput | typeof TextInput | typeof StepperInput;
+    component:
+      | typeof RangeInput
+      | typeof TextInput
+      | typeof StepperInput
+      | typeof ToggleInput;
     label?: string;
     valueAsNumber?: boolean;
     props: object;

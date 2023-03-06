@@ -1,2 +1,2 @@
 export * from './Transition';
-export { Dialog, Listbox, RadioGroup } from '@headlessui/react';
+export { Dialog, Listbox, RadioGroup, Switch } from '@headlessui/react';
