@@ -5,12 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "nx dev web",
-    "build": "nx build web",
     "preview": "nx preview web",
     "lint": "nx run-many --target=lint",
-    "test": "nx run-many --target=test",
-    "e2e": "nx cypress web-e2e",
-    "test:deploy": "pnpm run lint && pnpm run test && pnpm run build && pnpm run e2e"
+    "test:all": "pnpm run lint && pnpm run test && pnpm run build && pnpm run e2e",
+    "test:unit": "nx run-many --target=test",
+    "test:e2e": "nx cypress web-e2e",
+    "build": "nx build web"
   },
   "dependencies": {
     "@floating-ui/react": "^0.20.1",
