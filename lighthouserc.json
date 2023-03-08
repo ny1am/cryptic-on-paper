@@ -10,7 +10,8 @@
     },
     "collect": {
       "numberOfRuns": 3,
-      "staticDistDir": "./apps/web/dist"
+      "url": ["http://localhost/index.html"],
+      "staticDistDir": "./apps/web/out"
     }
   }
 }

@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   button {
-    @apply focus:outline-none focus-ring focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900;
+    @apply focus-ring focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900;
   }
 
   textarea,
@@ -12,6 +12,10 @@
 
 @tailwind components;
 @layer components {
+  #__next {
+    @apply flex h-full flex-col;
+  }
+
   .focus-ring {
     @apply focus:ring-indigo-500 dark:focus:ring-indigo-300;
   }
