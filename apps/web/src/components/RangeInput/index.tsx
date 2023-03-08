@@ -1,5 +1,3 @@
-import './range.scss';
-
 import { forwardRef, HTMLAttributes, useMemo } from 'react';
 
 type RangeInputProps = HTMLAttributes<HTMLInputElement> & {

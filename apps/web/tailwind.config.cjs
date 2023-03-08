@@ -4,7 +4,7 @@ const forms = require('@tailwindcss/forms');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
     screens: {
       xs: '480px',

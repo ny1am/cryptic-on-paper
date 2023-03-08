@@ -27,7 +27,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist
-          path: apps/web/dist
+          path: apps/web/out
       - uses: netlify/actions/cli@master
         with:
           args: deploy --prod

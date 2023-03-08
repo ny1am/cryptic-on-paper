@@ -3,18 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint src",
-    "analyze:bundle": "vite-bundle-visualizer"
+    "dev": "next dev",
+    "build": "next build && next export",
+    "preview": "serve out",
+    "lint": "next lint"
   },
   "nx": {
     "targets": {
       "preview": {
-        "dependsOn": ["build"]
-      },
-      "analyze:bundle": {
         "dependsOn": ["build"]
       }
     }

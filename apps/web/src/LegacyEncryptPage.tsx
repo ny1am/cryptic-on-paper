@@ -3,7 +3,7 @@ import { EncryptForm } from '@/features/encryptForm';
 import { CiphersPipe, useIsPipeInitialized } from '@/features/pipe';
 import { useAutoAnimate } from '@/lib/auto-animate';
 
-export function EncryptPage() {
+export function LegacyEncryptPage() {
   const isPipeInitialized = useIsPipeInitialized();
 
   const [contentRef] = useAutoAnimate<HTMLDivElement>();

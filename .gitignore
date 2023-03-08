@@ -5,3 +5,8 @@
 
 # Local Netlify folder
 .netlify
+
+# Next.js
+next-env.d.ts
+.next
+apps/web/out
