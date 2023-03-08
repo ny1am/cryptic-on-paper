@@ -11,7 +11,9 @@ export function useTheme(): [boolean, Theme, (update: Theme) => void] {
   const isDarkMode = useMemo(
     () =>
       theme === 'dark' ||
-      (theme === 'system' && window.matchMedia('(prefers-color-scheme:dark)').matches),
+      (theme === 'system' &&
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-color-scheme:dark)').matches),
     [theme]
   );
   return [isDarkMode, theme, setTheme];
