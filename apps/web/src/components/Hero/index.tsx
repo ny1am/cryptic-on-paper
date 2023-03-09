@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <div className="pattern-bg flex min-h-[35vh] flex-col justify-center py-16 lg:py-24">
+    <div className="pattern-bg flex min-h-[35vh] flex-col justify-center py-16 lg:min-h-[42vh] lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
