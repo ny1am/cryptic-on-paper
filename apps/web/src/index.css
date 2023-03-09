@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   button {
-    @apply focus-ring focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-slate-900;
+    @apply focus-ring ring-offset-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   textarea,
@@ -17,15 +17,19 @@
   }
 
   .focus-ring {
-    @apply focus:ring-indigo-500 dark:focus:ring-indigo-300;
+    @apply focus:ring-indigo-300;
   }
 
   .border-primary {
-    @apply border border-indigo-100 dark:border-slate-700;
+    @apply border border-slate-700;
   }
 
   .bg-primary {
-    @apply bg-white dark:bg-slate-900;
+    @apply bg-slate-900;
+  }
+
+  * {
+    color-scheme: dark;
   }
 }
 
@@ -42,18 +46,9 @@
   }
 }
 
-.dark {
-  color-scheme: dark;
-}
-
 .pattern-bg {
-  background-image: linear-gradient(#eef2ff 1.5px, transparent 1.5px),
-    linear-gradient(to right, #eef2ff 1.5px, transparent 1.5px);
-  background-size: 20px 20px;
-  background-position: right 25px bottom 8px;
-}
-
-.dark .pattern-bg {
   background-image: linear-gradient(#110100 1.5px, transparent 1.5px),
     linear-gradient(to right, #110100 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  background-position: right 25px bottom 8px;
 }

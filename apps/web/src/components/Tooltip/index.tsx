@@ -70,7 +70,7 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
             ref: refs.setFloating,
             style: { position: strategy, top: y ?? 0, left: x ?? 0 },
           })}
-          className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#fcfcff] px-2 py-1 text-xs motion-reduce:animate-none dark:bg-[#030300]"
+          className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#030300] px-2 py-1 text-xs motion-reduce:animate-none"
         >
           {label}
         </div>

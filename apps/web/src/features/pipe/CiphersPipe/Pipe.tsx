@@ -18,7 +18,7 @@ export function Pipe() {
         {selectedCiphers.map(({ meta, uuid }) => (
           <li
             key={uuid}
-            className="flex items-center justify-between border-b border-indigo-200 py-2 pl-2 dark:border-slate-500"
+            className="flex items-center justify-between border-b border-slate-500 py-2 pl-2"
           >
             <div className="inline-flex flex-wrap gap-1 gap-x-2 overflow-x-hidden text-sm">
               {meta.key}

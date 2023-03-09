@@ -7,9 +7,8 @@ const buttonCva = cva(
     variants: {
       intent: {
         primary:
-          'text-white border-transparent bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 dark:bg-indigo-300 dark:hover:bg-indigo-200 dark:focus:bg-indigo-200 dark:text-gray-900',
-        cancel:
-          'border-primary text-gray-700 hover:text-gray-500 focus:text-gray-500 dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100',
+          'border-transparent bg-indigo-300 hover:bg-indigo-200 focus:bg-indigo-200 text-gray-900',
+        cancel: 'border-primary text-gray-300 hover:text-gray-100 focus:text-gray-100',
       },
     },
   }

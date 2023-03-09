@@ -29,7 +29,7 @@ export function Dialog({
           leaveTo="opacity-100"
         >
           <div
-            className="bg-primary fixed inset-0 xs:bg-slate-500/75 xs:dark:bg-slate-700/90"
+            className="bg-primary fixed inset-0 xs:bg-slate-700/90"
             aria-hidden="true"
           />
         </Transition.Child>

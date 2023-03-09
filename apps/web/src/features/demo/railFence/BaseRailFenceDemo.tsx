@@ -41,8 +41,8 @@ export const BaseRailFenceDemo = forwardRef<HTMLUListElement, BaseRailFenceDemoP
           <li
             key={key}
             className={cx(
-              'inline-flex aspect-square w-4 items-center justify-center text-[9px] font-semibold text-indigo-700 dark:text-slate-100',
-              value && 'border-primary bg-indigo-50 dark:bg-slate-700'
+              'inline-flex aspect-square w-4 items-center justify-center text-[9px] font-semibold text-slate-100',
+              value && 'border-primary bg-slate-700'
             )}
           >
             {value}

@@ -27,7 +27,7 @@ function IconButtonInner<T extends As = 'button'>(
       <Primitive
         ref={ref}
         className={cx(
-          'inline-flex h-8 w-8 items-center justify-center rounded-sm opacity-50 hover:opacity-100 focus:opacity-100 dark:opacity-70 dark:hover:opacity-100 dark:focus:opacity-100',
+          'inline-flex h-8 w-8 items-center justify-center rounded-sm opacity-70 hover:opacity-100 focus:opacity-100',
           className
         )}
         {...rest}

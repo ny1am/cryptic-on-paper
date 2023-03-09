@@ -3,7 +3,6 @@ const forms = require('@tailwindcss/forms');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     screens: {

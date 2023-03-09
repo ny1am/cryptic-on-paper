@@ -24,13 +24,13 @@ export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
   return (
     <>
       <div className="mb-8">
-        <div className="mb-4 text-xs font-light leading-5 tracking-wider text-gray-500 dark:text-gray-400 [&>p]:mt-2">
+        <div className="mb-4 text-xs font-light leading-5 tracking-wider text-gray-400 [&>p]:mt-2">
           {description}
         </div>
 
         {DemoComponent && (
           <div
-            className="mt-6 flex h-[150px] flex-col items-center justify-center border-y border-dashed border-indigo-200 dark:border-slate-500"
+            className="mt-6 flex h-[150px] flex-col items-center justify-center border-y border-dashed border-slate-500"
             aria-hidden="true"
           >
             <DemoComponent {...formState} />

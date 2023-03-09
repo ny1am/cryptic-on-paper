@@ -25,9 +25,7 @@ export function EncryptedResult({ text }: Props) {
   return (
     <div className="mt-2 flex grow flex-col items-end lg:mt-6">
       <div className="mb-1 flex w-full items-end justify-between">
-        <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          Encrypted message
-        </span>
+        <span className="block text-sm font-medium text-gray-300">Encrypted message</span>
         <div className="flex gap-1">
           <ExplainButton />
           <CopyToClipboardButton text={cipherText} />

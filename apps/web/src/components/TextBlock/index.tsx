@@ -11,7 +11,7 @@ export function TextBlock(props: Props) {
   return (
     <pre
       className={cx(
-        'border-primary flex w-full grow flex-col overflow-y-auto whitespace-pre-wrap break-all rounded-sm bg-indigo-50/50 p-2 text-sm dark:bg-slate-700/50',
+        'border-primary flex w-full grow flex-col overflow-y-auto whitespace-pre-wrap break-all rounded-sm bg-slate-700/50 p-2 text-sm',
         props.className
       )}
     >
@@ -19,7 +19,7 @@ export function TextBlock(props: Props) {
         {props.text}
       </span>
       {props.showNumberOfChars && (
-        <span className="pt-2 text-right text-2xs leading-none text-slate-500 dark:text-slate-400">
+        <span className="pt-2 text-right text-2xs leading-none text-slate-400">
           {props.text.length} chars
         </span>
       )}
