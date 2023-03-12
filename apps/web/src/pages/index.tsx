@@ -1,7 +1,12 @@
+import dynamic from 'next/dynamic';
+
 import { Hero } from '@/components/Hero';
-import { EncryptForm } from '@/features/encryptForm';
 import { CiphersPipe, useIsPipeInitialized } from '@/features/pipe';
 import { useAutoAnimate } from '@/lib/auto-animate';
+
+const EncryptForm = dynamic(() =>
+  import('@/features/encryptForm').then((m) => m.EncryptForm)
+);
 
 export default function EncryptPage() {
   const isPipeInitialized = useIsPipeInitialized();
