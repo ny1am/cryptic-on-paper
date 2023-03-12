@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "jock.svg",
-    "nrwl.angular-console"
+    "nrwl.angular-console",
+    "tamasfe.even-better-toml"
   ]
 }
