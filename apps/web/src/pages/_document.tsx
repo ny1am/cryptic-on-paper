@@ -32,7 +32,7 @@ export default function Document() {
         <meta name="twitter:description" content={data.description} />
         <meta name="twitter:image" content="/placeholder-social.jpg" />
       </Head>
-      <body className="h-full min-w-[20rem] bg-slate-900 font-poppins text-slate-100">
+      <body className="h-full min-w-[20rem] bg-slate-900 font-sans text-slate-100">
         <Main />
         <NextScript />
       </body>

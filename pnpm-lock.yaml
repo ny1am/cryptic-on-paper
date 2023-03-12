@@ -5,7 +5,6 @@ importers:
   .:
     specifiers:
       '@floating-ui/react': ^0.20.1
-      '@fontsource/poppins': ^4.5.10
       '@formkit/auto-animate': ^1.0.0-beta.6
       '@headlessui/react': ^1.7.13
       '@heroicons/react': ^2.0.16
@@ -55,7 +54,6 @@ importers:
       zustand: ^4.3.6
     dependencies:
       '@floating-ui/react': 0.20.1_zula6vjvt3wdocc4mwcxqa6nzi
-      '@fontsource/poppins': 4.5.10
       '@formkit/auto-animate': 1.0.0-beta.6
       '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.16_react@18.2.0
@@ -574,10 +572,6 @@ packages:
       tabbable: 6.0.1
     transitivePeerDependencies:
       - '@types/react'
-    dev: false
-
-  /@fontsource/poppins/4.5.10:
-    resolution: {integrity: sha512-oYZVHsnlwV3VWM1SE/m6SUxVh0QLk5+2wB+lBiXcI7N/0KVQWmV9YykaPqfJHBLvmdya+MAOnv+BQHeLU1vOOw==}
     dev: false
 
   /@formkit/auto-animate/1.0.0-beta.6:

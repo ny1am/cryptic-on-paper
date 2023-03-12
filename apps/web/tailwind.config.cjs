@@ -12,7 +12,7 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        sans: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         '2xs': '.625rem',
