@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { poppins } from '@/fonts';
 import { Dialog as D, Transition } from '@/lib/headlessui';
 
 type DialogProps = {
@@ -17,7 +18,11 @@ export function Dialog({
 }: React.PropsWithoutRef<DialogProps>) {
   return (
     <Transition appear show={isOpen} as={React.Fragment}>
-      <D className="relative z-10" open={true} onClose={onClose}>
+      <D
+        className={`${poppins.variable} relative z-10 font-sans`}
+        open={true}
+        onClose={onClose}
+      >
         <D.Title className="sr-only">{ariaLabel}</D.Title>
         <Transition.Child
           as={React.Fragment}
