@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`${poppins.variable} flex grow flex-col font-sans`}>
       <Layout>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </Layout>
       <Toaster />
       <DialogPortalRoot />
