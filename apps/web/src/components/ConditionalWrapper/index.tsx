@@ -1,5 +1,5 @@
 interface ConditionalWrapperProps {
-  condition: unknown;
+  condition: boolean;
   children: React.ReactElement;
   wrapper: (children: React.ReactElement) => JSX.Element;
 }
