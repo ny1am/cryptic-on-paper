@@ -4,14 +4,14 @@ importers:
 
   .:
     specifiers:
-      '@floating-ui/react': ^0.21.0
+      '@floating-ui/react': ^0.21.1
       '@formkit/auto-animate': ^1.0.0-beta.6
       '@headlessui/react': ^1.7.13
       '@heroicons/react': ^2.0.16
       '@hookform/resolvers': ^2.9.11
       '@next/bundle-analyzer': ^13.2.4
       '@tailwindcss/forms': ^0.5.3
-      '@types/jest': ^29.4.1
+      '@types/jest': ^29.4.4
       '@types/node': 18.15.3
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
@@ -21,7 +21,7 @@ importers:
       autoprefixer: ^10.4.14
       class-variance-authority: ^0.4.0
       clipboard-copy: ^4.0.1
-      cypress: ^12.7.0
+      cypress: ^12.8.1
       eslint: ^8.36.0
       eslint-config-next: 13.2.4
       eslint-config-prettier: ^8.7.0
@@ -46,7 +46,7 @@ importers:
       react-hot-toast: ^2.4.0
       react-hotkeys-hook: 4.3.8
       remeda: ^1.9.0
-      sass: ^1.59.2
+      sass: ^1.59.3
       serve: ^14.2.0
       tailwindcss: ^3.2.7
       ts-jest: ^29.0.5
@@ -54,14 +54,14 @@ importers:
       zod: ^3.21.4
       zustand: ^4.3.6
     dependencies:
-      '@floating-ui/react': 0.21.0_zula6vjvt3wdocc4mwcxqa6nzi
+      '@floating-ui/react': 0.21.1_zula6vjvt3wdocc4mwcxqa6nzi
       '@formkit/auto-animate': 1.0.0-beta.6
       '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.16_react@18.2.0
       '@hookform/resolvers': 2.9.11_react-hook-form@7.43.5
       class-variance-authority: 0.4.0_typescript@4.9.5
       jotai: 2.0.3_react@18.2.0
-      next: 13.2.4_sydpekhtbdgfce6j7uzx25qoee
+      next: 13.2.4_56obw4wm6nxnja7o6q626jsibi
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-focus-lock: 2.9.4_pmekkgnqduwlme35zpnqhenc34
@@ -74,7 +74,7 @@ importers:
     devDependencies:
       '@next/bundle-analyzer': 13.2.4
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
-      '@types/jest': 29.4.1
+      '@types/jest': 29.4.4
       '@types/node': 18.15.3
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
@@ -83,7 +83,7 @@ importers:
       '@typescript-eslint/parser': 5.55.0_vgl77cfdswitgr47lm5swmv43m
       autoprefixer: 10.4.14_postcss@8.4.21
       clipboard-copy: 4.0.1
-      cypress: 12.7.0
+      cypress: 12.8.1
       eslint: 8.36.0
       eslint-config-next: 13.2.4_vgl77cfdswitgr47lm5swmv43m
       eslint-config-prettier: 8.7.0_eslint@8.36.0
@@ -99,7 +99,7 @@ importers:
       postcss: 8.4.21
       prettier: 2.8.4
       prettier-plugin-tailwindcss: 0.2.4_prettier@2.8.4
-      sass: 1.59.2
+      sass: 1.59.3
       serve: 14.2.0
       tailwindcss: 3.2.7_postcss@8.4.21
       ts-jest: 29.0.5_rvjmdqhqjqm2mi2o3slrod4dxm
@@ -576,8 +576,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@floating-ui/react/0.21.0_zula6vjvt3wdocc4mwcxqa6nzi:
-    resolution: {integrity: sha512-4Zut7tjeDVEKHaR6N3uG4m1dl114UkLuK4SNAeHlAb4pKu5KEkMkI34Y8NmCc4ARfXIu25UGUhYBUzShDhbofA==}
+  /@floating-ui/react/0.21.1_zula6vjvt3wdocc4mwcxqa6nzi:
+    resolution: {integrity: sha512-ojjsU/rvWEyNDproy1yQW5EDXJnDip8DXpSRh+hogPgZWEp0Y/2UBPxL3yoa53BDYsL+dqJY0osl9r0Jes3eeg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1293,8 +1293,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/29.4.1:
-    resolution: {integrity: sha512-zDQSWXG+ZkEvs2zFFMszePhx4euKz+Yt3Gg1P+RHjfJBinTTr6L2DEyovO4V/WrKXuF0Dgn56GWGZPDa6TW9eQ==}
+  /@types/jest/29.4.4:
+    resolution: {integrity: sha512-qezb65VIH7X1wobSnd6Lvdve7PXSyQRa3dljTkhTtDhi603RvHQCshSlJcuyMLHJpeHgY3NKwvDJWxMOOHxGDQ==}
     dependencies:
       expect: 29.5.0
       pretty-format: 29.5.0
@@ -2382,8 +2382,8 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
-  /cypress/12.7.0:
-    resolution: {integrity: sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==}
+  /cypress/12.8.1:
+    resolution: {integrity: sha512-lIFbKdaSYAOarNLHNFa2aPZu6YSF+8UY4VRXMxJrFUnk6RvfG0AWsZ7/qle/aIz30TNUD4aOihz2ZgS4vuQVSA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -4832,7 +4832,7 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /next/13.2.4_sydpekhtbdgfce6j7uzx25qoee:
+  /next/13.2.4_56obw4wm6nxnja7o6q626jsibi:
     resolution: {integrity: sha512-g1I30317cThkEpvzfXujf0O4wtaQHtDCLhlivwlTJ885Ld+eOgcz7r3TGQzeU+cSRoNHtD8tsJgzxVdYojFssw==}
     engines: {node: '>=14.6.0'}
     hasBin: true
@@ -4859,7 +4859,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      sass: 1.59.2
+      sass: 1.59.3
       styled-jsx: 5.1.1_2exiyaescjxorpwwmy4ejghgte
     optionalDependencies:
       '@next/swc-android-arm-eabi': 13.2.4
@@ -5703,8 +5703,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass/1.59.2:
-    resolution: {integrity: sha512-jJyO6SmbzkJexF8MUorHx5tAilcgabioYxT/BHbY4+OvoqmbHxsYlrjZ8Adhqcgl6Zqwie0TgMXLCAmPFxXOuw==}
+  /sass/1.59.3:
+    resolution: {integrity: sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
