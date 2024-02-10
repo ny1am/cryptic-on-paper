@@ -10,3 +10,6 @@
 next-env.d.ts
 .next
 apps/web/out
+
+# Nx.js
+.nx

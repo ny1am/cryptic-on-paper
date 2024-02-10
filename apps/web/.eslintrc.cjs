@@ -9,7 +9,6 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
   ],
   settings: {
     react: { version: 'detect' },

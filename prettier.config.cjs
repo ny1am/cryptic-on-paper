@@ -5,6 +5,7 @@ module.exports = {
   'singleQuote': true,
   'semi': true,
   'quoteProps': 'preserve',
+  'trailingComma': 'es5',
   'overrides': [
     {
       'files': '*.json',

@@ -48,7 +48,7 @@ export function Dialog({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <D.Panel className="bg-primary relative min-w-[20rem] transform overflow-hidden px-4 pt-5 pb-4 text-left transition-all xs:my-20 xs:mx-auto xs:w-full xs:max-w-lg xs:rounded-md xs:p-6 xs:shadow-xl">
+            <D.Panel className="bg-primary relative min-w-[20rem] transform overflow-hidden px-4 pb-4 pt-5 text-left transition-all xs:mx-auto xs:my-20 xs:w-full xs:max-w-lg xs:rounded-md xs:p-6 xs:shadow-xl">
               {children}
             </D.Panel>
           </Transition.Child>

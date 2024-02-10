@@ -110,7 +110,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                     {hasKeys && (
                       <RadioGroup.Description
                         as="span"
-                        className="mt-0 ml-4 text-right text-xs text-gray-500"
+                        className="ml-4 mt-0 text-right text-xs text-gray-500"
                       >
                         <span className="sr-only">has keys</span>
                         <Cog8ToothIcon className="w-5" />

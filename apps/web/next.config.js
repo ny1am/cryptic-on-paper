@@ -6,9 +6,9 @@ const withAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withAnalyzer({
+  output: 'export',
   reactStrictMode: true,
   transpilePackages: ['@cop/*'],
-  output: 'standalone',
 });
 
 export default nextConfig;
