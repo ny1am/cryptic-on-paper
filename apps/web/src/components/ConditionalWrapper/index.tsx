@@ -1,7 +1,9 @@
+import React from 'react';
+
 interface ConditionalWrapperProps {
   condition: boolean;
   children: React.ReactElement;
-  wrapper: (children: React.ReactElement) => JSX.Element;
+  wrapper: (children: React.ReactElement) => React.JSX.Element;
 }
 
 export const ConditionalWrapper: React.FC<ConditionalWrapperProps> = ({

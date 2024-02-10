@@ -20,7 +20,7 @@ export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
   const [formState, setFormState] = useState(form.defaultValues);
 
   const description = meta.description.long || <p>{meta.description.short}</p>;
-  const DemoComponent = meta.demo as undefined | ((p: T['options']) => JSX.Element);
+  const DemoComponent = meta.demo as undefined | ((p: T['options']) => React.JSX.Element);
   return (
     <>
       <div className="mb-8">

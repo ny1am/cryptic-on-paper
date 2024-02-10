@@ -12,7 +12,7 @@ import {
   useMergeRefs,
   useRole,
 } from '@floating-ui/react';
-import { cloneElement, useState } from 'react';
+import React, { cloneElement, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 import { AUTO_ANIMATE_DURATION } from '@/lib/auto-animate';
@@ -20,7 +20,7 @@ import { AUTO_ANIMATE_DURATION } from '@/lib/auto-animate';
 interface TooltipProps {
   label: string;
   placement?: Placement;
-  children: JSX.Element;
+  children: React.JSX.Element;
 }
 
 export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) => {

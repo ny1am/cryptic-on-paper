@@ -1,4 +1,5 @@
 import { CipherFactory } from '@cop/ciphers';
+import React from 'react';
 import zod from 'zod';
 
 import { DynamicFormUIConfig } from '@/components/DynamicForm';
@@ -17,8 +18,8 @@ export type CipherConfig<O extends void | Shape> = {
   meta: {
     description: {
       short: string;
-      long?: JSX.Element;
+      long?: React.JSX.Element;
     };
-    demo?: O extends Shape ? (props: O) => JSX.Element : undefined;
+    demo?: O extends Shape ? (props: O) => React.JSX.Element : undefined;
   };
 };
