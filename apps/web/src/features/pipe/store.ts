@@ -4,13 +4,16 @@ import { CipherMeta } from '../config';
 
 type UUID = string;
 
+type PipeCipher = { meta: CipherMeta; uuid: UUID };
+
 interface CiphersPipeState {
-  ciphers: { meta: CipherMeta; uuid: UUID }[];
+  ciphers: PipeCipher[];
   isInitialized: boolean;
   actions: {
     add: (meta: CipherMeta) => void;
     delete: (uuid: UUID) => void;
     deleteAll: () => void;
+    restore: (ciphers: PipeCipher[]) => void;
   };
 }
 
@@ -28,6 +31,7 @@ const useCiphersPipeStore = create<CiphersPipeState>((set) => ({
         ciphers: ciphers.filter((c) => c.uuid !== uuid),
       })),
     deleteAll: () => set({ ciphers: [] }),
+    restore: (ciphers: PipeCipher[]) => set({ ciphers, isInitialized: true }),
   },
 }));
 
