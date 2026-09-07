@@ -10,7 +10,7 @@ export const trimConfig: CipherConfig<TrimCipherOptions> = {
   factory: trimCipherFactory,
   form: {
     validationSchema: zod.object({
-      length: zod.number({ invalid_type_error: 'Invalid number' }).min(0),
+      length: zod.number({ error: 'Invalid number' }).min(0),
     }),
     defaultValues: {
       length: 16,

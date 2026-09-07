@@ -7,7 +7,7 @@ import { DynamicFormUIConfig } from '@/components/DynamicForm';
 type Shape = { [k: string]: unknown };
 
 type FormType<T extends Shape> = {
-  validationSchema: zod.ZodSchema<T>;
+  validationSchema: zod.ZodType<T, T>;
   uiFields: DynamicFormUIConfig<T>;
   defaultValues: T;
 };

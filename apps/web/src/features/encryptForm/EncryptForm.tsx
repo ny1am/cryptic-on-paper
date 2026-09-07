@@ -29,7 +29,7 @@ export function EncryptForm({ className }: EncryptFormProps) {
           id="plaintext"
           placeholder="Message to encrypt..."
           rows={5}
-          className="border-primary text-md focus-ring block w-full resize-none rounded-sm placeholder:font-light"
+          className="text-md block w-full resize-none rounded-xs border-primary focus-ring placeholder:font-light"
           value={plaintext || ''}
           onChange={handlePlaintextChange}
           data-test="input-plaintext"

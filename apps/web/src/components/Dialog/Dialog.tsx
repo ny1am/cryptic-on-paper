@@ -1,7 +1,13 @@
 import React from 'react';
 
 import { poppins } from '@/fonts';
-import { Dialog as D, Transition } from '@/lib/headlessui';
+import {
+  Dialog as D,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild,
+} from '@/lib/headlessui';
 
 type DialogProps = {
   onClose: () => void;
@@ -23,8 +29,8 @@ export function Dialog({
         open={true}
         onClose={onClose}
       >
-        <D.Title className="sr-only">{ariaLabel}</D.Title>
-        <Transition.Child
+        <DialogTitle className="sr-only">{ariaLabel}</DialogTitle>
+        <TransitionChild
           as={React.Fragment}
           enter="duration-0"
           enterFrom="opacity-50"
@@ -34,12 +40,12 @@ export function Dialog({
           leaveTo="opacity-100"
         >
           <div
-            className="bg-primary fixed inset-0 xs:bg-slate-700/90"
+            className="fixed inset-0 bg-primary xs:bg-slate-700/90"
             aria-hidden="true"
           />
-        </Transition.Child>
+        </TransitionChild>
         <div className="fixed inset-0 z-10 w-screen overflow-y-scroll">
-          <Transition.Child
+          <TransitionChild
             as={React.Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0 scale-95"
@@ -48,10 +54,10 @@ export function Dialog({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <D.Panel className="bg-primary relative min-w-[20rem] transform overflow-hidden px-4 pb-4 pt-5 text-left transition-all xs:mx-auto xs:my-20 xs:w-full xs:max-w-lg xs:rounded-md xs:p-6 xs:shadow-xl">
+            <DialogPanel className="relative min-w-[20rem] transform overflow-hidden bg-primary px-4 pt-5 pb-4 text-left transition-all xs:mx-auto xs:my-20 xs:w-full xs:max-w-lg xs:rounded-md xs:p-6 xs:shadow-xl">
               {children}
-            </D.Panel>
-          </Transition.Child>
+            </DialogPanel>
+          </TransitionChild>
         </div>
       </D>
     </Transition>

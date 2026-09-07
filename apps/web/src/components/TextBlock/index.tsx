@@ -11,7 +11,7 @@ export function TextBlock(props: Props) {
   return (
     <pre
       className={cx(
-        'border-primary flex w-full grow flex-col overflow-y-auto whitespace-pre-wrap break-all rounded-sm bg-slate-700/50 p-2 text-sm',
+        'flex w-full grow flex-col overflow-y-auto rounded-xs border-primary bg-slate-700/50 p-2 text-sm break-all whitespace-pre-wrap',
         props.className
       )}
     >

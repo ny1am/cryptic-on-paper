@@ -5,8 +5,7 @@
       "@/*": ["./src/*"]
     },
     "jsx": "preserve",
-    "incremental": true,
-    "esModuleInterop": true
+    "incremental": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": []

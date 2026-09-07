@@ -24,7 +24,7 @@ export function CipherOptionsForm<T extends CipherMetaWithRequiredOptions>({
   return (
     <>
       <div className="mb-8">
-        <div className="mb-4 text-xs font-light leading-5 tracking-wider text-gray-400 [&>p]:mt-2">
+        <div className="mb-4 text-xs leading-5 font-light tracking-wider text-gray-400 [&>p]:mt-2">
           {description}
         </div>
 

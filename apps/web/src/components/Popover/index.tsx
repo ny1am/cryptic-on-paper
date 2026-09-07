@@ -2,6 +2,7 @@ import {
   autoUpdate,
   flip,
   FloatingFocusManager,
+  FloatingPortal,
   offset,
   Placement,
   shift,
@@ -13,6 +14,8 @@ import {
   useRole,
 } from '@floating-ui/react';
 import React, { cloneElement, useState } from 'react';
+
+import { poppins } from '@/fonts';
 
 interface PopoverProps {
   /** trigger element, receives the reference props */
@@ -45,24 +48,26 @@ export const Popover = ({
   const { getReferenceProps, getFloatingProps } = useInteractions([click, role, dismiss]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useMergeRefs([refs.setReference, (children as any).ref]);
+  const ref = useMergeRefs([refs.setReference, (children.props as any)?.ref]);
 
   return (
     <>
-      {cloneElement(children, getReferenceProps({ ref, ...children.props }))}
+      {cloneElement(children, getReferenceProps({ ...children.props, ref }))}
       {open && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            {...getFloatingProps({
-              ref: refs.setFloating,
-              style: { position: strategy, top: y ?? 0, left: x ?? 0 },
-            })}
-            aria-label={ariaLabel}
-            className="border-primary bg-primary z-20 animate-zoom-in rounded-sm p-3 shadow-xl motion-reduce:animate-none"
-          >
-            {panel}
-          </div>
-        </FloatingFocusManager>
+        <FloatingPortal>
+          <FloatingFocusManager context={context} modal={false}>
+            <div
+              {...getFloatingProps({
+                ref: refs.setFloating,
+                style: { position: strategy, top: y ?? 0, left: x ?? 0 },
+              })}
+              aria-label={ariaLabel}
+              className={`${poppins.variable} z-20 animate-zoom-in rounded-xs border-primary bg-primary p-3 font-sans shadow-xl motion-reduce:animate-none`}
+            >
+              {panel}
+            </div>
+          </FloatingFocusManager>
+        </FloatingPortal>
       )}
     </>
   );

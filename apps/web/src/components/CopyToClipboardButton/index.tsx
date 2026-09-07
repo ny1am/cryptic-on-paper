@@ -46,7 +46,7 @@ export function CopyToClipboardButton({
         <span className="relative inline-flex">
           <ClipboardDocumentListIcon className="h-5" />
           {indicator && (
-            <span className="absolute -right-px -top-px h-1.5 w-1.5 rounded-full bg-indigo-300" />
+            <span className="absolute -top-px -right-px h-1.5 w-1.5 rounded-full bg-indigo-300" />
           )}
         </span>
       }

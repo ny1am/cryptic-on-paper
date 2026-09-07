@@ -1,6 +1,7 @@
 import {
   autoUpdate,
   flip,
+  FloatingPortal,
   offset,
   Placement,
   shift,
@@ -15,6 +16,7 @@ import {
 import React, { cloneElement, useState } from 'react';
 import { flushSync } from 'react-dom';
 
+import { poppins } from '@/fonts';
 import { AUTO_ANIMATE_DURATION } from '@/lib/auto-animate';
 
 interface TooltipProps {
@@ -47,15 +49,15 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
   ]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useMergeRefs([refs.setReference, (children as any).ref]);
+  const ref = useMergeRefs([refs.setReference, (children.props as any)?.ref]);
 
   return (
     <>
       {cloneElement(
         children,
         getReferenceProps({
-          ref,
           ...children.props,
+          ref,
           ...(children.props?.onClick && {
             onClick: (e) => {
               flushSync(() => void setOpen(false));
@@ -65,15 +67,17 @@ export const Tooltip = ({ children, label, placement = 'top' }: TooltipProps) =>
         })
       )}
       {open && (
-        <div
-          {...getFloatingProps({
-            ref: refs.setFloating,
-            style: { position: strategy, top: y ?? 0, left: x ?? 0 },
-          })}
-          className="border-primary pointer-events-none animate-zoom-in whitespace-nowrap rounded-sm bg-[#030300] px-2 py-1 text-xs motion-reduce:animate-none"
-        >
-          {label}
-        </div>
+        <FloatingPortal>
+          <div
+            {...getFloatingProps({
+              ref: refs.setFloating,
+              style: { position: strategy, top: y ?? 0, left: x ?? 0 },
+            })}
+            className={`${poppins.variable} pointer-events-none animate-zoom-in rounded-xs border-primary bg-[#030300] px-2 py-1 font-sans text-xs whitespace-nowrap motion-reduce:animate-none`}
+          >
+            {label}
+          </div>
+        </FloatingPortal>
       )}
     </>
   );

@@ -8,7 +8,7 @@ export const TextInput = forwardRef<HTMLInputElement, HTMLAttributes<HTMLInputEl
         ref={ref}
         type="text"
         className={cx(
-          'text-md border-primary focus-ring block w-full rounded-sm',
+          'text-md block w-full rounded-xs border-primary focus-ring',
           className
         )}
         {...props}

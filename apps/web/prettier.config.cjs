@@ -6,4 +6,5 @@ module.exports = {
     ...(rootConfig.plugins ?? []),
     require.resolve('prettier-plugin-tailwindcss'),
   ],
+  tailwindStylesheet: './src/index.css',
 };

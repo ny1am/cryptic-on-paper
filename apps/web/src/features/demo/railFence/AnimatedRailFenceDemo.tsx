@@ -10,7 +10,7 @@ export function AnimatedRailFenceDemo(props: Parameters<typeof BaseRailFenceDemo
 
   const parentRef = useRef(null);
   useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current);
+    if (parentRef.current) autoAnimate(parentRef.current);
   }, [parentRef]);
 
   return <BaseRailFenceDemo ref={parentRef} height={height} />;

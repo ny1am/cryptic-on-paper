@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { forwardRef, PropsWithChildren } from 'react';
 
 const buttonCva = cva(
-  'inline-flex justify-center rounded-sm border px-4 py-2 text-sm font-medium',
+  'inline-flex justify-center rounded-xs border px-4 py-2 text-sm font-medium',
   {
     variants: {
       intent: {
@@ -15,7 +15,8 @@ const buttonCva = cva(
 );
 
 interface ButtonProps
-  extends React.DetailedHTMLProps<
+  extends
+    React.DetailedHTMLProps<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
     >,

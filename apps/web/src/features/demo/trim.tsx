@@ -9,6 +9,6 @@ export function TrimDemo({ length }: Props) {
   const resultText = trimCipherFactory({ length })(originalText);
 
   return (
-    <span className="w-full break-words text-center font-mono text-sm">{resultText}</span>
+    <span className="w-full text-center font-mono text-sm break-words">{resultText}</span>
   );
 }

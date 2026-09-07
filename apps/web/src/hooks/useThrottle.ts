@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 
 export function useThrottle<T>(value: T, interval: number): T {
   const [throttledValue, setThrottledValue] = useState<T>(value);
-  const lastExecuted = useRef<number>(Date.now());
+  const lastExecuted = useRef<number | null>(null);
 
   useEffect(() => {
+    lastExecuted.current ??= Date.now();
+
     if (Date.now() >= lastExecuted.current + interval) {
       lastExecuted.current = Date.now();
       setThrottledValue(value);

@@ -10,12 +10,12 @@ import {
   CipherMetaWithRequiredOptions,
   ciphersRegister,
 } from '@/features/config';
-import { RadioGroup, Transition } from '@/lib/headlessui';
+import { Description, Label, Radio, RadioGroup, Transition } from '@/lib/headlessui';
 
 import { usePipeActions } from '../store';
 import { CipherOptionsForm } from './CipherOptionsForm';
 
-const cipherKeys = keys.strict(ciphersRegister);
+const cipherKeys = keys(ciphersRegister);
 
 function areCipherOptionsRequired(
   key: CipherMeta['key']
@@ -65,7 +65,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
     <>
       {configForm && (
         <StepWrapper>
-          <h2 className="mb-4 text-lg font-medium leading-6">{configForm} keys</h2>
+          <h2 className="mb-4 text-lg leading-6 font-medium">{configForm} keys</h2>
           <CipherOptionsForm
             cipherKey={configForm}
             handleSubmit={handleConfigSubmit}
@@ -75,7 +75,7 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
       )}
       {!configForm && (
         <StepWrapper>
-          <h2 className="mb-4 text-lg font-medium leading-6">Select a cipher</h2>
+          <h2 className="mb-4 text-lg leading-6 font-medium">Select a cipher</h2>
           <RadioGroup className="mt-8" value={selectedKey} onChange={setSelectedKey}>
             <div className="space-y-4">
               {cipherKeys
@@ -86,37 +86,37 @@ export function AddCipherForm({ onDispose }: AddCipherFormProps) {
                   hasKeys: areCipherOptionsRequired(key),
                 }))
                 .map(({ cipherKey, htmlId, description, hasKeys }) => (
-                  <RadioGroup.Option
+                  <Radio
                     key={htmlId}
                     value={cipherKey}
                     as="button"
                     onClick={() => void attemptAddCipher(cipherKey)}
-                    className="border-primary relative flex w-full cursor-pointer justify-between rounded-sm py-4 pl-6 pr-2 text-left"
+                    className="relative flex w-full cursor-pointer justify-between rounded-xs border-primary py-4 pr-2 pl-6 text-left"
                     data-test={`btn-attempt-add-cipher-${cipherKey}`}
                   >
                     <span className="flex items-center">
                       <span className="flex flex-col text-sm">
-                        <RadioGroup.Label as="span" className="font-medium">
+                        <Label as="span" className="font-medium">
                           {cipherKey}
-                        </RadioGroup.Label>
-                        <RadioGroup.Description
+                        </Label>
+                        <Description
                           as="span"
                           className="mt-1 text-xs font-light text-gray-400"
                         >
                           {description}
-                        </RadioGroup.Description>
+                        </Description>
                       </span>
                     </span>
                     {hasKeys && (
-                      <RadioGroup.Description
+                      <Description
                         as="span"
-                        className="ml-4 mt-0 text-right text-xs text-gray-500"
+                        className="mt-0 ml-4 text-right text-xs text-gray-500"
                       >
                         <span className="sr-only">has keys</span>
                         <Cog8ToothIcon className="w-5" />
-                      </RadioGroup.Description>
+                      </Description>
                     )}
-                  </RadioGroup.Option>
+                  </Radio>
                 ))}
             </div>
           </RadioGroup>

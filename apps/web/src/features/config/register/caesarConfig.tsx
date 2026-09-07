@@ -11,7 +11,7 @@ export const caesarConfig: CipherConfig<CaesarCipherOptions> = {
   factory: caesarCipherFactory,
   form: {
     validationSchema: zod.object({
-      shift: zod.number({ invalid_type_error: 'Invalid number' }).min(1).max(25),
+      shift: zod.number({ error: 'Invalid number' }).min(1).max(25),
     }),
     defaultValues: {
       shift: 1,

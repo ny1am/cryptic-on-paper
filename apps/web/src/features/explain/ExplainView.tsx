@@ -32,7 +32,7 @@ export function ExplainView({ onDispose }: Props) {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="mb-4 text-lg font-medium leading-6">Logs</h2>
+        <h2 className="mb-4 text-lg leading-6 font-medium">Logs</h2>
         <IconButton
           type="button"
           title="Close"

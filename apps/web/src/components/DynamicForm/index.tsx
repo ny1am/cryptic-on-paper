@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { cx } from 'class-variance-authority';
 import React, { useEffect } from 'react';
 import { DeepPartial, DefaultValues, Path, useForm } from 'react-hook-form';
-import { ZodObject, ZodSchema } from 'zod';
+import { ZodObject, ZodType } from 'zod';
 
 import { Button } from '@/components/Button';
 import { RangeInput } from '@/components/RangeInput';
@@ -23,7 +23,7 @@ export type DynamicFormUIConfig<T extends Shape> = {
 
 export type DynamicFormProps<T extends Shape> = {
   form: {
-    validationSchema: ZodSchema<T>;
+    validationSchema: ZodType<T, T>;
     uiFields: DynamicFormUIConfig<T>;
     defaultValues: T;
   };
@@ -50,7 +50,7 @@ export function DynamicForm<T extends Shape>({
   });
 
   useEffect(() => {
-    const subscription = watch((value) => onChange(value));
+    const subscription = watch((value) => onChange(value as DeepPartial<T>));
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
 

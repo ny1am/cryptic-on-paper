@@ -1,31 +1,57 @@
-@tailwind base;
-@layer base {
-  button {
-    @apply focus-ring ring-offset-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2;
-  }
+@import 'tailwindcss';
+@source './**/*.{ts,tsx}';
 
-  textarea,
-  input[type] {
-    @apply bg-inherit;
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --breakpoint-xs: 480px;
+
+  --font-sans:
+    var(--font-poppins), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --text-2xs: 0.625rem;
+
+  --animate-zoom-in: zoomIn 0.1s;
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    50% {
+      opacity: 1;
+    }
   }
 }
 
-@tailwind components;
-@layer components {
+@utility focus-ring {
+  @apply focus:ring-indigo-300;
+}
+
+@utility border-primary {
+  @apply border border-slate-700;
+}
+
+@utility bg-primary {
+  @apply bg-slate-900;
+}
+
+@layer base {
+  button {
+    @apply focus-ring ring-offset-slate-900 focus:outline-hidden focus:ring-2 focus:ring-offset-2;
+  }
+
+  /* `@tailwindcss/forms` gives form controls an explicit white background from
+     the base layer, so these selectors have to outrank its own. */
+  html textarea,
+  html input[type] {
+    @apply bg-inherit;
+  }
+
   #__next {
     @apply flex h-full flex-col;
-  }
-
-  .focus-ring {
-    @apply focus:ring-indigo-300;
-  }
-
-  .border-primary {
-    @apply border border-slate-700;
-  }
-
-  .bg-primary {
-    @apply bg-slate-900;
   }
 
   * {
@@ -33,21 +59,9 @@
   }
 }
 
-@tailwind utilities;
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
 .pattern-bg {
-  background-image: linear-gradient(#110100 1.5px, transparent 1.5px),
+  background-image:
+    linear-gradient(#110100 1.5px, transparent 1.5px),
     linear-gradient(to right, #110100 1.5px, transparent 1.5px);
   background-size: 20px 20px;
   background-position: right 25px bottom 8px;

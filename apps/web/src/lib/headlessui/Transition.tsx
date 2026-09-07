@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Transition as RawTransition } from '@headlessui/react';
+import {
+  Transition as RawTransition,
+  TransitionChild as RawTransitionChild,
+} from '@headlessui/react';
 import { forwardRef } from 'react';
 
 import { useMotionReduced } from '@/hooks';
@@ -13,7 +16,7 @@ const motionReducedOverrides = {
   leaveTo: 'opacity-0',
 } as const;
 
-const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
+export const Transition = forwardRef(function TransitionNoRef(props, ref) {
   const motionReduced = useMotionReduced();
   return (
     <RawTransition
@@ -22,20 +25,15 @@ const TransitionRoot = forwardRef(function TransitionNoRef(props, ref) {
       {...(motionReduced ? motionReducedOverrides : {})}
     />
   );
-}) as unknown as typeof RawTransition.Root;
+}) as unknown as typeof RawTransition;
 
-const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
+export const TransitionChild = forwardRef(function TransitionChildNoRef(props, ref) {
   const motionReduced = useMotionReduced();
   return (
-    <RawTransition.Child
+    <RawTransitionChild
       ref={ref}
       {...(props as any)}
       {...(motionReduced ? motionReducedOverrides : {})}
     />
   );
-}) as unknown as typeof RawTransition.Child;
-
-export const Transition = Object.assign(TransitionRoot, {
-  Child: TransitionChild,
-  Root: TransitionRoot,
-});
+}) as unknown as typeof RawTransitionChild;

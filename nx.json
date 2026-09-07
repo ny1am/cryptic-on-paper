@@ -7,5 +7,6 @@
         "parallel": 10
       }
     }
-  }
+  },
+  "analytics": false
 }

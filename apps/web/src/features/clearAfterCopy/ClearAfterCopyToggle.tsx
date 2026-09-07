@@ -15,10 +15,10 @@ export function ClearAfterCopyToggle() {
           type="checkbox"
           checked={enabled}
           onChange={({ target }) => void setEnabled(target.checked)}
-          className="focus-ring h-4 w-4 shrink-0 rounded-sm border-slate-500 bg-slate-800 text-indigo-400 ring-offset-slate-900 focus:ring-offset-2"
+          className="h-4 w-4 shrink-0 rounded-xs border-slate-500 bg-slate-800 text-indigo-400 focus-ring ring-offset-slate-900 focus:ring-offset-2"
           data-test="checkbox-clear-after-copy"
         />
-        <label htmlFor={id} className="select-none text-sm text-gray-200">
+        <label htmlFor={id} className="text-sm text-gray-200 select-none">
           Clear after copy
         </label>
       </div>

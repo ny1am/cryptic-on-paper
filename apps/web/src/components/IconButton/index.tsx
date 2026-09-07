@@ -9,7 +9,7 @@ type As = 'button' | 'a';
 type IconButtonProps<P extends As = 'button'> = React.ComponentProps<P> & {
   as?: P;
   title: string;
-  icon: ReactElement;
+  icon: ReactElement<{ 'aria-hidden'?: boolean }>;
   noTooltip?: boolean;
 };
 
@@ -27,7 +27,7 @@ function IconButtonInner<T extends As = 'button'>(
       <Primitive
         ref={ref}
         className={cx(
-          'inline-flex h-8 w-8 items-center justify-center rounded-sm opacity-70 hover:opacity-100 focus:opacity-100',
+          'inline-flex h-8 w-8 items-center justify-center rounded-xs opacity-70 hover:opacity-100 focus:opacity-100',
           className
         )}
         {...rest}
